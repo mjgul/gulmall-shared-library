@@ -1,0 +1,29 @@
+import { Component } from '@angular/core';
+import * as i0 from "@angular/core";
+import * as i1 from "../../Services/loader.service";
+import * as i2 from "@angular/material/progress-bar";
+import * as i3 from "@angular/common";
+export class ProgressComponent {
+    constructor(loader) {
+        this.loader = loader;
+        this.color = 'primary';
+        this.mode = 'buffer';
+        this.value = 50;
+        this.bufferValue = 75;
+        this.loading = false;
+    }
+    ngOnInit() {
+        this.loader.isLoading.subscribe(res => {
+            this.loading = res;
+            this.value = this.loader.progress;
+            this.bufferValue = this.loader.bufferValue;
+        });
+    }
+}
+ProgressComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ProgressComponent, deps: [{ token: i1.LoaderService }], target: i0.ɵɵFactoryTarget.Component });
+ProgressComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.0.3", type: ProgressComponent, selector: "lib-progress", ngImport: i0, template: "\n\n  <div *ngIf=\"true\" class=\"progress\">\n      \n      <section class=\"example-section\">\n        <mat-progress-bar\n            class=\"example-margin\"\n            [color]=\"color\"\n            [mode]=\"mode\"\n            [value]=\"loader.progress\"\n            [bufferValue]=\"loader.bufferValue\">\n        </mat-progress-bar>\n      </section>\n  </div>", styles: [".example-h2{margin:10px}.example-section{display:flex;align-content:center;align-items:center;height:60px}.example-margin{margin:0 10px}.progress{width:100%;background-color:orange;z-index:1000;position:absolute}\n"], components: [{ type: i2.MatProgressBar, selector: "mat-progress-bar", inputs: ["color", "value", "bufferValue", "mode"], outputs: ["animationEnd"], exportAs: ["matProgressBar"] }], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ProgressComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'lib-progress', template: "\n\n  <div *ngIf=\"true\" class=\"progress\">\n      \n      <section class=\"example-section\">\n        <mat-progress-bar\n            class=\"example-margin\"\n            [color]=\"color\"\n            [mode]=\"mode\"\n            [value]=\"loader.progress\"\n            [bufferValue]=\"loader.bufferValue\">\n        </mat-progress-bar>\n      </section>\n  </div>", styles: [".example-h2{margin:10px}.example-section{display:flex;align-content:center;align-items:center;height:60px}.example-margin{margin:0 10px}.progress{width:100%;background-color:orange;z-index:1000;position:absolute}\n"] }]
+        }], ctorParameters: function () { return [{ type: i1.LoaderService }]; } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZ3Jlc3MuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvYXBpLWxpYi9zcmMvbGliL0NvbXBvbmVudHMvcHJvZ3Jlc3MvcHJvZ3Jlc3MuY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvYXBpLWxpYi9zcmMvbGliL0NvbXBvbmVudHMvcHJvZ3Jlc3MvcHJvZ3Jlc3MuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBVSxNQUFNLGVBQWUsQ0FBQzs7Ozs7QUFTbEQsTUFBTSxPQUFPLGlCQUFpQjtJQU01QixZQUFtQixNQUFvQjtRQUFwQixXQUFNLEdBQU4sTUFBTSxDQUFjO1FBTHZDLFVBQUssR0FBaUIsU0FBUyxDQUFDO1FBQ2hDLFNBQUksR0FBb0IsUUFBUSxDQUFDO1FBQ2pDLFVBQUssR0FBRyxFQUFFLENBQUM7UUFDWCxnQkFBVyxHQUFHLEVBQUUsQ0FBQztRQUNqQixZQUFPLEdBQVcsS0FBSyxDQUFDO0lBQ21CLENBQUM7SUFFNUMsUUFBUTtRQUNOLElBQUksQ0FBQyxNQUFNLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxHQUFHLENBQUEsRUFBRTtZQUNuQyxJQUFJLENBQUMsT0FBTyxHQUFHLEdBQUcsQ0FBQztZQUNuQixJQUFJLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDO1lBQ2xDLElBQUksQ0FBQyxXQUFXLEdBQUcsSUFBSSxDQUFDLE1BQU0sQ0FBQyxXQUFXLENBQUM7UUFDN0MsQ0FBQyxDQUFDLENBQUE7SUFDSixDQUFDOzs4R0FkVSxpQkFBaUI7a0dBQWpCLGlCQUFpQixvRENUOUIsb1hBYVE7MkZESkssaUJBQWlCO2tCQUw3QixTQUFTOytCQUNFLGNBQWMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIE9uSW5pdCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgVGhlbWVQYWxldHRlIH0gZnJvbSAnQGFuZ3VsYXIvbWF0ZXJpYWwvY29yZSc7XG5pbXBvcnQgeyBMb2FkZXJTZXJ2aWNlIH0gZnJvbSAnLi4vLi4vU2VydmljZXMvbG9hZGVyLnNlcnZpY2UnO1xuaW1wb3J0IHtQcm9ncmVzc0Jhck1vZGV9IGZyb20gJ0Bhbmd1bGFyL21hdGVyaWFsL3Byb2dyZXNzLWJhcic7XG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdsaWItcHJvZ3Jlc3MnLFxuICB0ZW1wbGF0ZVVybDogJy4vcHJvZ3Jlc3MuY29tcG9uZW50Lmh0bWwnLFxuICBzdHlsZVVybHM6IFsnLi9wcm9ncmVzcy5jb21wb25lbnQuY3NzJ11cbn0pXG5leHBvcnQgY2xhc3MgUHJvZ3Jlc3NDb21wb25lbnQgaW1wbGVtZW50cyBPbkluaXQge1xuICBjb2xvcjogVGhlbWVQYWxldHRlID0gJ3ByaW1hcnknO1xuICBtb2RlOiBQcm9ncmVzc0Jhck1vZGUgPSAnYnVmZmVyJztcbiAgdmFsdWUgPSA1MDtcbiAgYnVmZmVyVmFsdWUgPSA3NTtcbiAgbG9hZGluZzpib29sZWFuID0gZmFsc2U7XG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBsb2FkZXI6TG9hZGVyU2VydmljZSkgeyB9XG5cbiAgbmdPbkluaXQoKTogdm9pZCB7XG4gICAgdGhpcy5sb2FkZXIuaXNMb2FkaW5nLnN1YnNjcmliZShyZXM9PntcbiAgICAgIHRoaXMubG9hZGluZyA9IHJlcztcbiAgICAgIHRoaXMudmFsdWUgPSB0aGlzLmxvYWRlci5wcm9ncmVzcztcbiAgICAgIHRoaXMuYnVmZmVyVmFsdWUgPSB0aGlzLmxvYWRlci5idWZmZXJWYWx1ZTtcbiAgICB9KVxuICB9XG5cbn1cbiIsIlxuXG4gIDxkaXYgKm5nSWY9XCJ0cnVlXCIgY2xhc3M9XCJwcm9ncmVzc1wiPlxuICAgICAgXG4gICAgICA8c2VjdGlvbiBjbGFzcz1cImV4YW1wbGUtc2VjdGlvblwiPlxuICAgICAgICA8bWF0LXByb2dyZXNzLWJhclxuICAgICAgICAgICAgY2xhc3M9XCJleGFtcGxlLW1hcmdpblwiXG4gICAgICAgICAgICBbY29sb3JdPVwiY29sb3JcIlxuICAgICAgICAgICAgW21vZGVdPVwibW9kZVwiXG4gICAgICAgICAgICBbdmFsdWVdPVwibG9hZGVyLnByb2dyZXNzXCJcbiAgICAgICAgICAgIFtidWZmZXJWYWx1ZV09XCJsb2FkZXIuYnVmZmVyVmFsdWVcIj5cbiAgICAgICAgPC9tYXQtcHJvZ3Jlc3MtYmFyPlxuICAgICAgPC9zZWN0aW9uPlxuICA8L2Rpdj4iXX0=
