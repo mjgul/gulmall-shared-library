@@ -38,24 +38,11 @@ export class JGSApiService {
   }
 
   postImages = (route: any) => {
+    console.log("Uploading Images", route.apiroute);
     return this.http.post(this.appBaseUrl + route.apiroute, route.data, {
       headers: this.headersConfig,
       reportProgress: true,
       observe: 'events',
-    })
-    .subscribe(event => {
-      if(event.type === HttpEventType.UploadProgress) {
-         
-          let progress = Math.round(event.loaded/ event.total! *100) + '%';
-          this.loader.progress = Math.round(event.loaded/ event.total! *100);
-          console.log("PROGRESS: ", progress);
-          this.loader.isLoading.next(true);
-          //console.log('Uploading:' + Math.round(event.loaded/ event.total! *100) + '%');
-           if (event.loaded == event.total){
-            this.loader.isLoading.next(false);
-              console.log("Event Loaded",event);
-          } 
-      } 
-  });
+    });
   };
 }

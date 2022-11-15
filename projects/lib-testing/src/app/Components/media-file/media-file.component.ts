@@ -23,27 +23,26 @@ export class MediaFileComponent implements OnInit {
   }
 
   onFileSelected(event:any) {
-    const file:File = event.target.files[0];
-  
+    
+    const file = event.target.files;
+ 
     if (file) {
         this.fileName = file.name;
-        const formData = new FormData();
-        formData.append("mediaList", file);
-        this.mediaService.uploadFile(formData,'post-images',"634698ff78913a3f2e74e91c");
-        /*
-        const upload$ = this.http.post("/api/thumbnail-upload", formData, {
-            reportProgress: true,
-            observe: 'events'
-        })
-        .pipe(
-            finalize(() => this.reset())
-        );
-      
-        this.uploadSub = upload$.subscribe(event => {
-          if (event.type == HttpEventType.UploadProgress) {
-            this.uploadProgress = Math.round(100 * (event.loaded / event.total!));
+        
+        const formData: FormData = new FormData();
+    for (let i = 0; i < file.length; i++) {
+      console.log("FIle name: ", file[i].name);
+      formData.append('mediaList', file[i], file[i].name);
+    }
+        formData.append("entity_id","634698ff78913a3f2e74e91c");
+        formData.append("entity_type", "post-images");
+     
+        this.mediaService.uploadFile(formData,'post-images',"634698ff78913a3f2e74e91c")
+        .subscribe(res=>{
+          if(res.type === 4){
+            console.log("File Upload response: ", res.body);
           }
-        })*/
+        })
     }
 }
 

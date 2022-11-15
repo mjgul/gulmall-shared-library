@@ -9,14 +9,14 @@
     height: 60px;
   }
   
-  .example-margin {
-    margin: 0 10px;
-  }
-
-  .progress{
-   
+.image-upload-component{
+  background: white;
     width: 100%;
-    background-color: orange;
-    z-index: 1000;
-    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+  .progress{
+    z-index: 1000; 
+    position: relative;
   }

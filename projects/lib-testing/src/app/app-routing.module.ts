@@ -3,11 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { MediaFileComponent } from './Components/media-file/media-file.component';
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/media-test',
-  },
-  {
     path: 'media-test',
     component: MediaFileComponent,
   },

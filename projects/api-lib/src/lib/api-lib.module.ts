@@ -11,10 +11,12 @@ import { ProgressComponent } from './Components/progress/progress.component';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
+import { LoadingComponent } from './Components/loading/loading.component';
 @NgModule({
   declarations: [
     ApiLibComponent,
     ProgressComponent,
+    LoadingComponent,
   ],
   imports: [
     HttpClientModule,

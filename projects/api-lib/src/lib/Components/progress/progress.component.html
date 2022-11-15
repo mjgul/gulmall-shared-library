@@ -3,6 +3,8 @@
   <div *ngIf="true" class="progress">
       
       <section class="example-section">
+        <div class="progress">
+          <h3>Uploading</h3>
         <mat-progress-bar
             class="example-margin"
             [color]="color"
@@ -10,5 +12,6 @@
             [value]="loader.progress"
             [bufferValue]="loader.bufferValue">
         </mat-progress-bar>
+      </div>
       </section>
   </div>
