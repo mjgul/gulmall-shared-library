@@ -3,12 +3,24 @@
   }
   
   .example-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
     height: 60px;
+    background: orange;
+    width: 50%;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
   }
-  
+  mat-card{
+    width: 50%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    
+  }
+  mat-card-footer{
+    padding-bottom: 4px;
+  }
 .image-upload-component{
   background: white;
     width: 100%;
@@ -17,6 +29,31 @@
     padding-bottom: 20px;
 }
   .progress{
-    z-index: 1000; 
+    z-index: 1000;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    background: #e7e7e7b5;
+    height: 100%;
+    width: 100%;
+    top: 0;
+  }
+
+  .progress-active{
+    z-index: 1000;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    background: #e7e7e7b5;
+    height: 100%;
+    width: 100%;
+    top: 0;
   }

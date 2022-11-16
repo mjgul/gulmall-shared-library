@@ -1,13 +1,16 @@
 import * as i0 from '@angular/core';
 import { Component, Injectable, NgModule } from '@angular/core';
 import * as i1 from '@angular/common/http';
-import { HttpResponse, HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS, HttpEventType } from '@angular/common/http';
+import { HttpResponse, HttpEventType, HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { of, tap, EMPTY, BehaviorSubject, retry, map, catchError as catchError$1, throwError, finalize, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import * as i2 from '@angular/material/progress-bar';
+import * as i3 from '@angular/material/progress-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import * as i3 from '@angular/common';
+import * as i2 from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import * as i4 from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 class ApiLibComponent {
     constructor() { }
@@ -175,9 +178,20 @@ class ResponseInterceptor {
         this.loaderService.isLoading.next(true);
         return next.handle(request)
             .pipe(retry(2), map((event) => {
+            if (event.type === HttpEventType.UploadProgress) {
+                let progress = Math.round(event.loaded / event.total * 100) + '%';
+                this.loaderService.progress = Math.round(event.loaded / event.total * 100);
+                console.log("PROGRESS: ", progress);
+                this.loaderService.isLoading.next(true);
+                //console.log('Uploading:' + Math.round(event.loaded/ event.total! *100) + '%');
+                if (event.loaded == event.total) {
+                    this.loaderService.isLoading.next(false);
+                    console.log("Event Loaded", event);
+                }
+            }
             const endTime = new Date().getTime();
             const difference = endTime - startTime;
-            console.log(`${event.url} succeed in ${difference} ms.`);
+            console.log(`${event.type} succeed in ${difference} ms.`);
             return event;
         }), catchError$1((error) => {
             return throwError(() => {
@@ -212,20 +226,35 @@ class ProgressComponent {
     }
 }
 ProgressComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ProgressComponent, deps: [{ token: LoaderService }], target: i0.ɵɵFactoryTarget.Component });
-ProgressComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.0.3", type: ProgressComponent, selector: "lib-progress", ngImport: i0, template: "\n\n  <div *ngIf=\"true\" class=\"progress\">\n      \n      <section class=\"example-section\">\n        <mat-progress-bar\n            class=\"example-margin\"\n            [color]=\"color\"\n            [mode]=\"mode\"\n            [value]=\"loader.progress\"\n            [bufferValue]=\"loader.bufferValue\">\n        </mat-progress-bar>\n      </section>\n  </div>", styles: [".example-h2{margin:10px}.example-section{display:flex;align-content:center;align-items:center;height:60px}.example-margin{margin:0 10px}.progress{width:100%;background-color:orange;z-index:1000;position:absolute}\n"], components: [{ type: i2.MatProgressBar, selector: "mat-progress-bar", inputs: ["color", "value", "bufferValue", "mode"], outputs: ["animationEnd"], exportAs: ["matProgressBar"] }], directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+ProgressComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.0.3", type: ProgressComponent, selector: "lib-progress", ngImport: i0, template: "\n\n  <div *ngIf=\"loader.isLoading |async\" class=\"progress\">\n    \n    <mat-card class=\"example-card\">\n      <mat-card-subtitle>Uploading...</mat-card-subtitle>\n      <mat-card-content>\n        \n      </mat-card-content>\n   \n      <mat-card-footer>\n        <mat-progress-bar\n        class=\"example-margin\"\n        [color]=\"color\"\n        [mode]=\"mode\"\n        [value]=\"loader.progress\"\n        [bufferValue]=\"loader.bufferValue\">\n    </mat-progress-bar>\n      </mat-card-footer>\n    </mat-card>\n     \n  </div>", styles: [".example-h2{margin:10px}.example-section{height:60px;background:orange;width:50%;text-align:center;padding-left:10px;padding-right:10px;padding-bottom:10px}mat-card{width:50%;text-align:center;font-size:18px;font-weight:900}mat-card-footer{padding-bottom:4px}.image-upload-component{background:white;width:100%;padding-left:20px;padding-right:20px;padding-bottom:20px}.progress,.progress-active{z-index:1000;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;position:absolute;left:0;background:#e7e7e7b5;height:100%;width:100%;top:0}\n"], components: [{ type: i2.MatCard, selector: "mat-card", exportAs: ["matCard"] }, { type: i3.MatProgressBar, selector: "mat-progress-bar", inputs: ["color", "value", "bufferValue", "mode"], outputs: ["animationEnd"], exportAs: ["matProgressBar"] }], directives: [{ type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.MatCardSubtitle, selector: "mat-card-subtitle, [mat-card-subtitle], [matCardSubtitle]" }, { type: i2.MatCardContent, selector: "mat-card-content, [mat-card-content], [matCardContent]" }, { type: i2.MatCardFooter, selector: "mat-card-footer" }], pipes: { "async": i4.AsyncPipe } });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ProgressComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'lib-progress', template: "\n\n  <div *ngIf=\"true\" class=\"progress\">\n      \n      <section class=\"example-section\">\n        <mat-progress-bar\n            class=\"example-margin\"\n            [color]=\"color\"\n            [mode]=\"mode\"\n            [value]=\"loader.progress\"\n            [bufferValue]=\"loader.bufferValue\">\n        </mat-progress-bar>\n      </section>\n  </div>", styles: [".example-h2{margin:10px}.example-section{display:flex;align-content:center;align-items:center;height:60px}.example-margin{margin:0 10px}.progress{width:100%;background-color:orange;z-index:1000;position:absolute}\n"] }]
+            args: [{ selector: 'lib-progress', template: "\n\n  <div *ngIf=\"loader.isLoading |async\" class=\"progress\">\n    \n    <mat-card class=\"example-card\">\n      <mat-card-subtitle>Uploading...</mat-card-subtitle>\n      <mat-card-content>\n        \n      </mat-card-content>\n   \n      <mat-card-footer>\n        <mat-progress-bar\n        class=\"example-margin\"\n        [color]=\"color\"\n        [mode]=\"mode\"\n        [value]=\"loader.progress\"\n        [bufferValue]=\"loader.bufferValue\">\n    </mat-progress-bar>\n      </mat-card-footer>\n    </mat-card>\n     \n  </div>", styles: [".example-h2{margin:10px}.example-section{height:60px;background:orange;width:50%;text-align:center;padding-left:10px;padding-right:10px;padding-bottom:10px}mat-card{width:50%;text-align:center;font-size:18px;font-weight:900}mat-card-footer{padding-bottom:4px}.image-upload-component{background:white;width:100%;padding-left:20px;padding-right:20px;padding-bottom:20px}.progress,.progress-active{z-index:1000;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;position:absolute;left:0;background:#e7e7e7b5;height:100%;width:100%;top:0}\n"] }]
         }], ctorParameters: function () { return [{ type: LoaderService }]; } });
+
+class LoadingComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+LoadingComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: LoadingComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+LoadingComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.0.3", type: LoadingComponent, selector: "lib-loading", ngImport: i0, template: "<p>loading works!</p>", styles: [""] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: LoadingComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'lib-loading', template: "<p>loading works!</p>", styles: [""] }]
+        }], ctorParameters: function () { return []; } });
 
 class ApiLibModule {
 }
 ApiLibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ApiLibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
 ApiLibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ApiLibModule, declarations: [ApiLibComponent,
-        ProgressComponent], imports: [HttpClientModule,
+        ProgressComponent,
+        LoadingComponent], imports: [HttpClientModule,
         HttpClientJsonpModule,
         MatProgressBarModule,
-        CommonModule], exports: [CommonModule,
+        CommonModule,
+        MatCardModule,
+        MatIconModule], exports: [CommonModule,
         ApiLibComponent,
         ProgressComponent,
         MatProgressBarModule] });
@@ -256,6 +285,8 @@ ApiLibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "
             HttpClientJsonpModule,
             MatProgressBarModule,
             CommonModule,
+            MatCardModule,
+            MatIconModule
         ], CommonModule,
         MatProgressBarModule] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ApiLibModule, decorators: [{
@@ -264,12 +295,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                     declarations: [
                         ApiLibComponent,
                         ProgressComponent,
+                        LoadingComponent,
                     ],
                     imports: [
                         HttpClientModule,
                         HttpClientJsonpModule,
                         MatProgressBarModule,
                         CommonModule,
+                        MatCardModule,
+                        MatIconModule
                     ],
                     exports: [
                         CommonModule,
@@ -320,23 +354,11 @@ class JGSApiService {
         this.headersConfig = {};
         this.errorSubscriber = new Subject();
         this.postImages = (route) => {
+            console.log("Uploading Images", route.apiroute);
             return this.http.post(this.appBaseUrl + route.apiroute, route.data, {
                 headers: this.headersConfig,
                 reportProgress: true,
                 observe: 'events',
-            })
-                .subscribe(event => {
-                if (event.type === HttpEventType.UploadProgress) {
-                    let progress = Math.round(event.loaded / event.total * 100) + '%';
-                    this.loader.progress = Math.round(event.loaded / event.total * 100);
-                    console.log("PROGRESS: ", progress);
-                    this.loader.isLoading.next(true);
-                    //console.log('Uploading:' + Math.round(event.loaded/ event.total! *100) + '%');
-                    if (event.loaded == event.total) {
-                        this.loader.isLoading.next(false);
-                        console.log("Event Loaded", event);
-                    }
-                }
             });
         };
     }
@@ -364,6 +386,8 @@ class MediaService {
     uploadFile(formData, media_type, entity_id) {
         let apiRoute = {};
         apiRoute.apiroute = `storage/${media_type}/${entity_id}`;
+        let fileName = formData.get('file_name');
+        console.log("FILE NAME: ", fileName);
         apiRoute.data = formData;
         return this.api.postImages(apiRoute);
     }

@@ -6,12 +6,13 @@ import { ErrorInterceptor } from './Services/Interceptor/error.interceptor';
 import { CustomHeaderInterceptor } from './Services/Interceptor/custom-header.interceptor';
 import { ResponseInterceptor } from './Services/Interceptor/response.interceptor';
 import { ApiLibComponent } from './api-lib.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProgressComponent } from './Components/progress/progress.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { LoadingComponent } from './Components/loading/loading.component';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     ApiLibComponent,
@@ -23,6 +24,8 @@ import { LoadingComponent } from './Components/loading/loading.component';
     HttpClientJsonpModule,
     MatProgressBarModule,
     CommonModule,
+    MatCardModule,
+    MatIconModule
   ],
   exports: [
     CommonModule,

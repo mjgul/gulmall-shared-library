@@ -13,7 +13,7 @@ export declare class JGSApiService {
     private errorSubscriber;
     constructor(http: HttpClient, loader: LoaderService);
     getRequestTest(): import("rxjs").Observable<string>;
-    postImages: (route: any) => import("rxjs").Subscription;
+    postImages: (route: any) => import("rxjs").Observable<import("@angular/common/http").HttpEvent<Object>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<JGSApiService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<JGSApiService>;
 }
