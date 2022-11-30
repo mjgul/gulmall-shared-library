@@ -7,11 +7,9 @@ export class MediaService {
 
   constructor(private api:JGSApiService) { }
 
-  public uploadFile( formData:FormData, media_type:string, entity_id:string) { 
+  public uploadFile( formData:FormData ) { 
       let apiRoute: any = {};
-      apiRoute.apiroute = `storage/${media_type}/${entity_id}`;
-      let fileName = formData.get('file_name');
-      console.log("FILE NAME: ",fileName);
+      apiRoute.apiroute = `upload-file`;
       apiRoute.data = formData;
       return this.api.postImages(apiRoute);
   }

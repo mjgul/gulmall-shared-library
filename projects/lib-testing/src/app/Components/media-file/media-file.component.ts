@@ -32,12 +32,12 @@ export class MediaFileComponent implements OnInit {
         const formData: FormData = new FormData();
     for (let i = 0; i < file.length; i++) {
       console.log("FIle name: ", file[i].name);
-      formData.append('mediaList', file[i], file[i].name);
+      formData.append('file', file[i], file[i].name);
     }
-        formData.append("entity_id","634698ff78913a3f2e74e91c");
-        formData.append("entity_type", "post-images");
-     
-        this.mediaService.uploadFile(formData,'post-images',"634698ff78913a3f2e74e91c")
+        formData.append("mamal_id","0101");
+        formData.append("entity_type", "gul");
+        formData.append("entity_sub_type", "satti");
+        this.mediaService.uploadFile(formData)
         .subscribe(res=>{
           if(res.type === 4){
             console.log("File Upload response: ", res.body);

@@ -8,13 +8,17 @@ export class CustomHeaderInterceptor implements HttpInterceptor {
 
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const api_key= "jgs";
-    const token = "000111"
-    /*const reqWithAuth = req.clone({
+    const token:string = "000111"
+    const Accept:string = "*/*"
+    const user_id:string = localStorage.getItem('user_id') || "";
+    const reqWithAuth = req.clone({
       setHeaders:{
         api_key,
-        Authorization:`Bearer${token}`
+        Authorization:`${token}`,
+        user_id,
+        Accept
       }
-    });*/
+    });
     return next.handle(req);
 }
   constructor() { }
