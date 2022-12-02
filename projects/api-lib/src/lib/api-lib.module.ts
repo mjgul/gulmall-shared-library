@@ -13,11 +13,13 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ItemComponent } from '../../../lib-testing/src/app/Components/item/item.component';
 @NgModule({
   declarations: [
     ApiLibComponent,
     ProgressComponent,
     LoadingComponent,
+    ItemComponent,
   ],
   imports: [
     HttpClientModule,

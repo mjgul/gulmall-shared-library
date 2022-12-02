@@ -2,8 +2,6 @@ import { MediaService } from 'api-lib';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
-
-
 @Component({
   selector: 'test-media-file',
   templateUrl: './media-file.component.html',
