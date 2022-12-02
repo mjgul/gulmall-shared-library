@@ -1,6 +1,6 @@
 {
   "name": "api-package",
-  "version": "0.0.0-watch+1668545645286",
+  "version": "0.0.0-watch+1669996758292",
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0"

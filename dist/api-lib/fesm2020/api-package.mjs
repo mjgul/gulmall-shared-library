@@ -2,7 +2,7 @@ import * as i0 from '@angular/core';
 import { Component, Injectable, NgModule } from '@angular/core';
 import * as i1 from '@angular/common/http';
 import { HttpResponse, HttpEventType, HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { of, tap, EMPTY, BehaviorSubject, retry, map, catchError as catchError$1, throwError, finalize, Subject } from 'rxjs';
+import { of, tap, EMPTY, BehaviorSubject, retry, map, catchError as catchError$1, throwError, finalize } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import * as i3 from '@angular/material/progress-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -132,12 +132,16 @@ class CustomHeaderInterceptor {
     intercept(req, next) {
         const api_key = "jgs";
         const token = "000111";
-        /*const reqWithAuth = req.clone({
-          setHeaders:{
-            api_key,
-            Authorization:`Bearer${token}`
-          }
-        });*/
+        const Accept = "*/*";
+        const user_id = localStorage.getItem('user_id') || "";
+        const reqWithAuth = req.clone({
+            setHeaders: {
+                api_key,
+                Authorization: `${token}`,
+                user_id,
+                Accept
+            }
+        });
         return next.handle(req);
     }
 }
@@ -338,36 +342,37 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
         }] });
 
 const BASICTOKEN = 'eXV6ZWVfY2xpZW50OjI5MDIzNmNmLTgxZDItNDg5MS1hYmNlLWYzZmUzYzA5NWMxMA==';
+const SERVER_IP = '20.203.112.202';
 //export const SERVER_IP = 'backend-development.digitalmall.app';
-const SERVER_IP = 'backend-development.digitalmall.app';
 
 class JGSApiService {
     // CONSTRUCTOR API SERVICE
     constructor(http, loader) {
         this.http = http;
         this.loader = loader;
-        this.tokenName = 'dm-token';
-        this.language = 'lang';
-        this.getTokenUrl = 'sessions/token';
-        this.appBaseUrl = `https://${SERVER_IP}/api/`;
-        this.getTokenAccess = {};
-        this.headersConfig = {};
-        this.errorSubscriber = new Subject();
+        this.appBaseUrl = `http://${SERVER_IP}`;
+        // COMMON GET REQUEST
+        this.GET = async (route) => {
+            return await this.http.get(`${this.appBaseUrl}/${route.apiroute}`);
+        };
+        // COMMON POST REQUEST
+        this.POST = async (route) => {
+            return await this.http.post(`${this.appBaseUrl}/${route.apiroute}`, route.data);
+        };
+        // COMMON PUT REQUEST
+        this.PUT = async (route) => {
+            return await this.http.put(`${this.appBaseUrl}/${route.apiroute}`, route.data);
+        };
+        // COMMON DELETE REQUEST
+        this.DELETE = async (route) => {
+            return await this.http.delete(`${this.appBaseUrl}/${route.apiroute}`, route.data);
+        };
         this.postImages = (route) => {
-            console.log("Uploading Images", route.apiroute);
-            return this.http.post(this.appBaseUrl + route.apiroute, route.data, {
-                headers: this.headersConfig,
-                reportProgress: true,
+            return this.http.post(`${this.appBaseUrl}/${route.apiroute}`, route.data, {
+                reportProgress: false,
                 observe: 'events',
             });
         };
-    }
-    getRequestTest() {
-        return this.http
-            .get('https://backend-development.digitalmall.app/api/vehicle-for-sale/post-statuses', { responseType: 'text' })
-            .pipe(tap({
-            next: (data) => console.log(data),
-        }));
     }
 }
 JGSApiService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: JGSApiService, deps: [{ token: i1.HttpClient }, { token: LoaderService }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -383,11 +388,9 @@ class MediaService {
     constructor(api) {
         this.api = api;
     }
-    uploadFile(formData, media_type, entity_id) {
+    uploadFile(formData) {
         let apiRoute = {};
-        apiRoute.apiroute = `storage/${media_type}/${entity_id}`;
-        let fileName = formData.get('file_name');
-        console.log("FILE NAME: ", fileName);
+        apiRoute.apiroute = `upload-file`;
         apiRoute.data = formData;
         return this.api.postImages(apiRoute);
     }
@@ -395,6 +398,93 @@ class MediaService {
 MediaService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: MediaService, deps: [{ token: JGSApiService }], target: i0.ɵɵFactoryTarget.Injectable });
 MediaService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: MediaService, providedIn: 'root' });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: MediaService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
+
+class ItemService {
+    constructor(api) {
+        this.api = api;
+    }
+    /**
+     * Used to fetch comments based on entity
+     * @Author Muhammad Junaid Gul
+     * @returns list of all users.
+     * @memberof ItemService
+     */
+    getAllItem() {
+        let apiRoute = {};
+        apiRoute.apiroute = "get-all-item";
+        return this.api.GET(apiRoute);
+    }
+    /**
+     * Used to fetch comments based on entity
+     * @Author Muhammad Junaid Gul
+     * @param {string} status
+     * @returns list of users fetched by status.
+     * @memberof ItemService
+     */
+    getAllItemWithStatus(_status) {
+        let apiRoute = {};
+        apiRoute.apiroute = "get-item-with-status";
+        apiRoute.data = { status: _status };
+        return this.api.POST(apiRoute);
+    }
+    /**
+     * Used to fetch comments based on entity
+     * @Author Muhammad Junaid Gul
+     * @param {string} mamal_id
+     * @returns single user.
+     * @memberof ItemService
+     */
+    getItemById(_id) {
+        let apiRoute = {};
+        apiRoute.apiroute = "get-item-by-id";
+        apiRoute.data = { item_id: _id };
+        return this.api.POST(apiRoute);
+    }
+    updateItemById(_item, _id) { }
+    /**
+     * Used to fetch comments based on entity
+     * @Author Muhammad Junaid Gul
+     * @param {string} mamal_id
+     * @returns status of deletion.
+     * @memberof ItemService
+     */
+    deleteItemById(_id) {
+        let apiRoute = {};
+        apiRoute.apiroute = "delete-item-by-id";
+        apiRoute.data = { item_id: _id };
+        return this.api.POST(apiRoute);
+    }
+}
+ItemService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, deps: [{ token: JGSApiService }], target: i0.ɵɵFactoryTarget.Injectable });
+ItemService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, providedIn: "root" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: "root",
+                }]
+        }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
+
+class MamalsService {
+    constructor(api) {
+        this.api = api;
+    }
+    getAllUser() {
+        let route = {};
+        route.apiroute = "get-user";
+        return this.api.GET(route);
+    }
+    addUser() { }
+    getUserById() { }
+    updateUser() { }
+}
+MamalsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: MamalsService, deps: [{ token: JGSApiService }], target: i0.ɵɵFactoryTarget.Injectable });
+MamalsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: MamalsService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: MamalsService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -409,5 +499,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ApiLibComponent, ApiLibModule, MediaService, ProgressComponent };
+export { ApiLibComponent, ApiLibModule, ItemService, MamalsService, MediaService, ProgressComponent };
 //# sourceMappingURL=api-package.mjs.map

@@ -1,4 +1,5 @@
 import { Name } from './name';
+import {Image} from './image';
 
 export interface Item {
     name:Name,
@@ -6,5 +7,6 @@ export interface Item {
     available_color:string[],
     available_size:string[],
     price:number,
-    currency:string
+    currency:string,
+    images:Image
 }
