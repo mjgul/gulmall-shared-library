@@ -249,25 +249,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
             args: [{ selector: 'lib-loading', template: "<p>loading works!</p>", styles: [""] }]
         }], ctorParameters: function () { return []; } });
 
-class ItemComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-}
-ItemComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-ItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.0.3", type: ItemComponent, selector: "lib-item", ngImport: i0, template: "<p>item works!</p>\n", styles: [""] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'lib-item', template: "<p>item works!</p>\n", styles: [""] }]
-        }], ctorParameters: function () { return []; } });
-
 class ApiLibModule {
 }
 ApiLibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ApiLibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
 ApiLibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ApiLibModule, declarations: [ApiLibComponent,
         ProgressComponent,
-        LoadingComponent,
-        ItemComponent], imports: [HttpClientModule,
+        LoadingComponent], imports: [HttpClientModule,
         HttpClientJsonpModule,
         MatProgressBarModule,
         CommonModule,
@@ -314,7 +301,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                         ApiLibComponent,
                         ProgressComponent,
                         LoadingComponent,
-                        ItemComponent,
                     ],
                     imports: [
                         HttpClientModule,
