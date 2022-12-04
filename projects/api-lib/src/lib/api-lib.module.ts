@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { MatIconModule } from '@angular/material/icon';
 
+
 @NgModule({
   declarations: [
     ApiLibComponent,
