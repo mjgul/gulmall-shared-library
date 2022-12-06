@@ -1,4 +1,4 @@
-export abstract class Employee {
+export abstract class Employee  {
         private firstName!:string;
         private lastName!:string;
         private socialSecurityNumber!:string;

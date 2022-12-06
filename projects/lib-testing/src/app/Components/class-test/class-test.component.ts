@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { BasePlusCommissionEmployee } from "../../Classes/BasePlusCommissionEmployee";
-import { CommissionEmployee } from "../../Classes/CommissionEmployee";
-import { Employee } from "../../Classes/Employee";
-import { HourlyEmployee } from "../../Classes/HourlyEmployee";
-import { SalariedEmployee } from "../../Classes/SalaryEmployee";
+import { BasePlusCommissionEmployee } from "../../classes/BasePlusCommissionEmployee";
+import { CommissionEmployee } from "../../classes/CommissionEmployee";
+import { Employee } from "../../classes/Employee";
+import { HourlyEmployee } from "../../classes/HourlyEmployee";
+import { SalariedEmployee } from "../../classes/SalaryEmployee";
 @Component({
   selector: "lib-class-test",
   templateUrl: "./class-test.component.html",

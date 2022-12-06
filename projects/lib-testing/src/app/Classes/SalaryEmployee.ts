@@ -19,7 +19,7 @@ export class SalariedEmployee extends Employee {
 
     public getWeeklySalary() { return this.weeklySalary};
 
-    public  earnings = ():number => {return this.getWeeklySalary()};
+    public override earnings = ():number => {return this.getWeeklySalary()};
     
     public override toString = ():String => {
         return `salaried employee: %s%n%s: $%,.2f; %s: %,.2f ${super.toString()}, weekly salary ${this.getWeeklySalary()}`;
