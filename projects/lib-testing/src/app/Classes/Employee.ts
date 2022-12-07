@@ -1,4 +1,6 @@
-export abstract class Employee  {
+import { Payable } from '../Interface/payable';
+
+export abstract class Employee implements Payable {
         private firstName!:string;
         private lastName!:string;
         private socialSecurityNumber!:string;
@@ -17,9 +19,14 @@ export abstract class Employee  {
         public getSocialSecurityNumber():string {return this.socialSecurityNumber;}
         public abstract earnings():any;
     
-        public toString():String {
+        public toString():string {
             return `security number:${this.getSocialSecurityNumber()},
             "First Name", ${this.getFirstName()},
             "Last Name", ${this.getLastName()}`;
             }
+
+            public getPaymentAmount():number {
+            return this.earnings(); 
+        }
+
 }

@@ -1,4 +1,5 @@
 import { Employee } from './Employee';
+
 export class CommissionEmployee extends Employee {
     private  grossSales:number; // gross weekly sales
     private  commissionRate:number; // commission percentage
@@ -36,7 +37,7 @@ public override earnings() {
 return this.getCommissionRate() * this.getGrossSales(); }
 
 
-public override toString():String {
+public override toString():string {
 return `"commission employee", ${super.toString()},
 "gross sales", ${this.getGrossSales()},
 "commission rate", ${this.getCommissionRate()}`;

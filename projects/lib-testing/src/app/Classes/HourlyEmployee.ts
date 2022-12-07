@@ -1,4 +1,5 @@
 import { Employee } from './Employee';
+
 export class HourlyEmployee extends Employee {
   private wage: number; // wage per hour
   private hours: number; // hours worked for week
@@ -62,8 +63,8 @@ export class HourlyEmployee extends Employee {
     }
   };
 
-  public override toString = ():String => {
-    return `hourly employee: %s%n%s: $%,.2f; %s: %,.2f ${super.toString()}, hourly wage ${this.getWage()}, "hours worked", ${this.getHours()}`;
+  public override toString = ():string => {
+    return `hourly employee:${super.toString()}, hourly wage ${this.getWage()}, "hours worked", ${this.getHours()}`;
 }
 
 

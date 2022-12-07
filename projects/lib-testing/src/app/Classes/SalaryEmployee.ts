@@ -1,4 +1,5 @@
 import { Employee } from './Employee';
+
 export class SalariedEmployee extends Employee {
     private  weeklySalary:number;
     constructor(firstName:string,lastName:string,socialSecurityNumber:string,weeklySalary:number){
@@ -21,7 +22,7 @@ export class SalariedEmployee extends Employee {
 
     public override earnings = ():number => {return this.getWeeklySalary()};
     
-    public override toString = ():String => {
-        return `salaried employee: %s%n%s: $%,.2f; %s: %,.2f ${super.toString()}, weekly salary ${this.getWeeklySalary()}`;
+    public override toString = ():string => {
+        return `salaried employee:  ${super.toString()}, weekly salary ${this.getWeeklySalary()}`;
     }
 }

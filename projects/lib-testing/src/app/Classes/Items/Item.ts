@@ -1,11 +1,12 @@
-import { Payable } from "../../interface/payable";
+import { Payable } from '../../Interface/payable';
+
 export abstract class Item implements Payable {
   private name: string;
   private description: string;
   private price: number;
   private image: string[];
 
-  public abstract method1():number;
+  public abstract method1(): number;
 
   // Initiating the item attributes.
   constructor(
@@ -18,7 +19,7 @@ export abstract class Item implements Payable {
     this.description = description;
     this.price = price;
     this.image = image;
-  }
+  };
 
   // GET ITEM NAME
   public getItemName = (): string => {
@@ -37,5 +38,6 @@ export abstract class Item implements Payable {
   // method required to carry out contract with interface Payable
   public getPaymentAmount() {
     return this.price; // calculate total cost
-  }
+  };
+
 }
