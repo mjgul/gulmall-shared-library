@@ -492,6 +492,45 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                 }]
         }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
 
+class CartService {
+    constructor(api) {
+        this.api = api;
+        this.getAllCart = () => {
+            let apiRoute = {};
+            apiRoute.apiroute = `get-all-cart`;
+            return this.api.GET(apiRoute);
+        };
+    }
+    // ADD TO CART
+    /**
+     * @param {Cart}
+     */
+    addToCart(object) {
+        let apiRoute = {};
+        apiRoute.apiroute = `add-cart`;
+        apiRoute.data = object;
+        return this.api.POST(apiRoute);
+    }
+    // GET RECEIPT USING CART IT
+    /**
+     * @param cart_id
+     */
+    getReceiptUsingCartId(cart_id) {
+        let apiRoute = {};
+        apiRoute.apiroute = `get-cart-with-id`;
+        apiRoute.data = { cart_id };
+        return this.api.POST(apiRoute);
+    }
+}
+CartService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CartService, deps: [{ token: JGSApiService }], target: i0.ɵɵFactoryTarget.Injectable });
+CartService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CartService, providedIn: "root" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CartService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: "root",
+                }]
+        }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
+
 /*
  * Public API Surface of api-lib
  */
@@ -500,5 +539,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ApiLibComponent, ApiLibModule, ItemService, MamalsService, MediaService, ProgressComponent };
+export { ApiLibComponent, ApiLibModule, CartService, ItemService, MamalsService, MediaService, ProgressComponent };
 //# sourceMappingURL=api-package.mjs.map

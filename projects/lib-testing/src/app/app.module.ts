@@ -5,17 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MediaFileComponent } from './Components/media-file/media-file.component';
 import { ApiLibModule } from 'api-lib';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTreeModule} from '@angular/material/tree';
+import { ClassTestComponent } from './Components/class-test/class-test.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MediaFileComponent
+    MediaFileComponent,
+    ClassTestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    ApiLibModule
+    ApiLibModule,
+    BrowserAnimationsModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

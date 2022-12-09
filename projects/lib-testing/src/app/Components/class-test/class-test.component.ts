@@ -5,13 +5,19 @@ import { Employee } from "../../Classes/Employee";
 import { HourlyEmployee } from "../../Classes/HourlyEmployee";
 import { SalariedEmployee } from "../../Classes/SalaryEmployee";
 import { Payable  } from '../../Interface/payable';
-import { Invoice } from '../../Classes/Invoice/Invoice';
+import { Invoice } from '../../Classes/Invoice/invoice';
+import { Item } from "../../Classes/Items/Item";
+import { Car } from "../../Classes/Items/vehicle/car/car";
+import { Truck } from "../../Classes/Items/vehicle/car/truck";
+import { Bike } from "../../Classes/Items/vehicle/bike/bike";
+import { Bicycle } from "../../Classes/Items/vehicle/bike/bicycle";
 @Component({
   selector: "lib-class-test",
   templateUrl: "./class-test.component.html",
   styleUrls: ["./class-test.component.css"],
 })
 export class ClassTestComponent implements OnInit {
+  items:Item[] = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -90,5 +96,31 @@ export class ClassTestComponent implements OnInit {
       console.log("Payment due:-  ");
       console.log( payable.getPaymentAmount());
     })
+  }
+
+  itemTest(){
+    console.log("item testing");
+
+  }
+
+  createCar(){
+    console.log("** generating car");
+    let car = new Car(Math.floor(Math.random() * 100).toString(),"Its is a car", Math.floor(Math.random() * 200));
+    this.items.push(car);
+  }
+  generateTruck(){
+    console.log("** generating truck ");
+    let truck = new Truck(Math.floor(Math.random() * 100).toString(),"Its is a truck ", Math.floor(Math.random() * 200));
+    this.items.push(truck);
+  }
+  generateBike(){
+    console.log("** generating bike");
+    let bike = new Bike(Math.floor(Math.random() * 100).toString(),"Its is a bike ", Math.floor(Math.random() * 200));
+    this.items.push(bike);
+  }
+  generateBicycle(){
+    console.log("** generating bicycle");
+    let bicycle = new Bicycle(Math.floor(Math.random() * 100).toString(),"Its is a bicycle ", Math.floor(Math.random() * 200));
+    this.items.push(bicycle);
   }
 }

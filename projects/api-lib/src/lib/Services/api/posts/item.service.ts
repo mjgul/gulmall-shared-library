@@ -30,7 +30,7 @@ export class ItemService {
     let apiRoute: any = {};
     apiRoute.apiroute = "get-item-with-status";
     apiRoute.data = { status: _status };
-    return this.api.POST(apiRoute);
+    return this.api.POST(apiRoute)
   }
 
   /**

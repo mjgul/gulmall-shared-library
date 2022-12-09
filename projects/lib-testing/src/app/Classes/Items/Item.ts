@@ -4,7 +4,7 @@ export abstract class Item implements Payable {
   private name: string;
   private description: string;
   private price: number;
-  private image: string[];
+  private image?: string[];
 
   public abstract method1(): number;
 
@@ -12,13 +12,11 @@ export abstract class Item implements Payable {
   constructor(
     name: string,
     description: string,
-    price: number,
-    image: string[]
+    price: number
   ) {
     this.name = name;
     this.description = description;
     this.price = price;
-    this.image = image;
   };
 
   // GET ITEM NAME
@@ -26,13 +24,18 @@ export abstract class Item implements Payable {
     return this.name;
   };
 
+  public setImages = (images:string[]):string[] =>{
+    this.image = images;
+    return this.image;
+  }
+
   // GET ITEM DESCRIPTION
   public getItemDescription = (): string => {
     return this.description;
   };
 
   public getItemImages = (): string[] => {
-    return this.image;
+    return this.image || [];
   };
 
   // method required to carry out contract with interface Payable
