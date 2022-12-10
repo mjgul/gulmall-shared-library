@@ -1,4 +1,4 @@
-import { Payable } from '../Interface/payable';
+import { Payable } from '../interface/payable';
 
 export abstract class Employee implements Payable {
         private firstName!:string;

@@ -55,7 +55,7 @@
 </div>
 
 <ng-container *ngFor="let item of items">
-  <div class="item-container">
+  <div class="item-container" (click)="itemObject(item)">
     <ul>
       <li>
         <div

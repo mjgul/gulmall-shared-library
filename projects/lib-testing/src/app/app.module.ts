@@ -8,11 +8,13 @@ import { ApiLibModule } from 'api-lib';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTreeModule} from '@angular/material/tree';
 import { ClassTestComponent } from './Components/class-test/class-test.component';
+import { CartTestComponent } from './Components/cart-test/cart-test.component';
 @NgModule({
   declarations: [
     AppComponent,
     MediaFileComponent,
-    ClassTestComponent
+    ClassTestComponent,
+    CartTestComponent
   ],
   imports: [
     BrowserModule,

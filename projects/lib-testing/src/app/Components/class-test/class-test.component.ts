@@ -4,7 +4,7 @@ import { CommissionEmployee } from "../../Classes/CommissionEmployee";
 import { Employee } from "../../Classes/Employee";
 import { HourlyEmployee } from "../../Classes/HourlyEmployee";
 import { SalariedEmployee } from "../../Classes/SalaryEmployee";
-import { Payable  } from '../../Interface/payable';
+import { Payable  } from '../../interface/payable';
 import { Invoice } from '../../Classes/Invoice/invoice';
 import { Item } from "../../Classes/Items/Item";
 import { Car } from "../../Classes/Items/vehicle/car/car";
@@ -105,7 +105,7 @@ export class ClassTestComponent implements OnInit {
 
   createCar(){
     console.log("** generating car");
-    let car = new Car(Math.floor(Math.random() * 100).toString(),"Its is a car", Math.floor(Math.random() * 200));
+    let car = new Car(Math.floor(Math.random() * 100).toString(),"Its is a car", Math.floor(Math.random() * 200),Math.floor(Math.random()*10000));
     this.items.push(car);
   }
   generateTruck(){
@@ -122,5 +122,21 @@ export class ClassTestComponent implements OnInit {
     console.log("** generating bicycle");
     let bicycle = new Bicycle(Math.floor(Math.random() * 100).toString(),"Its is a bicycle ", Math.floor(Math.random() * 200));
     this.items.push(bicycle);
+  }
+
+  itemObject(item:Item) {
+    if(item instanceof Car){
+      console.log("CAR");
+      let car:Car = item as Car;
+    } else if (item instanceof Bicycle){
+      console.log("Bicycle");
+      let bicycle:Bicycle = item as Bicycle;
+    } else if (item instanceof Truck ){
+      console.log("Truck");
+      let truck:Truck = item as Truck;
+    } else if (item instanceof Bike){
+      console.log("Bike");
+      let bike:Bike = item as Bike;
+    }
   }
 }

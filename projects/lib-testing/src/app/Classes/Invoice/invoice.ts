@@ -1,4 +1,4 @@
-import { Payable } from '../../Interface/payable';
+import { Payable } from '../../interface/payable'
 
 export class Invoice implements Payable {
   private partNumber: string;
@@ -50,8 +50,8 @@ export class Invoice implements Payable {
 
   public toString(): string {
     return `
- "invoice", "part number", ${this.getPartNumber()}, ${this.getPartDescription()},
- "quantity", ${this.getQuantity()}, "price per item", ${this.getPricePerItem()}`;
+    "invoice", "part number", ${this.getPartNumber()}, ${this.getPartDescription()},
+    "quantity", ${this.getQuantity()}, "price per item", ${this.getPricePerItem()}`;
   }
 
   public getPaymentAmount(): number {
