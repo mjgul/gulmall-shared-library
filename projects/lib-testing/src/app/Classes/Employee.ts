@@ -17,6 +17,7 @@ export abstract class Employee implements Payable {
         public  getLastName():string {return this.lastName;}
             // return social security number
         public getSocialSecurityNumber():string {return this.socialSecurityNumber;}
+        
         public abstract earnings():any;
     
         public toString():string {

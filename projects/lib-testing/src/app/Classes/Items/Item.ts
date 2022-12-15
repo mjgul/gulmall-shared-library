@@ -1,3 +1,4 @@
+import { Icart } from 'api-lib';
 import { Payable } from '../../interface/payable';
 
 export abstract class Item implements Payable {
@@ -7,7 +8,7 @@ export abstract class Item implements Payable {
   private price: number;
   private image?: string[];
 
-  public abstract addToCart():any;
+  //public abstract addedToCart():boolean;
 
   // Initiating the item attributes.
   constructor(
@@ -53,4 +54,7 @@ export abstract class Item implements Payable {
     return this.price; // calculate total cost
   };
 
+  public itemBluePrint(){
+    return  `${this.getItemName()}_${this.id}`
+  }
 }

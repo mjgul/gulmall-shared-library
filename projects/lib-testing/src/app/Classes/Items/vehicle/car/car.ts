@@ -10,8 +10,12 @@ export class Car extends Vehicle {
     public setCylinder(cylinder:number){
         this.cylinder = cylinder;
     }
-
+    
     public getCylinder(){
         return this.cylinder;
     }
+
+    public override itemBluePrint(){
+        return `${this.getItemName()}_${this.cylinder}`;
+      }
 }

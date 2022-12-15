@@ -46,7 +46,6 @@ export class BasePlusCommissionEmployee extends CommissionEmployee {
   };
 
   // return String representation of BasePlusCommissionEmployee object
-
   public override toString(): string {
     return `"Commission plus based", ${super.toString()},"base salary", ${this.getBaseSalary()}`;
   }

@@ -6,7 +6,5 @@ export abstract class Vehicle extends Item {
         super(name,description,price);
     }
     
-    public override addToCart = (): number => {
-        return 1;
-    }
+   
 }

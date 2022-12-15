@@ -19,9 +19,8 @@ export class Cloth extends Item {
         return this.color;
     }
 
-   public override addToCart(){
-    console.log("Cloth Added In Cart");
-   return {color_id:this.color, size_id:this.size, item_id:this.getItemId()};
-   }
+    public override itemBluePrint(){
+        return `${this.getItemName().replace(/\ /g, '-')}_${this.getItemId()}_${this.color}_${this.size}`;
+      }
 
 }
