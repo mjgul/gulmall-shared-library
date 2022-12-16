@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { LoaderService } from '../../Services/loader.service';
+import { LoaderService } from '../../services/loader.service';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import * as i0 from "@angular/core";
 export declare class ProgressComponent implements OnInit {

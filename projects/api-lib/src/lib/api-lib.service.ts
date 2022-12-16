@@ -3,7 +3,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SERVER_IP } from './constants/config';
-import { LoaderService } from './Services/loader.service';
+import { LoaderService } from './services/loader.service';
 
 @Injectable({
   providedIn: 'root',

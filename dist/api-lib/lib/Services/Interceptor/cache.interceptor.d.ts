@@ -1,6 +1,6 @@
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CacheResolverService } from '../Resolver/cache-resolver.service';
+import { CacheResolverService } from '../../services/resolver/cache-resolver.service';
 import * as i0 from "@angular/core";
 export declare class CacheInterceptor implements HttpInterceptor {
     private cacheResolver;

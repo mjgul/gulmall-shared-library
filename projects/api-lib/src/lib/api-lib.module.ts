@@ -1,17 +1,17 @@
 import { HttpClientJsonpModule, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { CacheInterceptor } from './Services/Interceptor/cache.interceptor';
-import { CacheResolverService } from './Services/Resolver/cache-resolver.service';
-import { ErrorInterceptor } from './Services/Interceptor/error.interceptor';
-import { CustomHeaderInterceptor } from './Services/Interceptor/custom-header.interceptor';
-import { ResponseInterceptor } from './Services/Interceptor/response.interceptor';
+import { CacheInterceptor } from './services/interceptor/cache.interceptor';
+import { CacheResolverService } from './services/resolver/cache-resolver.service';
+import { ErrorInterceptor } from './services/interceptor/error.interceptor';
+import { CustomHeaderInterceptor } from './services/interceptor/custom-header.interceptor';
+import { ResponseInterceptor } from './services/interceptor/response.interceptor';
 import { ApiLibComponent } from './api-lib.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ProgressComponent } from './Components/progress/progress.component';
+import { ProgressComponent } from './components/progress/progress.component';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
-import { LoadingComponent } from './Components/loading/loading.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { MatIconModule } from '@angular/material/icon';
 
 

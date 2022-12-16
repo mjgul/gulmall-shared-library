@@ -1,7 +1,7 @@
 import * as i0 from "@angular/core";
 import * as i1 from "./api-lib.component";
-import * as i2 from "./Components/progress/progress.component";
-import * as i3 from "./Components/loading/loading.component";
+import * as i2 from "./components/progress/progress.component";
+import * as i3 from "./components/loading/loading.component";
 import * as i4 from "@angular/common/http";
 import * as i5 from "@angular/material/progress-bar";
 import * as i6 from "@angular/common";

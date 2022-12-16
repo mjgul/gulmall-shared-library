@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { LoaderService } from '../../Services/loader.service';
+import { LoaderService } from '../../services/loader.service';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 @Component({
   selector: 'lib-progress',

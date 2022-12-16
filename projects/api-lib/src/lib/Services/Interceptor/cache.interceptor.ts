@@ -7,7 +7,7 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Observable, of,tap } from 'rxjs';
-import { CacheResolverService } from '../Resolver/cache-resolver.service';
+import { CacheResolverService } from '../../services/resolver/cache-resolver.service';
 const TIME_TO_LIVE = 10;
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {

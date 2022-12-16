@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
-import { Cart } from '../../../Interfaces/cart';
+import { Icart } from '../../../interfaces/cart';
 
 @Injectable({
     providedIn: "root",
@@ -12,7 +12,7 @@ import { Cart } from '../../../Interfaces/cart';
     /**
      * @param {Cart}
      */
-    public addToCart(object:Cart){
+    public addToCart(object:Icart){
         let apiRoute: any = {};
         apiRoute.apiroute = `add-cart`;
         apiRoute.data = object;

@@ -8,7 +8,7 @@ import {
   HttpEventType
 } from '@angular/common/http';
 import { catchError, finalize, map, Observable, retry, throwError } from 'rxjs';
-import { LoaderService } from '../loader.service';
+import { LoaderService } from '../../services/loader.service'
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {

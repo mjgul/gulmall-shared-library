@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { LoaderService } from './Services/loader.service';
+import { LoaderService } from './services/loader.service';
 import * as i0 from "@angular/core";
 export declare class JGSApiService {
     http: HttpClient;
