@@ -13,10 +13,7 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
     const user_id:string = localStorage.getItem('user_id') || "";
     const reqWithAuth = req.clone({
       setHeaders:{
-        api_key,
-        Authorization:`${token}`,
-        user_id,
-        Accept
+        user_id
       }
     });
     return next.handle(req);

@@ -137,10 +137,7 @@ class CustomHeaderInterceptor {
         const user_id = localStorage.getItem('user_id') || "";
         const reqWithAuth = req.clone({
             setHeaders: {
-                api_key,
-                Authorization: `${token}`,
-                user_id,
-                Accept
+                user_id
             }
         });
         return next.handle(req);
