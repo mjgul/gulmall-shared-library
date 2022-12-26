@@ -1,4 +1,4 @@
-export interface Image {
+export interface Iimage {
     highQuality:{}[];
     lowquality:{}[];
 }

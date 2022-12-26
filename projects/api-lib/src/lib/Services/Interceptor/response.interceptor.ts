@@ -8,7 +8,8 @@ import {
   HttpEventType
 } from '@angular/common/http';
 import { catchError, finalize, map, Observable, retry, throwError } from 'rxjs';
-import { LoaderService } from '../../services/loader.service'
+import { LoaderService } from '../loader.service';
+import { Item } from '../../classes/items/item';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
@@ -32,7 +33,7 @@ export class ResponseInterceptor implements HttpInterceptor {
             this.loaderService.isLoading.next(false);
               console.log("Event Loaded",event);
           } 
-      } 
+      }
         const endTime = new Date().getTime();
         const difference = endTime - startTime;
         console.log(`${event.type} succeed in ${difference} ms.`)

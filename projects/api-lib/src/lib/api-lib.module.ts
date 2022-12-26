@@ -10,7 +10,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProgressComponent } from './components/progress/progress.component';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';  
-import { BrowserModule } from '@angular/platform-browser';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -19,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [
     ApiLibComponent,
     ProgressComponent,
-    LoadingComponent,
+    LoadingComponent
   ],
   imports: [
     HttpClientModule,
@@ -36,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatProgressBarModule,
   ],
   providers:[
+   
     CacheResolverService,
     {
     provide:HTTP_INTERCEPTORS,

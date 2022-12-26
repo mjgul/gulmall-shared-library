@@ -1,11 +1,20 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
-
+import { SERVER_IP } from '../../../constants/config';
+import { ItemDataManiputeService } from '../../data-manipulation/item-data-manipute.service';
+import {
+  HttpClient
+} from '@angular/common/http';
+import { Item } from "../../../classes/items/item";
+import { map } from "rxjs";
+import { Iitem } from "../../../interfaces/item";
+import { Icloth } from "../../../interfaces/cloth";
 @Injectable({
   providedIn: "root",
 })
 export class ItemService {
-  constructor(private api: JGSApiService) {}
+  private appBaseUrl = `http://${SERVER_IP}`;
+  constructor(private api: JGSApiService,public http: HttpClient, private itemDataManipulation:ItemDataManiputeService) {}
 
   /**
    * Used to fetch comments based on entity
@@ -13,10 +22,14 @@ export class ItemService {
    * @returns list of all users.
    * @memberof ItemService
    */
-  getAllItem() {
+  getAllItem = async () => {
     let apiRoute: any = {};
     apiRoute.apiroute = "get-all-item";
-    return this.api.GET(apiRoute);
+    return await this.http.get(`${this.appBaseUrl}/${apiRoute.apiroute}`).pipe(
+      map((items:any) =>
+      
+       this.itemDataManipulation.toClass(items.data))
+    )
   }
 
   /**

@@ -1,9 +1,9 @@
 import * as i0 from '@angular/core';
-import { Component, Injectable, NgModule } from '@angular/core';
+import { Component, Injectable, NgModule, InjectionToken, Inject } from '@angular/core';
 import * as i1 from '@angular/common/http';
 import { HttpResponse, HttpEventType, HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { of, tap, EMPTY, BehaviorSubject, retry, map, catchError as catchError$1, throwError, finalize } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { of, tap, EMPTY, BehaviorSubject, retry, map, catchError as catchError$1, throwError, finalize, Observable } from 'rxjs';
+import { catchError, startWith, distinctUntilChanged } from 'rxjs/operators';
 import * as i3 from '@angular/material/progress-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import * as i2 from '@angular/material/card';
@@ -136,7 +136,10 @@ class CustomHeaderInterceptor {
         const user_id = localStorage.getItem('user_id') || "";
         const reqWithAuth = req.clone({
             setHeaders: {
-                user_id
+                api_key,
+                Authorization: `${token}`,
+                user_id,
+                Accept
             }
         });
         return next.handle(req);
@@ -159,6 +162,13 @@ class LoaderService {
         this.isLoading.subscribe(res => {
             console.log("LOADING: ", res);
         });
+    }
+    /**
+     * // TO CHECK IF ANY API GET CALLED OR NOT.
+     * @returns Observable of true or false based on api calls.
+     */
+    getLoadingStatus() {
+        return this.isLoading.asObservable();
     }
 }
 LoaderService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: LoaderService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
@@ -296,7 +306,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                     declarations: [
                         ApiLibComponent,
                         ProgressComponent,
-                        LoadingComponent,
+                        LoadingComponent
                     ],
                     imports: [
                         HttpClientModule,
@@ -339,7 +349,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
         }] });
 
 const BASICTOKEN = 'eXV6ZWVfY2xpZW50OjI5MDIzNmNmLTgxZDItNDg5MS1hYmNlLWYzZmUzYzA5NWMxMA==';
-const SERVER_IP = '20.203.112.202';
+const SERVER_IP = '20.233.177.178';
 //export const SERVER_IP = 'backend-development.digitalmall.app';
 
 class JGSApiService {
@@ -401,20 +411,190 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                 }]
         }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
 
-class ItemService {
-    constructor(api) {
-        this.api = api;
+class MultiLingualName {
+    constructor(en, ar) {
+        this.en = en;
+        this.ar = ar;
     }
-    /**
-     * Used to fetch comments based on entity
-     * @Author Muhammad Junaid Gul
-     * @returns list of all users.
-     * @memberof ItemService
-     */
-    getAllItem() {
-        let apiRoute = {};
-        apiRoute.apiroute = "get-all-item";
-        return this.api.GET(apiRoute);
+}
+
+class Color extends MultiLingualName {
+    constructor(name_en, name_ar, colorHex, id) {
+        super(name_en, name_ar);
+        this.id = id;
+        this.colorHex = colorHex;
+    }
+}
+
+class Size extends MultiLingualName {
+    constructor(name_en, name_ar, id) {
+        super(name_en, name_ar);
+        this.id = id;
+    }
+}
+
+class Item {
+    // Initiating the item attributes.
+    constructor(name, description, price) {
+        // GET ITEM NAME
+        this.getItemName = () => {
+            return this.name;
+        };
+        this.getItemPrice = () => {
+            return this.price;
+        };
+        // Get item Id
+        this.getItemId = () => {
+            return this.id || "";
+        };
+        this.setImages = (images) => {
+            this.image = images;
+            return this.image;
+        };
+        // GET ITEM DESCRIPTION
+        this.getItemDescription = () => {
+            return this.description;
+        };
+        this.getItemImages = () => {
+            return this.image || [];
+        };
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+    ;
+    // method required to carry out contract with interface Payable
+    getPaymentAmount() {
+        return this.price; // calculate total cost
+    }
+    ;
+    itemBluePrint() {
+        return `${this.getItemName()}_${this.id}`;
+    }
+}
+
+class Fashion extends Item {
+    constructor(name, description, price, availableColors, availableSize) {
+        super(name, description, price);
+        this.availableColor = availableColors;
+        this.availableSize = availableSize;
+    }
+    getRequiredFields() {
+        return { message: "Kinly select size and color", options: [{ name: 'size', list: this.availableSize }, { name: 'color', list: this.availableColor }] };
+    }
+}
+
+class Cloth extends Fashion {
+    constructor(name, description, price, color, size, availableColor, availableSize) {
+        super(name, description, price, availableColor, availableSize);
+        this.getItemSizeId = () => {
+            return this.size.id;
+        };
+        this.getItemColorId = () => {
+            return this.color.id;
+        };
+        this.color = color;
+        this.size = size;
+    }
+    itemBluePrint() {
+        return `${this.getItemName().replace(/\ /g, '-')}_${this.getItemId()}_${this.color}_${this.size}`;
+    }
+}
+
+class Shoes extends Fashion {
+    constructor(name, description, price, color, size, availableColor, availableSize) {
+        super(name, description, price, availableColor, availableSize);
+        this.getItemSizeId = () => {
+            return this.size.id;
+        };
+        this.getItemColorId = () => {
+            return this.color.id;
+        };
+        this.color = color;
+        this.size = size;
+    }
+    itemBluePrint() {
+        return `${this.getItemName().replace(/\ /g, '-')}_${this.getItemId()}_${this.color}_${this.size}`;
+    }
+}
+
+class ItemDataManiputeService {
+    constructor() {
+        this.toClass = (items) => {
+            let filteredItems = items.filter((item) => item.Price != 0);
+            let classifiedItems = [];
+            filteredItems.forEach((item) => {
+                console.log("ITEM CAT: ", item);
+                switch (item.status) {
+                    case 'inactive':
+                        classifiedItems.push(this.toCloth(item));
+                        break;
+                    case 'active':
+                        classifiedItems.push(this.toShoes(item));
+                        break;
+                    default:
+                        break;
+                }
+            });
+            console.log("ITEM IN DATA MANIPULATION ", classifiedItems);
+            return classifiedItems;
+        };
+        this.toCloth = (item) => {
+            let clothAvailableColor = [];
+            let clothAvailableSize = [];
+            item.available_color.forEach((color) => {
+                let dummyColor = new Color(color.name.en, color.name.ar, color.cssHex, color.ID);
+                clothAvailableColor.push(dummyColor);
+            });
+            item.available_color.forEach((x) => {
+                let dummyColor = new Size(x.name.en, x.name.ar, x.cssHex);
+                clothAvailableSize.push(dummyColor);
+            });
+            let cloth = new Cloth(item.name.en, item.name.ar, item.price, new Color('', '', '', ''), new Size('', '', ''), clothAvailableColor, clothAvailableSize);
+            return cloth;
+        };
+        this.toShoes = (item) => {
+            let clothAvailableColor = [];
+            let clothAvailableSize = [];
+            item.available_color.forEach((color) => {
+                let dummyColor = new Color(color.name.en, color.name.ar, color.cssHex, color.ID);
+                clothAvailableColor.push(dummyColor);
+            });
+            item.available_color.forEach((x) => {
+                let dummyColor = new Size(x.name.en, x.name.ar, x.cssHex);
+                clothAvailableSize.push(dummyColor);
+            });
+            let cloth = new Shoes(item.name.en, item.name.ar, item.price, new Color('', '', '', ''), new Size('', '', ''), clothAvailableColor, clothAvailableSize);
+            return cloth;
+        };
+    }
+}
+ItemDataManiputeService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemDataManiputeService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+ItemDataManiputeService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemDataManiputeService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemDataManiputeService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () { return []; } });
+
+class ItemService {
+    constructor(api, http, itemDataManipulation) {
+        this.api = api;
+        this.http = http;
+        this.itemDataManipulation = itemDataManipulation;
+        this.appBaseUrl = `http://${SERVER_IP}`;
+        /**
+         * Used to fetch comments based on entity
+         * @Author Muhammad Junaid Gul
+         * @returns list of all users.
+         * @memberof ItemService
+         */
+        this.getAllItem = async () => {
+            let apiRoute = {};
+            apiRoute.apiroute = "get-all-item";
+            return await this.http.get(`${this.appBaseUrl}/${apiRoute.apiroute}`).pipe(map((items) => this.itemDataManipulation.toClass(items.data)));
+        };
     }
     /**
      * Used to fetch comments based on entity
@@ -457,14 +637,14 @@ class ItemService {
         return this.api.POST(apiRoute);
     }
 }
-ItemService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, deps: [{ token: JGSApiService }], target: i0.ɵɵFactoryTarget.Injectable });
+ItemService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, deps: [{ token: JGSApiService }, { token: i1.HttpClient }, { token: ItemDataManiputeService }], target: i0.ɵɵFactoryTarget.Injectable });
 ItemService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, providedIn: "root" });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: "root",
                 }]
-        }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
+        }], ctorParameters: function () { return [{ type: JGSApiService }, { type: i1.HttpClient }, { type: ItemDataManiputeService }]; } });
 
 class MamalsService {
     constructor(api) {
@@ -527,6 +707,394 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                 }]
         }], ctorParameters: function () { return [{ type: JGSApiService }]; } });
 
+const BLOB_STORAGE_TOKEN = new InjectionToken('BLOB_STORAGE_TOKEN');
+
+class StorageService {
+    constructor(blobStorage) {
+        this.blobStorage = blobStorage;
+    }
+    uploadToBlobStorage(sasToken, file) {
+        const customBlockSize = this.getBlockSize(file);
+        const options = { blockSize: customBlockSize };
+        const blobService = this.createBlobService(sasToken.storageAccessToken, sasToken.storageUri);
+        blobService.singleBlobPutThresholdInBytes = customBlockSize;
+        return this.uploadFile(blobService, sasToken, file, options);
+    }
+    createBlobService(accessToken, blobUri) {
+        return this.blobStorage
+            .createBlobServiceWithSas(blobUri, accessToken)
+            .withFilter(new this.blobStorage.ExponentialRetryPolicyFilter());
+    }
+    uploadFile(blobService, accessToken, file, options) {
+        return new Observable(observer => {
+            const speedSummary = blobService.createBlockBlobFromBrowserFile(accessToken.container, accessToken.filename, file, options, error => this.callback(error, observer));
+            speedSummary.on('progress', () => this.getProgress(speedSummary, observer));
+        }).pipe(startWith(0), distinctUntilChanged());
+    }
+    getProgress(speedSummary, observer) {
+        const progress = parseInt(speedSummary.getCompletePercent(2), 10);
+        observer.next(progress === 100 ? 99 : progress);
+    }
+    callback(error, observer) {
+        if (error) {
+            observer.error(error);
+        }
+        else {
+            observer.next(100);
+            observer.complete();
+        }
+    }
+    getBlockSize(file) {
+        const size32Mb = 1024 * 1024 * 32;
+        const size4Mb = 1024 * 1024 * 4;
+        const size512Kb = 1024 * 512;
+        return file.size > size32Mb ? size4Mb : size512Kb;
+    }
+}
+StorageService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: StorageService, deps: [{ token: BLOB_STORAGE_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable });
+StorageService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: StorageService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: StorageService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [BLOB_STORAGE_TOKEN]
+                }] }]; } });
+
+class Vehicle extends Item {
+    constructor(name, description, price) {
+        super(name, description, price);
+    }
+}
+
+class Car extends Vehicle {
+    constructor(name, description, price, cylinder) {
+        super(name, description, price);
+        this.cylinder = cylinder;
+    }
+    setCylinder(cylinder) {
+        this.cylinder = cylinder;
+    }
+    getCylinder() {
+        return this.cylinder;
+    }
+    getRequiredFields() {
+        return "Kinly car";
+    }
+    itemBluePrint() {
+        return `${this.getItemName()}_${this.cylinder}`;
+    }
+}
+
+class CartItem {
+    constructor(item) {
+        this.getProduct = () => {
+            return this.item;
+        };
+        this.getQuantity = () => {
+            return this.quantity;
+        };
+        this.decreseQuantity = () => {
+            if (this.quantity > 0) {
+                this.quantity--;
+            }
+            console.log(this.quantity);
+        };
+        this.inceaseQuantity = () => {
+            this.quantity += 1;
+            console.log(this.quantity);
+        };
+        this.item = item;
+        this.quantity = 1;
+    }
+}
+
+class ShoppingCart {
+    constructor() {
+        this.addItem = (item) => {
+            let getItemByName = this.cartList.get(item.getProduct().itemBluePrint());
+            if (getItemByName) {
+                let cartItem = this.cartList.get(item.getProduct().itemBluePrint());
+                cartItem?.inceaseQuantity();
+            }
+            else {
+                this.cartList.set(item.getProduct().itemBluePrint(), item);
+            }
+        };
+        this.removeProduct = (item_blue_print) => {
+            this.cartList.delete(item_blue_print);
+        };
+        this.getQuantity = (item_id) => {
+            return 0;
+        };
+        this.totalPrice = () => {
+            let totalCost = 0;
+            this.cartList.forEach(item => {
+                let eachCost = item.getProduct().getItemPrice() * item.getQuantity();
+                totalCost += eachCost;
+            });
+            return totalCost;
+        };
+        this.getCartDetails = () => {
+            let dummyArray = [];
+            this.cartList.forEach((cartItem, key) => {
+                if (cartItem.getProduct() instanceof Cloth) {
+                    let cloth = cartItem.getProduct();
+                    let cart = { item_id: cloth.getItemId(), color_id: cloth.getItemColorId(), size_id: cloth.getItemSizeId(), quantity: cartItem.getQuantity() };
+                    dummyArray.push(cart);
+                }
+                else {
+                    let item = cartItem.getProduct();
+                    let cart = { item_id: item.getItemId(), quantity: cartItem.getQuantity() };
+                    dummyArray.push(cart);
+                }
+            });
+            return dummyArray;
+        };
+        console.log('cart list initiated');
+        this.cartList = new Map();
+    }
+    getCartList() {
+        return this.cartList || null;
+    }
+}
+
+class Bicycle extends Vehicle {
+    constructor(name, description, price) {
+        super(name, description, price);
+    }
+    getRequiredFields() {
+        return "Kinly bicycle";
+    }
+}
+
+class Bike extends Vehicle {
+    constructor(name, description, price) {
+        super(name, description, price);
+    }
+    getRequiredFields() {
+        return "Kinly bike";
+    }
+}
+
+class Employee {
+    constructor(firstName, lastName, socialSecurityNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.socialSecurityNumber = socialSecurityNumber;
+    }
+    // return first name
+    getFirstName() { return this.firstName; }
+    // return last name
+    getLastName() { return this.lastName; }
+    // return social security number
+    getSocialSecurityNumber() { return this.socialSecurityNumber; }
+    toString() {
+        return `security number:${this.getSocialSecurityNumber()},
+            "First Name", ${this.getFirstName()},
+            "Last Name", ${this.getLastName()}`;
+    }
+    getPaymentAmount() {
+        return this.earnings();
+    }
+}
+
+class CommissionEmployee extends Employee {
+    constructor(firstName, lastName, socialSecurityNumber, grossSales, commissionRate) {
+        super(firstName, lastName, socialSecurityNumber);
+        // set gross sales amount
+        this.setGrossSales = (grossSales) => {
+            if (grossSales < 0.0) { // validate
+                throw new Error("Gross sales must be >= 0.0");
+            }
+            this.grossSales = grossSales;
+        };
+        // return gross sales amount
+        this.getGrossSales = () => { return this.grossSales; };
+        // set commission rate
+        this.setCommissionRate = (commissionRate) => {
+            if (commissionRate <= 0.0 || commissionRate >= 1.0) { // validate
+                throw new Error("Commission rate must be > 0.0 and < 1.0");
+            }
+            this.commissionRate = commissionRate;
+        };
+        // return commission rate
+        this.getCommissionRate = () => { return this.commissionRate; };
+        if (commissionRate <= 0.0 || commissionRate >= 1.0) { // validate throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0";
+        }
+        if (grossSales < 0.0) { // validate
+            throw new Error("Gross sales must be >= 0.0");
+        }
+        this.grossSales = grossSales;
+        this.commissionRate = commissionRate;
+    }
+    // calculate earnings; override abstract method earnings in Employee
+    earnings() {
+        return this.getCommissionRate() * this.getGrossSales();
+    }
+    toString() {
+        return `"commission employee", ${super.toString()},
+"gross sales", ${this.getGrossSales()},
+"commission rate", ${this.getCommissionRate()}`;
+    }
+}
+
+class BasePlusCommissionEmployee extends CommissionEmployee {
+    // constructor
+    constructor(firstName, lastName, socialSecurityNumber, grossSales, commissionRate, baseSalary) {
+        super(firstName, lastName, socialSecurityNumber, grossSales, commissionRate);
+        //
+        this.setBaseSalary = (baseSalary) => {
+            if (baseSalary < 0.0) {
+                // validate baseSalary
+                throw new Error("Base salary must be >= 0.0");
+            }
+            this.baseSalary = baseSalary;
+        };
+        //return base salary
+        this.getBaseSalary = () => {
+            return this.baseSalary;
+        };
+        // calculate earnings; override method earnings in CommissionEmployee
+        this.earnings = () => {
+            return this.getBaseSalary() + super.earnings();
+        };
+        if (baseSalary < 0.0) {
+            // validate baseSalary
+            throw new Error("Base salary must be >= 0.0");
+        }
+        this.baseSalary = baseSalary;
+    }
+    // return String representation of BasePlusCommissionEmployee object
+    toString() {
+        return `"Commission plus based", ${super.toString()},"base salary", ${this.getBaseSalary()}`;
+    }
+}
+
+class HourlyEmployee extends Employee {
+    constructor(firstName, lastName, socialSecurityNumber, wage, hours) {
+        super(firstName, lastName, socialSecurityNumber);
+        //set wage
+        this.setWage = (wage) => {
+            if (wage < 0.0) {
+                throw new Error('Hourly wage must be >= 0.0');
+            }
+            this.wage = wage;
+        };
+        this.getWage = () => {
+            return this.wage;
+        };
+        this.setHours = (hours) => {
+            if (hours < 0.0 || hours > 168.0) {
+                // validate hours
+                throw new Error('Hours worked must be >= 0.0 and <= 168.0');
+            }
+            this.hours = hours;
+        };
+        //return hours worked
+        this.getHours = () => {
+            return this.hours;
+        };
+        this.earnings = () => {
+            if (this.getHours() <= 40) {
+                // no overtime
+                return this.getWage() * this.getHours();
+            }
+            else {
+                return (40 * this.getWage() + (this.getHours() - 40) * this.getWage() * 1.5);
+            }
+        };
+        this.toString = () => {
+            return `hourly employee:${super.toString()}, hourly wage ${this.getWage()}, "hours worked", ${this.getHours()}`;
+        };
+        if (wage < 0.0) {
+            // validate wage
+            throw new Error('Hourly wage must be >= 0.0');
+        }
+        if (hours < 0.0 || hours > 168.0) {
+            // validate hours
+            throw new Error('Hours worked must be >= 0.0 and <= 168.0');
+        }
+        this.wage = wage;
+        this.hours = hours;
+    }
+}
+
+class SalariedEmployee extends Employee {
+    constructor(firstName, lastName, socialSecurityNumber, weeklySalary) {
+        super(firstName, lastName, socialSecurityNumber);
+        this.earnings = () => { return this.getWeeklySalary(); };
+        this.toString = () => {
+            return `salaried employee:  ${super.toString()}, weekly salary ${this.getWeeklySalary()}`;
+        };
+        if (weeklySalary < 0.0) {
+            throw new Error("Weekly salary must be >= 0.0");
+        }
+        this.weeklySalary = weeklySalary;
+    }
+    // return salary.
+    setWeeklySalary(weeklySalary) {
+        if (weeklySalary < 0.0) {
+            throw new Error("weekly salary must be >= 0.0");
+        }
+        this.weeklySalary = weeklySalary;
+    }
+    ;
+    getWeeklySalary() { return this.weeklySalary; }
+    ;
+}
+
+class Invoice {
+    constructor(partNumber, partDescription, quantity, pricePerItem) {
+        if (quantity < 0) {
+            // validate quantity
+            throw new Error('Quantity must be >= 0');
+        }
+        if (pricePerItem < 0.0) {
+            // validate pricePerItem
+            throw new Error(('Price per item must be >= 0'));
+        }
+        this.quantity = quantity;
+        this.partNumber = partNumber;
+        this.partDescription = partDescription;
+        this.pricePerItem = pricePerItem;
+    }
+    //
+    getPartNumber() {
+        return this.partNumber;
+    }
+    // get description
+    getPartDescription() {
+        return this.partDescription;
+    }
+    // get quantity
+    getQuantity() {
+        return this.quantity;
+    }
+    // get price per item
+    getPricePerItem() {
+        return this.pricePerItem;
+    }
+    // return String representation of Invoice object
+    toString() {
+        return `
+    "invoice", "part number", ${this.getPartNumber()}, ${this.getPartDescription()},
+    "quantity", ${this.getQuantity()}, "price per item", ${this.getPricePerItem()}`;
+    }
+    getPaymentAmount() {
+        return this.getQuantity() * this.getPricePerItem();
+    }
+}
+
+class Truck extends Vehicle {
+    constructor(name, description, price) {
+        super(name, description, price);
+    }
+    getRequiredFields() {
+        return "Kinly truck";
+    }
+}
+
 /*
  * Public API Surface of api-lib
  */
@@ -535,5 +1103,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ApiLibComponent, ApiLibModule, CartService, ItemService, MamalsService, MediaService, ProgressComponent };
+export { ApiLibComponent, ApiLibModule, BLOB_STORAGE_TOKEN, BasePlusCommissionEmployee, Bicycle, Bike, Car, CartItem, CartService, Cloth, Color, CommissionEmployee, Employee, HourlyEmployee, Invoice, Item, ItemService, MamalsService, MediaService, MultiLingualName, ProgressComponent, SalariedEmployee, ShoppingCart, Size, StorageService, Truck };
 //# sourceMappingURL=api-package.mjs.map

@@ -1,12 +1,10 @@
-import { Name } from './name';
-import {Image} from './image';
+import { Iname } from './name';
+import { Iimage } from './image';
 
-export interface Item {
-    name:Name,
-    feature:Name[],
-    available_color:string[],
-    available_size:string[],
-    price:number,
-    currency:string,
-    images:Image
+export interface Iitem {
+   name: string;
+   id?:string;
+   description: string;
+   price: number;
+   image?: Iimage[];
 }

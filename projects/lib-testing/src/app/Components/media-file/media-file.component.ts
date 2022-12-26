@@ -36,7 +36,7 @@ export class MediaFileComponent implements OnInit {
         formData.append("entity_type", "gul");
         formData.append("entity_sub_type", "satti");
         this.mediaService.uploadFile(formData)
-        .subscribe(res=>{
+        .subscribe((res:any)=>{
           if(res.type === 4){
             console.log("File Upload response: ", res.body);
           }

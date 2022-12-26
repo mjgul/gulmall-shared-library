@@ -1,6 +1,6 @@
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoaderService } from '../../services/loader.service';
+import { LoaderService } from '../loader.service';
 import * as i0 from "@angular/core";
 export declare class ResponseInterceptor implements HttpInterceptor {
     loaderService: LoaderService;

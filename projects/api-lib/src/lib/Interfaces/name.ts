@@ -1,4 +1,4 @@
-export interface Name {
+export interface Iname {
     en:"",
     ar:""
 }

@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { BasePlusCommissionEmployee } from "../../Classes/BasePlusCommissionEmployee";
-import { CommissionEmployee } from "../../Classes/CommissionEmployee";
-import { Employee } from "../../Classes/Employee";
-import { HourlyEmployee } from "../../Classes/HourlyEmployee";
-import { SalariedEmployee } from "../../Classes/SalaryEmployee";
-import { Payable  } from '../../interface/payable';
-import { Invoice } from '../../Classes/Invoice/invoice';
-import { Item } from "../../Classes/Items/Item";
-import { Car } from "../../Classes/Items/vehicle/car/car";
-import { Truck } from "../../Classes/Items/vehicle/car/truck";
-import { Bike } from "../../Classes/Items/vehicle/bike/bike";
-import { Bicycle } from "../../Classes/Items/vehicle/bike/bicycle";
+import { BasePlusCommissionEmployee } from "api-lib";
+import { CommissionEmployee } from "api-lib";
+import { Employee } from "api-lib";
+import { HourlyEmployee } from "api-lib";
+import { SalariedEmployee } from "api-lib";
+import { Payable  } from 'api-lib';
+import { Invoice } from "api-lib";
+import { Item } from "api-lib";
+import { Car, } from "api-lib";
+import { Truck } from "api-lib";
+import { Bike } from "api-lib";
+import { Bicycle } from "api-lib";
 @Component({
   selector: "lib-class-test",
   templateUrl: "./class-test.component.html",

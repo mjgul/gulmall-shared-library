@@ -1,0 +1,8 @@
+<ol>
+    <li (click)="getAllItems()">
+        <h3>Get All Items</h3>
+        <ul>
+            <li *ngFor="let item of myItems | async"> {{item.getItemName()}} </li>
+        </ul>
+    </li>
+</ol>

@@ -1,15 +1,21 @@
 import { JGSApiService } from "../../../api-lib.service";
+import { ItemDataManiputeService } from '../../data-manipulation/item-data-manipute.service';
+import { HttpClient } from '@angular/common/http';
+import { Item } from "../../../classes/items/item";
 import * as i0 from "@angular/core";
 export declare class ItemService {
     private api;
-    constructor(api: JGSApiService);
+    http: HttpClient;
+    private itemDataManipulation;
+    private appBaseUrl;
+    constructor(api: JGSApiService, http: HttpClient, itemDataManipulation: ItemDataManiputeService);
     /**
      * Used to fetch comments based on entity
      * @Author Muhammad Junaid Gul
      * @returns list of all users.
      * @memberof ItemService
      */
-    getAllItem(): Promise<import("rxjs").Observable<Object>>;
+    getAllItem: () => Promise<import("rxjs").Observable<Item[]>>;
     /**
      * Used to fetch comments based on entity
      * @Author Muhammad Junaid Gul
