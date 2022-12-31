@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { MediaService } from 'api-lib';
-import { ItemService } from 'api-lib';
-import { MamalsService } from 'api-lib';
+import { CategoriesService } from 'api-lib';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,14 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Library';
-  constructor(private test:MediaService,
-    private itemService:ItemService,
-    private mamals:MamalsService,
-     private router:Router){
+  constructor(private router:Router, private category:CategoriesService){
      
   }
-
-
 
 
   navigate(where:string) {

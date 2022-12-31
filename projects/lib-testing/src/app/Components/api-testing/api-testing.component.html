@@ -1,8 +1,20 @@
 <ol>
-    <li (click)="getAllItems()">
-        <h3>Get All Items</h3>
+    <li>
+        <h3 (click)="getAllItems()" >Get All Items</h3>
         <ul>
             <li *ngFor="let item of myItems | async"> {{item.getItemName()}} </li>
+        </ul>
+
+        <h3 (click)="getAllCategories()">Get All Categories</h3>
+        <ul>
+            <li (click)="getSubCategoryByCategoryId(category.id)" *ngFor="let category of allCategories | async"> {{category.name.en}} </li>
+            <ul>
+                <li (click)="getChildOfSubCat(subCategory.ID)" *ngFor="let subCategory of allSubCategories | async"> {{subCategory.name.en}}
+                    <ul>
+                        <li *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name.en}}</li>
+                    </ul>
+                </li>
+            </ul>
         </ul>
     </li>
 </ol>

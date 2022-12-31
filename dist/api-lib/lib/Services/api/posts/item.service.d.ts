@@ -31,7 +31,7 @@ export declare class ItemService {
      * @returns single user.
      * @memberof ItemService
      */
-    getItemById(_id: string): Promise<import("rxjs").Observable<Object>>;
+    getItemById: (_id: string) => Promise<import("rxjs").Observable<Object>>;
     updateItemById(_item: any, _id: string): void;
     /**
      * Used to fetch comments based on entity
@@ -40,7 +40,7 @@ export declare class ItemService {
      * @returns status of deletion.
      * @memberof ItemService
      */
-    deleteItemById(_id: string): Promise<import("rxjs").Observable<Object>>;
+    deleteItemById: (_id: string) => Promise<import("rxjs").Observable<Object>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ItemService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ItemService>;
 }

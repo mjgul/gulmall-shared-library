@@ -27,7 +27,6 @@ export class ItemService {
     apiRoute.apiroute = "get-all-item";
     return await this.http.get(`${this.appBaseUrl}/${apiRoute.apiroute}`).pipe(
       map((items:any) =>
-      
        this.itemDataManipulation.toClass(items.data))
     )
   }
@@ -53,7 +52,7 @@ export class ItemService {
    * @returns single user.
    * @memberof ItemService
    */
-  getItemById(_id: string) {
+  getItemById = (_id: string) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "get-item-by-id";
     apiRoute.data = { item_id: _id };
@@ -70,7 +69,7 @@ export class ItemService {
    * @returns status of deletion.
    * @memberof ItemService
    */
-  deleteItemById(_id: string) {
+  deleteItemById = (_id: string) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "delete-item-by-id";
     apiRoute.data = { item_id: _id };

@@ -12,7 +12,6 @@ import { CartTestComponent } from './components/cart-test/cart-test.component';
 import { BLOB_STORAGE_TOKEN, IAzureStorage } from 'api-lib';
 import { StorageService } from 'api-lib';
 import { ApiTestingComponent } from './components/api-testing/api-testing.component';
-declare let AzureStorage: IAzureStorage;
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +29,7 @@ declare let AzureStorage: IAzureStorage;
     BrowserAnimationsModule,
     MatTreeModule
   ],
-  providers: [
-    StorageService,
-    {
-      provide: BLOB_STORAGE_TOKEN,
-      useValue:""
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

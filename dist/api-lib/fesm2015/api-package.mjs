@@ -596,6 +596,32 @@ class ItemService {
             apiRoute.apiroute = "get-all-item";
             return yield this.http.get(`${this.appBaseUrl}/${apiRoute.apiroute}`).pipe(map((items) => this.itemDataManipulation.toClass(items.data)));
         });
+        /**
+         * Used to fetch comments based on entity
+         * @Author Muhammad Junaid Gul
+         * @param {string} mamal_id
+         * @returns single user.
+         * @memberof ItemService
+         */
+        this.getItemById = (_id) => {
+            let apiRoute = {};
+            apiRoute.apiroute = "get-item-by-id";
+            apiRoute.data = { item_id: _id };
+            return this.api.POST(apiRoute);
+        };
+        /**
+         * Used to fetch comments based on entity
+         * @Author Muhammad Junaid Gul
+         * @param {string} mamal_id
+         * @returns status of deletion.
+         * @memberof ItemService
+         */
+        this.deleteItemById = (_id) => {
+            let apiRoute = {};
+            apiRoute.apiroute = "delete-item-by-id";
+            apiRoute.data = { item_id: _id };
+            return this.api.POST(apiRoute);
+        };
     }
     /**
      * Used to fetch comments based on entity
@@ -610,33 +636,7 @@ class ItemService {
         apiRoute.data = { status: _status };
         return this.api.POST(apiRoute);
     }
-    /**
-     * Used to fetch comments based on entity
-     * @Author Muhammad Junaid Gul
-     * @param {string} mamal_id
-     * @returns single user.
-     * @memberof ItemService
-     */
-    getItemById(_id) {
-        let apiRoute = {};
-        apiRoute.apiroute = "get-item-by-id";
-        apiRoute.data = { item_id: _id };
-        return this.api.POST(apiRoute);
-    }
     updateItemById(_item, _id) { }
-    /**
-     * Used to fetch comments based on entity
-     * @Author Muhammad Junaid Gul
-     * @param {string} mamal_id
-     * @returns status of deletion.
-     * @memberof ItemService
-     */
-    deleteItemById(_id) {
-        let apiRoute = {};
-        apiRoute.apiroute = "delete-item-by-id";
-        apiRoute.data = { item_id: _id };
-        return this.api.POST(apiRoute);
-    }
 }
 ItemService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, deps: [{ token: JGSApiService }, { token: i1.HttpClient }, { token: ItemDataManiputeService }], target: i0.ɵɵFactoryTarget.Injectable });
 ItemService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: ItemService, providedIn: "root" });
@@ -762,6 +762,69 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImpor
                         args: [BLOB_STORAGE_TOKEN]
                     }] }];
     } });
+
+class CategoriesDataManipulationService {
+    constructor() {
+        this.toCategory = (categories) => {
+            let categoryList = [];
+            console.log("Category from Server: ", categories);
+            return categoryList;
+        };
+    }
+}
+CategoriesDataManipulationService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CategoriesDataManipulationService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+CategoriesDataManipulationService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CategoriesDataManipulationService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CategoriesDataManipulationService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () { return []; } });
+
+class CategoriesService {
+    constructor(api, categoryDataManipulation) {
+        this.api = api;
+        this.categoryDataManipulation = categoryDataManipulation;
+        // GET ALL CATEGORIES.
+        /**
+         *
+         * @returns returns list of category.
+         */
+        this.getAllCategories = () => __awaiter(this, void 0, void 0, function* () {
+            let apiRoute = {};
+            apiRoute.apiroute = `get-categories`;
+            // returns categories 
+            return (yield this.api.GET(apiRoute)).pipe(tap(_ => console.log('fetched categories')), map((items) => this.categoryDataManipulation.toCategory(items.data)));
+        });
+        // GET SUB CATEGORIES BY CATEGORY ID.
+        /**
+         * @returns returns list of sub-category based on category.
+         */
+        this.getSubCategoryByCategoryId = (cat_id) => __awaiter(this, void 0, void 0, function* () {
+            let apiRoute = {};
+            apiRoute.apiroute = `get-sub-categories`;
+            // returns list of subcategories.
+            apiRoute.data = { cat_id };
+            return (yield this.api.POST(apiRoute)).pipe(tap(_ => console.log('fetched sub categories')), map((items) => this.categoryDataManipulation.toCategory(items.data)));
+        });
+        // GET CHILD-OF-SUB-CATEGORY BASED ON SUB-CATEGORY.
+        this.getChildBySubCategoryId = (chaild_cat_id) => __awaiter(this, void 0, void 0, function* () {
+            let apiRoute = {};
+            apiRoute.apiroute = `get-child-categories`;
+            // returns list of child categories based on sub-categories.
+            apiRoute.data = { chaild_cat_id };
+            return (yield this.api.POST(apiRoute)).pipe(tap(_ => console.log('fetched sub categories')), map((items) => this.categoryDataManipulation.toCategory(items.data)));
+        });
+    }
+}
+CategoriesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CategoriesService, deps: [{ token: JGSApiService }, { token: CategoriesDataManipulationService }], target: i0.ɵɵFactoryTarget.Injectable });
+CategoriesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CategoriesService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.0.3", ngImport: i0, type: CategoriesService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () { return [{ type: JGSApiService }, { type: CategoriesDataManipulationService }]; } });
 
 class Vehicle extends Item {
     constructor(name, description, price) {
@@ -1106,5 +1169,5 @@ class Truck extends Vehicle {
  * Generated bundle index. Do not edit.
  */
 
-export { ApiLibComponent, ApiLibModule, BLOB_STORAGE_TOKEN, BasePlusCommissionEmployee, Bicycle, Bike, Car, CartItem, CartService, Cloth, Color, CommissionEmployee, Employee, HourlyEmployee, Invoice, Item, ItemService, MamalsService, MediaService, MultiLingualName, ProgressComponent, SalariedEmployee, ShoppingCart, Size, StorageService, Truck };
+export { ApiLibComponent, ApiLibModule, BLOB_STORAGE_TOKEN, BasePlusCommissionEmployee, Bicycle, Bike, Car, CartItem, CartService, CategoriesService, Cloth, Color, CommissionEmployee, Employee, HourlyEmployee, Invoice, Item, ItemService, MamalsService, MediaService, MultiLingualName, ProgressComponent, SalariedEmployee, ShoppingCart, Size, StorageService, Truck };
 //# sourceMappingURL=api-package.mjs.map

@@ -14,6 +14,7 @@ export * from './lib/components/progress/progress.component';
 export * from './lib/services/api/cart/cart.service';
 export * from './lib/services/blob-storage/azure-storage';
 export * from './lib/services/blob-storage/storage.service';
+export * from './lib/services/api/categories/categories.service';
 //EXPORTING CLASSES
 export * from './lib/classes/items/fashion/cloths/cloths';
 export * from './lib/classes/items/item';
@@ -37,3 +38,4 @@ export * from './lib/interfaces/item';
 export * from './lib/interfaces/cart';
 export * from './lib/interfaces/payable';
 export * from './lib/interfaces/cloth';
+export * from './lib/interfaces/category';

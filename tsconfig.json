@@ -1,9 +1,8 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "paths": {
       "api-lib": [
-        "dist/api-lib/api-lib",
         "dist/api-lib"
       ]
     },
