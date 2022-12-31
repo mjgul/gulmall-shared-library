@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { JGSApiService } from "../../../api-lib.service";
 import { CategoriesDataManipulationService } from "../../data-manipulation/categories-data-manipulation.service";
 import { map, tap } from 'rxjs';
+import { Icategory } from '../../../interfaces/category';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +31,7 @@ export class CategoriesService {
   /**
    * @returns returns list of sub-category based on category.
    */
-  getSubCategoryByCategoryId = async (cat_id:string):Promise<any> => {
+  getSubCategoryByCategoryId = async (cat_id:string) => {
    let apiRoute:any = {};
    apiRoute.apiroute = `get-sub-categories`;
    // returns list of subcategories.
@@ -38,7 +39,7 @@ export class CategoriesService {
    return (await this.api.POST(apiRoute)).pipe(
     tap (_ => console.log('fetched sub categories')),
     map((items:any) =>
-     this.categoryDataManipulation.toCategory(items.data))
+     this.categoryDataManipulation.toSubcategory(items.data))
   )
   }
 
@@ -51,7 +52,7 @@ export class CategoriesService {
     return (await this.api.POST(apiRoute)).pipe(
       tap (_ => console.log('fetched sub categories')),
       map((items:any) =>
-       this.categoryDataManipulation.toCategory(items.data))
+       this.categoryDataManipulation.toChildSubCategory(items.data))
     )
   }
 }

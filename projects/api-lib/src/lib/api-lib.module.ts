@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatIconModule } from '@angular/material/icon';
 
-
 @NgModule({
   declarations: [
     ApiLibComponent,
@@ -26,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatProgressBarModule,
     CommonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [
     CommonModule,

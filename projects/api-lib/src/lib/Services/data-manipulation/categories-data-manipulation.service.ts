@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Icategory } from '../../interfaces/category';
+import { Icategory,IsubCategory,IchildSubCat } from '../../interfaces/category';
 
 @Injectable({
     providedIn: 'root'
@@ -8,9 +8,25 @@ import { Icategory } from '../../interfaces/category';
 export class CategoriesDataManipulationService {
     constructor() { }
 
+    // MAPS SERVER CATEGORY TO INTERFACE CATEGORY.
     public toCategory = (categories:any[]):Icategory[] => {
-        let categoryList:any = [];
-        console.log("Category from Server: ", categories);
-        return categoryList;
+         return categories.map((category): Icategory => ({
+          id: category.ID,
+          name: category.name
+      }))
       }
+
+    public toSubcategory = (subCategories:any[]):IsubCategory[] => {
+      return subCategories.map((subCat): Icategory => ({
+        id: subCat.ID,
+        name: subCat.name
+    }))
+    }
+
+    public toChildSubCategory = (childCategory:any[]):IsubCategory[] => {
+      return childCategory.map((childCat): Icategory => ({
+        id: childCat.ID,
+        name: childCat.name
+    }))
+    }
 }

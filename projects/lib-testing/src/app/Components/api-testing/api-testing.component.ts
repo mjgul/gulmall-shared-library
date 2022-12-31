@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cloth, Color, Icloth, Iitem, Item, ItemService,CategoriesService, Size } from 'api-lib';
+import { Cloth, Color, Icloth, Iitem, Item, ItemService,CategoriesService, Size, Icategory, IsubCategory, IchildSubCat } from 'api-lib';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class ApiTestingComponent implements OnInit {
   myItems: Observable <Item[]>| undefined;
-  allCategories: Observable<any> | undefined;
-  allSubCategories: Observable<any> | undefined;
-  childSubCategories:Observable<any> | undefined;
+  allCategories: Observable<Icategory[]> | undefined;
+  allSubCategories: Observable<IsubCategory[]> | undefined;
+  childSubCategories:Observable<IchildSubCat[]> | undefined;
   constructor(private itemService:ItemService, private category:CategoriesService) { }
 
   ngOnInit(): void {
