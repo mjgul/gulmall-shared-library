@@ -1,4 +1,4 @@
 export interface Iname {
-    en:"",
-    ar:""
+    en:string,
+    ar:string
 }

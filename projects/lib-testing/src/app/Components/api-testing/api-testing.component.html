@@ -10,10 +10,11 @@
             <li (click)="getSubCategoryByCategoryId(category.id)" *ngFor="let category of allCategories | async"> {{category.name.en}} </li>
             <ul>
                 <li (click)="getChildOfSubCat(subCategory.id)" *ngFor="let subCategory of allSubCategories | async"> {{subCategory.name.en}}
-                    <ul>
-                        <li *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name.en}}</li>
-                    </ul>
+                    
                 </li>
+                <ul>
+                    <li *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name.en}}</li>
+                </ul>
             </ul>
         </ul>
     </li>

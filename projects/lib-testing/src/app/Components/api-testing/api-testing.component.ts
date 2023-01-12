@@ -12,12 +12,17 @@ export class ApiTestingComponent implements OnInit {
   allCategories: Observable<Icategory[]> | undefined;
   allSubCategories: Observable<IsubCategory[]> | undefined;
   childSubCategories:Observable<IchildSubCat[]> | undefined;
+  itemAvailableSize:Observable<any>|undefined;
+
   constructor(private itemService:ItemService, private category:CategoriesService) { }
 
   ngOnInit(): void {
   }
 
 
+  getItemAvailableSize = async () => {
+    
+  }
   // GETTING ALL OF THE ITEMS.
   // ONLY GET THOSE WHICH HAS STATUS ACTIVE.
    getAllItems = async() => {
