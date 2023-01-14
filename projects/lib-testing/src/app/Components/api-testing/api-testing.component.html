@@ -1,6 +1,10 @@
 <ol>
     <li>
         <h3 (click)="getAllItems()" >Get All Items</h3>
+        <h3 (click)="getAllTypes()" >Get All types</h3>
+        <ul>
+            <li *ngFor="let type of itemAvailableTypes | async"> {{type.name.en}} </li>
+        </ul>
         <ul>
             <li *ngFor="let item of myItems | async"> {{item.getItemName()}} </li>
         </ul>

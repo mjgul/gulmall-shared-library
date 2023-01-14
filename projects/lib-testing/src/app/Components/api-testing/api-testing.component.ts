@@ -13,6 +13,7 @@ export class ApiTestingComponent implements OnInit {
   allSubCategories: Observable<IsubCategory[]> | undefined;
   childSubCategories:Observable<IchildSubCat[]> | undefined;
   itemAvailableSize:Observable<any>|undefined;
+  itemAvailableTypes:Observable<any>|undefined;
 
   constructor(private itemService:ItemService, private category:CategoriesService) { }
 
@@ -50,4 +51,8 @@ export class ApiTestingComponent implements OnInit {
     })
   }
 
+
+  getAllTypes = async () => {
+    this.itemAvailableTypes = (await this.category.getTypes());
+  }
 }

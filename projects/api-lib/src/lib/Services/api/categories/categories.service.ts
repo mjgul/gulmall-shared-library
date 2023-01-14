@@ -11,9 +11,8 @@ export class CategoriesService {
 
   constructor(private api:JGSApiService, private categoryDataManipulation:CategoriesDataManipulationService) { }
 
-  // GET ALL CATEGORIES.
   /**
-   * 
+   * GET ALL CATEGORIES.
    * @returns returns list of category.
    */
   getAllCategories = async() => {
@@ -27,8 +26,8 @@ export class CategoriesService {
     )
   }
 
-  // GET SUB CATEGORIES BY CATEGORY ID.
   /**
+   * GET SUB CATEGORIES BY CATEGORY ID.
    * @returns returns list of sub-category based on category.
    */
   getSubCategoryByCategoryId = async (cat_id:string) => {
@@ -43,7 +42,11 @@ export class CategoriesService {
   )
   }
 
-  // GET CHILD-OF-SUB-CATEGORY BASED ON SUB-CATEGORY.
+  /**
+   * GET CHILD-OF-SUB-CATEGORY BASED ON SUB-CATEGORY.
+   * @param chaild_cat_id string
+   * @returns 
+   */
   getChildBySubCategoryId = async (chaild_cat_id:string):Promise<any> => {
     let apiRoute:any = {};
     apiRoute.apiroute = `get-child-categories`;
@@ -66,5 +69,16 @@ export class CategoriesService {
     apiRoute.apiroute = `get-size-chart`;
     apiRoute.data = {child_cat_id,type};
     return (await this.api.POST(apiRoute));
+  }
+
+  /**
+   * GIVES THE LIST OF ALL AVAILABLE GENDER OR TYPE.
+   * @returns list of all available type/gender
+   */
+  getTypes = async () =>{
+    let apiRoute: any = {};
+    apiRoute.apiroute = `get-gender`;
+    // returns all gender 
+    return (await this.api.GET(apiRoute));
   }
 }
