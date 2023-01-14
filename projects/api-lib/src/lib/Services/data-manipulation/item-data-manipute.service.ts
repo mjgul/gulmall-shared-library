@@ -46,7 +46,7 @@ export class ItemDataManiputeService {
         clothAvailableSize.push(dummyColor);
       });
 
-      let cloth:Cloth = new Cloth(item.name.en,item.name.ar,item.price,new Color('','','',''),new Size('','',''),clothAvailableColor,clothAvailableSize);
+      let cloth:Cloth = new Cloth(item.name.en,item.name.ar,item.price,"122","211","001",new Color('','','',''),new Size('','',''),clothAvailableColor,clothAvailableSize);
       return cloth;
   }
 
@@ -65,7 +65,7 @@ export class ItemDataManiputeService {
       clothAvailableSize.push(dummyColor);
     });
 
-    let cloth:Shoes = new Shoes(item.name.en,item.name.ar,item.price,new Color('','','',''),new Size('','',''),clothAvailableColor,clothAvailableSize);
+    let cloth:Shoes = new Shoes(item.name.en,item.name.ar,item.price,"1","2","0",new Color('','','',''),new Size('','',''),clothAvailableColor,clothAvailableSize);
     return cloth;
 }
 }

@@ -13,7 +13,7 @@
                     
                 </li>
                 <ul>
-                    <li *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name.en}}</li>
+                    <li (click)="getAvailableSize(childOfSubCat.id,'')" *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name.en}}</li>
                 </ul>
             </ul>
         </ul>

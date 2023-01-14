@@ -19,15 +19,10 @@ export class ApiTestingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  getItemAvailableSize = async () => {
-    
-  }
   // GETTING ALL OF THE ITEMS.
   // ONLY GET THOSE WHICH HAS STATUS ACTIVE.
    getAllItems = async() => {
      this.myItems = (await this.itemService.getAllItem());
-     
   }
 
   // RETURNS THE LIST OF CATEGORY
@@ -45,6 +40,13 @@ export class ApiTestingComponent implements OnInit {
     this.childSubCategories = (await this.category.getChildBySubCategoryId(subCategoryId));
     this.childSubCategories?.subscribe((res:any)=>{
       console.log("CHILD", res)
+    })
+  }
+
+  getAvailableSize = async(child_cat_id:string,type:string) => {
+    this.itemAvailableSize = (await this.category.getAvailableSize(child_cat_id,type));
+    this.itemAvailableSize?.subscribe((res:any)=>{
+      console.log("RES available size: ",res);;
     })
   }
 

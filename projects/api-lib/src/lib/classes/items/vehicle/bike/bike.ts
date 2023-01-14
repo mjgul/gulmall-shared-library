@@ -1,8 +1,9 @@
+import { Iname } from "projects/api-lib/src/lib/interfaces/name";
 import { Vehicle } from "../vehicle";
 
 export class Bike extends Vehicle {
-    constructor(name:string,description:string,price:number){
-        super(name,description,price);
+    constructor(name:Iname,description:string,price:number,categoryId:string,subCatId:string,itemId:string){
+        super(name,description,price,categoryId,subCatId,itemId);
     }
 
     public override getRequiredFields(){

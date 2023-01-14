@@ -14,13 +14,22 @@ export abstract class Item implements Payable {
   public abstract getRequiredFields():any;
 
   // Initiating the item attributes.
+  /**
+   * 
+   * @param name Iname
+   * @param description string
+   * @param price number
+   * @param id string
+   * @param categoryId string
+   * @param subCategoryId string
+   */
   constructor(
     name: Iname,
     description: string,
     price: number,
-    id:string,
     categoryId:string,
-    subCategoryId:string
+    subCategoryId:string,
+    id:string
   ) {
     this.name = name;
     this.description = description;

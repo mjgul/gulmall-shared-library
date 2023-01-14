@@ -55,4 +55,16 @@ export class CategoriesService {
        this.categoryDataManipulation.toChildSubCategory(items.data))
     )
   }
+
+  /**
+   * RETURN AVAILABLE SIZE OF ITEM.
+   * @param child_id string 
+   * @param type string
+   */
+  getAvailableSize = async (child_cat_id:string,type:string):Promise<any> => {
+    let apiRoute:any = {};
+    apiRoute.apiroute = `get-size-chart`;
+    apiRoute.data = {child_cat_id,type};
+    return (await this.api.POST(apiRoute));
+  }
 }

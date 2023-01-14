@@ -19,7 +19,7 @@ import { Size } from "api-lib";
     
     cart: ShoppingCart = new ShoppingCart();
     ngOnInit(): void {
-    let car = new Car("toyota","lsakjfadsl",1200,1);
+    let car = new Car({en:"",ar:""},"",12,"","","",1);
 
     // 1 - CREATE ARRAY OF ITEMS.
     // 2 - ON CLICK OF ANY ITEM MAKE IT AS CART ITEM.

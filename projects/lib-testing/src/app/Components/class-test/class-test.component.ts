@@ -105,22 +105,22 @@ export class ClassTestComponent implements OnInit {
 
   createCar(){
     console.log("** generating car");
-    let car = new Car(Math.floor(Math.random() * 100).toString(),"Its is a car", Math.floor(Math.random() * 200),Math.floor(Math.random()*10000));
+    let car = new Car({en:"jasdf",ar:"lakjsdf"},"jlksdfj",12,"","","",12);
     this.items.push(car);
   }
   generateTruck(){
     console.log("** generating truck ");
-    let truck = new Truck(Math.floor(Math.random() * 100).toString(),"Its is a truck ", Math.floor(Math.random() * 200));
+    let truck = new Truck({en:"lsakdf",ar:""},"",12,"","","");
     this.items.push(truck);
   }
   generateBike(){
     console.log("** generating bike");
-    let bike = new Bike(Math.floor(Math.random() * 100).toString(),"Its is a bike ", Math.floor(Math.random() * 200));
+    let bike = new Bike({en:"",ar:""},"",11,"","","");
     this.items.push(bike);
   }
   generateBicycle(){
     console.log("** generating bicycle");
-    let bicycle = new Bicycle(Math.floor(Math.random() * 100).toString(),"Its is a bicycle ", Math.floor(Math.random() * 200));
+    let bicycle = new Bicycle({en:"",ar:""},"",1,"","","");
     this.items.push(bicycle);
   }
 
