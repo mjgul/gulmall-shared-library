@@ -12,19 +12,20 @@ export class CategoriesDataManipulationService {
     public toCategory = (categories:any[]):Icategory[] => {
          return categories.map((category): Icategory => ({
           id: category.ID,
-          name: category.name
+          name: category.name,
+          genderBased:category.gender_flag
       }))
       }
 
     public toSubcategory = (subCategories:any[]):IsubCategory[] => {
-      return subCategories.map((subCat): Icategory => ({
+      return subCategories.map((subCat): IsubCategory => ({
         id: subCat.ID,
-        name: subCat.name
+        name: subCat.name,
     }))
     }
 
     public toChildSubCategory = (childCategory:any[]):IsubCategory[] => {
-      return childCategory.map((childCat): Icategory => ({
+      return childCategory.map((childCat): IchildSubCat => ({
         id: childCat.ID,
         name: childCat.name
     }))

@@ -3,6 +3,7 @@ import { Iname } from "./name";
 export interface Icategory {
     id:string;
     name:Iname
+    genderBased:boolean;
 }
 
 export interface IsubCategory {
