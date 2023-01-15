@@ -1,4 +1,4 @@
-import { Iname } from "projects/api-lib/src/lib/interfaces/name";
+import { Iname } from "../../../../interfaces/name";
 import { Vehicle } from "../vehicle";
 
 export class Bicycle extends Vehicle {

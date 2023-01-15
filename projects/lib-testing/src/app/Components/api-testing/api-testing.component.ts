@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cloth, Color, Icloth, Iitem, Item, ItemService,CategoriesService, Size, Icategory, IsubCategory, IchildSubCat } from 'api-lib';
+import { Cloth, Color, Icloth, Iitem, Item, ItemService,CategoriesService, TypeSizeService, Size, Icategory, IsubCategory, IchildSubCat } from 'api-lib';
+import { IsizeType } from 'dist/api-lib/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,9 +14,9 @@ export class ApiTestingComponent implements OnInit {
   allSubCategories: Observable<IsubCategory[]> | undefined;
   childSubCategories:Observable<IchildSubCat[]> | undefined;
   itemAvailableSize:Observable<any>|undefined;
-  itemAvailableTypes:Observable<any>|undefined;
+  itemAvailableTypes:Observable<IsizeType[]>|undefined;
 
-  constructor(private itemService:ItemService, private category:CategoriesService) { }
+  constructor(private itemService:ItemService, private category:CategoriesService, private typeSize:TypeSizeService) { }
 
   ngOnInit(): void {
   }
@@ -45,7 +46,7 @@ export class ApiTestingComponent implements OnInit {
   }
 
   getAvailableSize = async(child_cat_id:string,type:string) => {
-    this.itemAvailableSize = (await this.category.getAvailableSize(child_cat_id,type));
+    this.itemAvailableSize = (await this.typeSize.getAvailableSize(child_cat_id,type));
     this.itemAvailableSize?.subscribe((res:any)=>{
       console.log("RES available size: ",res);;
     })
@@ -53,6 +54,9 @@ export class ApiTestingComponent implements OnInit {
 
 
   getAllTypes = async () => {
-    this.itemAvailableTypes = (await this.category.getTypes());
+    this.itemAvailableTypes = (await this.typeSize.getTypes());
+    this.itemAvailableTypes?.subscribe((res:any)=>{
+      console.log("RES available types: ",res);;
+    })
   }
 }

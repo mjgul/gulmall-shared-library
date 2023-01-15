@@ -1,4 +1,4 @@
-import { Iname } from "projects/api-lib/src/lib/interfaces/name";
+import { Iname } from "../../../../interfaces/name";
 import { Color } from "../../../generic/color";
 import { Size } from "../../../generic/size";
 import { Fashion } from "../fashion";

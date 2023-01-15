@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
 import { JGSApiService } from "../../../api-lib.service";
 import { CategoriesDataManipulationService } from "../../data-manipulation/categories-data-manipulation.service";
-import { map, tap } from 'rxjs';
-import { Icategory } from '../../../interfaces/category';
+import { Observable, map, tap } from 'rxjs';
+import { Icategory, IsubCategory } from '../../../interfaces/category';
 @Injectable({
   providedIn: 'root'
 })
 
 export class CategoriesService {
 
-  constructor(private api:JGSApiService, private categoryDataManipulation:CategoriesDataManipulationService) { }
+  constructor(private api:JGSApiService, private categoryDataManipulation:CategoriesDataManipulationService,) { }
 
   /**
    * GET ALL CATEGORIES.
    * @returns returns list of category.
    */
-  getAllCategories = async() => {
+  getAllCategories = async():Promise<Observable<Icategory[]>> => {
     let apiRoute: any = {};
     apiRoute.apiroute = `get-categories`;
     // returns categories 
-    return (await this.api.GET(apiRoute)) .pipe(
+    return (await this.api.GET(apiRoute)).pipe(
       tap (_ => console.log('fetched categories')),
-      map((items:any) =>
-       this.categoryDataManipulation.toCategory(items.data))
+      map((items:any) => this.categoryDataManipulation.toCategory(items.data))
     )
   }
 
@@ -30,7 +29,7 @@ export class CategoriesService {
    * GET SUB CATEGORIES BY CATEGORY ID.
    * @returns returns list of sub-category based on category.
    */
-  getSubCategoryByCategoryId = async (cat_id:string) => {
+  getSubCategoryByCategoryId = async (cat_id:string):Promise<Observable<IsubCategory[]>> => {
    let apiRoute:any = {};
    apiRoute.apiroute = `get-sub-categories`;
    // returns list of subcategories.
@@ -47,7 +46,7 @@ export class CategoriesService {
    * @param chaild_cat_id string
    * @returns 
    */
-  getChildBySubCategoryId = async (chaild_cat_id:string):Promise<any> => {
+  getChildBySubCategoryId = async (chaild_cat_id:string):Promise<Observable<IsubCategory[]>> => {
     let apiRoute:any = {};
     apiRoute.apiroute = `get-child-categories`;
     // returns list of child categories based on sub-categories.
@@ -59,26 +58,5 @@ export class CategoriesService {
     )
   }
 
-  /**
-   * RETURN AVAILABLE SIZE OF ITEM.
-   * @param child_id string 
-   * @param type string
-   */
-  getAvailableSize = async (child_cat_id:string,type:string):Promise<any> => {
-    let apiRoute:any = {};
-    apiRoute.apiroute = `get-size-chart`;
-    apiRoute.data = {child_cat_id,type};
-    return (await this.api.POST(apiRoute));
-  }
 
-  /**
-   * GIVES THE LIST OF ALL AVAILABLE GENDER OR TYPE.
-   * @returns list of all available type/gender
-   */
-  getTypes = async () =>{
-    let apiRoute: any = {};
-    apiRoute.apiroute = `get-gender`;
-    // returns all gender 
-    return (await this.api.GET(apiRoute));
-  }
 }

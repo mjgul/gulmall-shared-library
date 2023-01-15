@@ -1,4 +1,3 @@
-import { Icart } from '../../interfaces/cart';
 import { Iname } from '../../interfaces/name';
 import { Payable } from '../../interfaces/payable';
 
