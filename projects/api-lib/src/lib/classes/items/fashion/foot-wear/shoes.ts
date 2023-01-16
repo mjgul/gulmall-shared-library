@@ -4,13 +4,11 @@ import { Size } from '../../../generic/size';
 import { Fashion } from '../fashion';
 
 export class Shoes extends Fashion {
-    private color:Color;
-    private size:Size;
-    constructor(name:Iname, description:string,price:number,categoryId:string,subCatId:string,itemId:string,color:Color,size:Size,
-        availableColor:Color[], availableSize:Size[]){
-        super(name,description,price,categoryId,subCatId,itemId,availableColor,availableSize);
-        this.color=color;
-        this.size=size;
+    private color!:Color;
+    private size!:Size;
+    constructor(){
+        super();
+        
     }
 
     public getItemSizeId=():string =>{

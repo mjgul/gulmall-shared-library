@@ -50,18 +50,7 @@ export class ItemDataManiputeService {
       clothAvailableSize.push(dummyColor);
     });
 
-    let cloth: Cloth = new Cloth(
-      item.name,
-      item.name.ar,
-      item.price,
-      "122",
-      "211",
-      "001",
-      new Color("", "", "", ""),
-      new Size("", "", ""),
-      clothAvailableColor,
-      clothAvailableSize
-    );
+    let cloth: Cloth = new Cloth();
     return cloth;
   };
 
@@ -84,18 +73,7 @@ export class ItemDataManiputeService {
       clothAvailableSize.push(dummyColor);
     });
 
-    let shoe: Shoes = new Shoes(
-      item.name,
-      item.name.ar,
-      item.price,
-      "1",
-      "2",
-      "0",
-      new Color("", "", "", ""),
-      new Size("", "", ""),
-      clothAvailableColor,
-      clothAvailableSize
-    );
+    let shoe: Shoes = new Shoes();
     return shoe;
   };
 }

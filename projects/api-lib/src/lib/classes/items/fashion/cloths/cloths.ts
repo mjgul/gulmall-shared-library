@@ -5,14 +5,19 @@ import { Fashion } from "../fashion";
 
 export class Cloth extends Fashion {
 
-    private color:Color;
-    private size:Size;
+    private color!:Color;
+    private size!:Size;
 
-    constructor(name:Iname, description:string,price:number,categoryId:string,subCatId:string,itemId:string,color:Color,size:Size,
-        availableColor:Color[], availableSize:Size[]){
-        super(name,description,price,categoryId,subCatId,itemId,availableColor,availableSize);
-        this.color=color;
-        this.size=size;
+    constructor(){
+        super();
+    }
+
+    public setColor = (color:Color):void => {
+        this.color = color;
+    }
+
+    public setSize = (size:Size):void => {
+        this.size = size;
     }
 
     public getItemSizeId=():string =>{

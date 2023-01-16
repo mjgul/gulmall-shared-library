@@ -2,8 +2,9 @@ import { Iname } from "../../../../interfaces/name";
 import { Vehicle } from "../vehicle";
 
 export class Truck extends Vehicle {
-    constructor(name:Iname,description:string,price:number,categoryId:string,subCatId:string,itemId:string){
-        super(name,description,price,categoryId,subCatId,itemId);
+    
+    constructor(){
+        super();
     }
 
     public override getRequiredFields(){

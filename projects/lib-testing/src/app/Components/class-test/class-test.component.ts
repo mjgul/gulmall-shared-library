@@ -11,6 +11,7 @@ import { Car, } from "api-lib";
 import { Truck } from "api-lib";
 import { Bike } from "api-lib";
 import { Bicycle } from "api-lib";
+import { Fashion } from "projects/api-lib/src/lib/classes/items/fashion/fashion";
 @Component({
   selector: "lib-class-test",
   templateUrl: "./class-test.component.html",
@@ -103,6 +104,11 @@ export class ClassTestComponent implements OnInit {
 
   }
 
+  createFood = () => {}
+  createFashion = () => {
+    // create fashion object
+    //let fashion:Fashion = new Fashion({en:"",ar:""},)
+  }
   createCar(){
     console.log("** generating car");
     let car = new Car({en:"jasdf",ar:"lakjsdf"},"jlksdfj",12,"","","",12);

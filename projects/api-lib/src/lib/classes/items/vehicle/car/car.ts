@@ -1,11 +1,9 @@
-import { Iname } from "../../../../interfaces/name";
 import { Vehicle } from "../vehicle";
 
 export class Car extends Vehicle {
-    private cylinder:number;
-    constructor(name:Iname,description:string,price:number,categoryId:string,subCatId:string,itemId:string,cylinder:number){
-        super(name,description,price,categoryId,subCatId,itemId);
-        this.cylinder = cylinder;
+    private cylinder!:number;
+    constructor(){
+        super();
     }
 
     public setCylinder(cylinder:number){

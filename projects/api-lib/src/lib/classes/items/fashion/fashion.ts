@@ -1,16 +1,21 @@
 import { Item } from "../item";
 import { Color } from "../../generic/color";
 import { Size } from "../../generic/size";
-import { Iname } from "../../../interfaces/name";
 export abstract class Fashion extends Item {
 
-    private availableColor:Color[];
-    private availableSize:Size[];
+    private availableColor:Color[] = [];
+    private availableSize:Size[] = [];
 
-    constructor(name:Iname,description:string,price:number,categoryId:string,subCategoryId:string,itemId:string,availableColors:Color[],availableSize:Size[]){
-        super(name,description,price,categoryId,subCategoryId,itemId);
-        this.availableColor = availableColors;
-        this.availableSize = availableSize;
+    constructor(){
+        super();
+    }
+
+    setAvailableColor =(color:Color[])=>{
+        this.availableColor = color;
+    }
+
+    setAvailableSize = (size:Size[]) => {
+    this.availableSize = size;
     }
 
     public override getRequiredFields(){
