@@ -11,7 +11,7 @@ import { Car, } from "api-lib";
 import { Truck } from "api-lib";
 import { Bike } from "api-lib";
 import { Bicycle } from "api-lib";
-import { Fashion } from "projects/api-lib/src/lib/classes/items/fashion/fashion";
+
 @Component({
   selector: "lib-class-test",
   templateUrl: "./class-test.component.html",
@@ -111,22 +111,22 @@ export class ClassTestComponent implements OnInit {
   }
   createCar(){
     console.log("** generating car");
-    let car = new Car({en:"jasdf",ar:"lakjsdf"},"jlksdfj",12,"","","",12);
+    let car = new Car();
     this.items.push(car);
   }
   generateTruck(){
     console.log("** generating truck ");
-    let truck = new Truck({en:"lsakdf",ar:""},"",12,"","","");
+    let truck = new Truck();
     this.items.push(truck);
   }
   generateBike(){
     console.log("** generating bike");
-    let bike = new Bike({en:"",ar:""},"",11,"","","");
+    let bike = new Bike();
     this.items.push(bike);
   }
   generateBicycle(){
     console.log("** generating bicycle");
-    let bicycle = new Bicycle({en:"",ar:""},"",1,"","","");
+    let bicycle = new Bicycle();
     this.items.push(bicycle);
   }
 
