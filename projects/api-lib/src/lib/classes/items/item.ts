@@ -53,6 +53,10 @@ export abstract class Item implements Payable {
     }
   };
 
+  /**
+   * SET THE STATUS OF CATEGORY IS GENDER BASED OR NOT.
+   * @param isGenderBased boolean
+   */
   public setGenderBased = (isGenderBased: boolean): void => {
     this.genderBased = isGenderBased;
   };
@@ -264,6 +268,14 @@ export abstract class Item implements Payable {
   // method required to carry out contract with interface Payable
   public getPaymentAmount() {
     return this.price; // calculate total cost
+  }
+
+  /**
+   * Is category gender based.
+   * @returns boolean
+   */
+  public IsCategoryGenderBased() {
+    return this.genderBased; // calculate total cost
   }
 
   /**
