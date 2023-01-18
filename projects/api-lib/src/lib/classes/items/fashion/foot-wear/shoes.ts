@@ -16,7 +16,7 @@ export class Shoes extends Fashion {
     }
 
     public getItemColorId=():string =>{
-        return this.color.id;
+        return this.color.getId();
     }
 
     public override itemBluePrint(){

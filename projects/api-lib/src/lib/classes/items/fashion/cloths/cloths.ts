@@ -21,11 +21,11 @@ export class Cloth extends Fashion {
     }
 
     public getItemSizeId=():string =>{
-        return this.size.id;
+        return this.size.getId();
     }
 
     public getItemColorId=():string =>{
-        return this.color.id;
+        return this.color.getId();
     }
 
     public override itemBluePrint(){

@@ -36,17 +36,12 @@ export class ItemDataManiputeService {
     let clothAvailableSize: Size[] = [];
 
     item.available_color.forEach((color: any) => {
-      let dummyColor: Color = new Color(
-        color.name.en,
-        color.name.ar,
-        color.cssHex,
-        color.ID
-      );
+      let dummyColor: Color = new Color();
       clothAvailableColor.push(dummyColor);
     });
 
     item.available_color.forEach((x: any) => {
-      let dummyColor: Size = new Size(x.name.en, x.name.ar, x.cssHex);
+      let dummyColor: Size = new Size();
       clothAvailableSize.push(dummyColor);
     });
 
@@ -59,17 +54,12 @@ export class ItemDataManiputeService {
     let clothAvailableSize: Size[] = [];
 
     item.available_color.forEach((color: any) => {
-      let dummyColor: Color = new Color(
-        color.name.en,
-        color.name.ar,
-        color.cssHex,
-        color.ID
-      );
+      let dummyColor: Color = new Color();
       clothAvailableColor.push(dummyColor);
     });
 
     item.available_color.forEach((x: any) => {
-      let dummyColor: Size = new Size(x.name.en, x.name.ar, x.cssHex);
+      let dummyColor: Size = new Size();
       clothAvailableSize.push(dummyColor);
     });
 

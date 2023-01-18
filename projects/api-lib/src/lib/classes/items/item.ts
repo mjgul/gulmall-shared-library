@@ -4,15 +4,15 @@ import { Payable } from "../../interfaces/payable";
 
 export abstract class Item implements Payable {
   private title!: Iname;
-  private categoryName!: Iname;
-  private subCategoryName!: Iname;
-  private childSubCategoryName!: Iname;
-  private genderBased!: boolean;
   private id!: string;
   private categoryId!: string;
   private subCategoryId!: string;
   private price!: number;
-  private description?: string;
+  private categoryName!: Iname;
+  private subCategoryName!: Iname;
+  private childSubCategoryName!: Iname;
+  private description!: Iname;
+  private genderBased!: boolean;
   private image?: string[];
 
   public abstract getRequiredFields(): any;
@@ -148,13 +148,15 @@ export abstract class Item implements Payable {
    * SETS THE ITEM DESCRIPTION CATEGORY ID.
    * @param description string
    */
-  public setItemDescription = (description: string): void => {
-    if (description != null || description != undefined || description != "") {
-      this.description = description;
-    } else {
-      throwError(() => {
-        Error("Could not found Item setItemDescription");
-      });
+  public setItemDescription = (lang:string,description: Iname): void => {
+    switch (lang) {
+      case "en":
+        this.description.en = description.en;
+        break;
+    
+        case "ar":
+          this.description.ar = description.ar;
+        break;
     }
   };
 
@@ -249,8 +251,8 @@ export abstract class Item implements Payable {
    * GET ITEM DESCRIPTION
    * @returns string
    */
-  public getItemDescription = (): string => {
-    return this.description || "";
+  public getItemDescription = (): Iname => {
+    return this.description;
   };
 
   /**

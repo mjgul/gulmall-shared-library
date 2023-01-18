@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Icategory } from 'api-lib';
+import { CategoriesService, Cloth, Color, Icategory, Item, Size } from 'api-lib';
+import { Iname } from 'dist/api-lib/lib/interfaces/name';
 import { Observable } from 'rxjs';
+// COPY AND PASTE IN API-LIB
+export interface IColor {
+  name:Iname
+  colorCode:string,
+  id:string
+}
 @Component({
   selector: 'lib-add-item',
   templateUrl: './add-item.component.html',
@@ -8,10 +15,31 @@ import { Observable } from 'rxjs';
 })
 export class AddItemComponent implements OnInit {
   allCategories: Observable<Icategory[]> | undefined;
+  items:Item[]=[];
   constructor(private categories:CategoriesService) { }
 
   ngOnInit(): void {
     this.getAllCategories();
+  }
+
+  addItem = () =>{
+    let item:Cloth = new Cloth();
+    this.items.push(item);
+    item.setCategoryId("123");
+    item.setSubCategoryId("");
+    item.setChildSubCategoryId("");
+    
+  }
+
+  // CREATE INTERFACE IN API-LIB
+  
+  addAvailableColors=(colorId:IColor,colorsArray:Color[])=>{
+    let color:Color = new Color();
+    colorsArray.push(color);
+  }
+
+  addAvailableSize=()=>{
+    
   }
 
   // GET ALL CATEGORIES
