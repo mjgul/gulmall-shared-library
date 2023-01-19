@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Cloth, Color, Icategory, Item, Size } from 'api-lib';
+import { CategoriesService, Cloth, Color, Icategory, Item, Size, TypeSizeService } from 'api-lib';
 import { Iname } from 'dist/api-lib/lib/interfaces/name';
 import { Observable } from 'rxjs';
 // COPY AND PASTE IN API-LIB
@@ -16,10 +16,17 @@ export interface IColor {
 export class AddItemComponent implements OnInit {
   allCategories: Observable<Icategory[]> | undefined;
   items:Item[]=[];
-  constructor(private categories:CategoriesService) { }
+  constructor(private categories:CategoriesService,private type:TypeSizeService) { }
 
   ngOnInit(): void {
-    this.getAllCategories();
+    this.getWeight();
+  }
+
+  getWeight= async ()=>{
+    let weight = (await this.type.getWeight());
+    weight.subscribe((res:any)=>{
+      console.log("Weight: ", res)
+    })
   }
 
   addItem = () =>{

@@ -7,7 +7,7 @@ import { IsizeType } from '../../../interfaces/sizeType';
     providedIn: 'root'
   })
 
-export class TypeSizeService {
+export class UtilService {
     constructor(private api:JGSApiService, private sizeTypes:GenderOrTypeDataManipulationService){}
 
       /**
@@ -33,8 +33,21 @@ export class TypeSizeService {
     return (await this.api.GET(apiRoute))
     .pipe(
       tap (_ => console.log('fetched types')),
-      map((items:any) =>
-       this.sizeTypes.toSizeType(items.data))
+      map((items:any) => this.sizeTypes.toSizeType(items.data))
+    )
+  }
+
+  /**
+   * GET THE LIST OF WEIGHT
+   * @returns IsizeType
+   */
+  getWeight = async():Promise<Observable<any>> => {
+    let apiRoute: any = {};
+    apiRoute.apiroute = `get-weight`;
+    return (await this.api.GET(apiRoute))
+    .pipe(
+      tap (_ => console.log('Weight fetching...')),
+      map((items:any) => this.sizeTypes.toSizeType(items.data))
     )
   }
 }

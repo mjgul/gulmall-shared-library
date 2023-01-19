@@ -43,14 +43,14 @@ export class CategoriesService {
 
   /**
    * GET CHILD-OF-SUB-CATEGORY BASED ON SUB-CATEGORY.
-   * @param chaild_cat_id string
+   * @param sub_category_id string
    * @returns 
    */
-  getChildBySubCategoryId = async (chaild_cat_id:string):Promise<Observable<IsubCategory[]>> => {
+  getChildBySubCategoryId = async (sub_category_id:string):Promise<Observable<IsubCategory[]>> => {
     let apiRoute:any = {};
     apiRoute.apiroute = `get-child-categories`;
     // returns list of child categories based on sub-categories.
-    apiRoute.data = {chaild_cat_id};
+    apiRoute.data = {sub_category_id};
     return (await this.api.POST(apiRoute)).pipe(
       tap (_ => console.log('fetched sub categories')),
       map((items:any) =>
