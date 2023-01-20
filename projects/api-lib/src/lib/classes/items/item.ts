@@ -12,7 +12,7 @@ export abstract class Item implements Payable {
   private subCategory!: SubCategory; // {id:"23412klfds",name:{en:"",ar:""}, cat_id:"124123"}
   private price!: number; // 2000
   private description!: MultiLingualName; // {en:"",ar:""}
-  private image?: string[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
+  private image!: string[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
 
   public abstract getRequiredFields(): any;
 
