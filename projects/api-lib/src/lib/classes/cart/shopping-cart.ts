@@ -50,11 +50,11 @@ export class ShoppingCart {
         this.cartList.forEach((cartItem:CartItem,key:string)=>{
             if(cartItem.getProduct() instanceof Cloth){
                 let cloth = cartItem.getProduct() as Cloth;
-                let cart:Icart  = {item_id:cloth.getItemId(),color_id:cloth.getItemColorId(),size_id:cloth.getItemSizeId(),quantity:cartItem.getQuantity()};
+                let cart:Icart  = {item_id:cloth.getChildSubCat().getId(),color_id:cloth.getItemColorId(),size_id:cloth.getItemSizeId(),quantity:cartItem.getQuantity()};
                 dummyArray.push(cart);
             } else {
                 let item = cartItem.getProduct();
-                let cart:Icart = {item_id:item.getItemId(),quantity:cartItem.getQuantity()};
+                let cart:Icart = {item_id:item.getChildSubCat().getId(),quantity:cartItem.getQuantity()};
                 dummyArray.push(cart);
             }
         });

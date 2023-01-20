@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { JGSApiService } from "../../../api-lib.service";
 import { CategoriesDataManipulationService } from "../../data-manipulation/categories-data-manipulation.service";
 import { Observable, map, tap } from 'rxjs';
-import { Icategory, IsubCategory } from '../../../interfaces/category';
+import { Icategory, IchildSubCat, IsubCategory } from '../../../interfaces/category';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,14 +43,14 @@ export class CategoriesService {
 
   /**
    * GET CHILD-OF-SUB-CATEGORY BASED ON SUB-CATEGORY.
-   * @param sub_category_id string
+   * @param chaild_cat_id string
    * @returns 
    */
-  getChildBySubCategoryId = async (sub_category_id:string):Promise<Observable<IsubCategory[]>> => {
+  getChildBySubCategoryId = async (chaild_cat_id:string):Promise<Observable<IchildSubCat[]>> => {
     let apiRoute:any = {};
     apiRoute.apiroute = `get-child-categories`;
     // returns list of child categories based on sub-categories.
-    apiRoute.data = {sub_category_id};
+    apiRoute.data = {chaild_cat_id};
     return (await this.api.POST(apiRoute)).pipe(
       tap (_ => console.log('fetched sub categories')),
       map((items:any) =>

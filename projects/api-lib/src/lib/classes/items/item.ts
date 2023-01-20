@@ -1,136 +1,64 @@
 import { throwError } from "rxjs";
-import { Iname } from "../../interfaces/name";
 import { Payable } from "../../interfaces/payable";
-import { ThisReceiver } from "@angular/compiler";
+import { Category, ChildSubCategory, SubCategory } from "../generic/categoty";
+import { Icategory, IchildSubCat, IsubCategory } from "../../interfaces/category";
+import { MultiLingualName } from "../generic/name";
 
 export abstract class Item implements Payable {
-  private title: Iname;
-  private id: string;
-  private categoryId: string;
-  private subCategoryId: string;
-  private price: number;
-  private categoryName: Iname;
-  private subCategoryName: Iname;
-  private childSubCategoryName: Iname;
-  private description: Iname;
-  private image: string[];
+
+  private title!: MultiLingualName;// {en:"3 piece suit", ar:"3 piece suit"}
+  private childSubCat!:ChildSubCategory; // {id:"23412kl",name:{en:"",ar:""}, sub_cat_id:"124123"}
+  private category!: Category; // {id:"21323412kl",name:{en:"",ar:""}}
+  private subCategory!: SubCategory; // {id:"23412klfds",name:{en:"",ar:""}, cat_id:"124123"}
+  private price!: number; // 2000
+  private description!: MultiLingualName; // {en:"",ar:""}
+  private image?: string[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
 
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
-  constructor() { 
-    this.title = {en:"no_title",ar:"no_title"}
-    this.description = {en:"no_description",ar:"no_description"}
-    this.id = "no_id"
-    this.categoryId="no_cat_id"
-    this.subCategoryId="no_sub_category_id"
-    this.price=0
-    this.categoryName={en:"no_category_name",ar:"no_category_name"}
-    this.subCategoryName={en:"no_sub_category_name",ar:"no_sub_category_name"}
-    this.childSubCategoryName={en:"no_item_name",ar:"no_item_name"}
-    this.image=[];
+  constructor() { }
+
+  public getCategory=()=>{
+    return this.category;
+  }
+
+  public getSubCategory=()=>{
+    return this.subCategory;
+  }
+
+
+  public getChildSubCat = () =>{
+    return this.childSubCat;
+  }
+
+  /**
+   * SET THE CATEGORY
+   * @param category Icategory
+   */
+  public setCategory=(category:Icategory)=>{
+    this.category = new Category(category);
+  }
+  
+  /**
+   * SETS THE SUB CATEGORY OF CATEGORY
+   * @param subCategory IsubCategory
+   */
+  public setSubCategory=(subCategory:IsubCategory)=>{
+    this.subCategory = new SubCategory(subCategory);
+  }
+
+  /**
+   * SETS THE CHILD CATEGORY OF SUB CATEGORY.
+   * @param subCatChild IchildSubCat
+   */
+  public setSubCatChild=(subCatChild:IchildSubCat)=>{
+    this.childSubCat = new ChildSubCategory(subCatChild);
   }
 
   // GET ITEM NAME MULTILINGUAL.
-  public getItemName = (): Iname => {
+  public getItemTitle = () => {
     return this.title;
-  };
-
-  /**
-   * SETS THE ITEM ID. WHICH IS CHILD SUB CAT ID.
-   * @param id string
-   */
-  public setItemId = (id: string): void => {
-    if (id != null || id != undefined || id != "") {
-      this.id = id;
-    } else {
-      throwError(() => {
-        Error("Could not found Item id");
-      });
-    }
-  };
-
-  /**
-   * SETS THE ITEM CATEGORY ID.
-   * @param categoryId string
-   */
-  public setItemCatId = (categoryId: string): void => {
-    if (categoryId != null || categoryId != undefined || categoryId != "") {
-      this.categoryId = categoryId;
-    } else {
-      throwError(() => {
-        Error("Could not found Item catId");
-      });
-    }
-  };
-
-  /**
-   * SET ITEM CATEGORY NAME WITH SPECIFIC LANGUAGE.
-   * @param lang string e.g en ar
-   * @param categoryName string
-   */
-  public setItemCategoryName = (lang: string, categoryName: string): void => {
-    switch (lang) {
-      case "en":
-        this.categoryName.en = categoryName;
-        break;
-      case "ar":
-        this.categoryName.ar = categoryName;
-    }
-  };
-
-  /**
-   * SET ITEM SUB CATEGORY NAME WITH SPECIFIC LANGUAGE.
-   * @param lang string e.g en ar
-   * @param subCategoryName string
-   */
-  public setItemSubCategoryName = (
-    lang: string,
-    subCategoryName: string
-  ): void => {
-    switch (lang) {
-      case "en":
-        this.subCategoryName.en = subCategoryName;
-        break;
-      case "ar":
-        this.subCategoryName.ar = subCategoryName;
-    }
-  };
-
-  /**
-   * SET ITEM SUB CATEGORY CHILD NAME WITH SPECIFIC LANGUAGE.
-   * @param lang string e.g en ar
-   * @param subCatChildName string
-   */
-  public setItemSubCategoryChildName = (
-    lang: string,
-    subCatChildName: string
-  ): void => {
-    switch (lang) {
-      case "en":
-        this.childSubCategoryName.en = subCatChildName;
-        break;
-      case "ar":
-        this.childSubCategoryName.ar = subCatChildName;
-    }
-  };
-
-  /**
-   * SETS THE ITEM SUB CATEGORY ID.
-   * @param subCategoryId string
-   */
-  public setItemSubCatId = (subCategoryId: string): void => {
-    if (
-      subCategoryId != null ||
-      subCategoryId != undefined ||
-      subCategoryId != ""
-    ) {
-      this.subCategoryId = subCategoryId;
-    } else {
-      throwError(() => {
-        Error("Could not found Item subCategoryId");
-      });
-    }
   };
 
   /**
@@ -151,16 +79,8 @@ export abstract class Item implements Payable {
    * SETS THE ITEM DESCRIPTION CATEGORY ID.
    * @param description string
    */
-  public setItemDescription = (lang:string,description: Iname): void => {
-    switch (lang) {
-      case "en":
-        this.description.en = description.en;
-        break;
-    
-        case "ar":
-          this.description.ar = description.ar;
-        break;
-    }
+  public setItemDescription = (lang:string,description:string): void => {
+    this.description.setName(lang,description);
   };
 
   /**
@@ -168,14 +88,8 @@ export abstract class Item implements Payable {
    * @param lang string e.g en ar
    * @param itemName string
    */
-  public setItemName = (lang: string, itemName: string): void => {
-    switch (lang) {
-      case "en":
-        this.title.en = itemName;
-        break;
-      case "ar":
-        this.title.ar = itemName;
-    }
+  public setItemTitle = (lang: string, itemName: string): void => {
+    this.title.setName(lang,itemName);
   };
 
   /**
@@ -184,14 +98,6 @@ export abstract class Item implements Payable {
    *  */
   public getItemPrice = (): number => {
     return this.price;
-  };
-
-  /**
-   * Get item Id
-   * @returns string or empty string.
-   */
-  public getItemId = (): string => {
-    return this.id || "";
   };
 
   /**
@@ -205,27 +111,11 @@ export abstract class Item implements Payable {
   };
 
   /**
-   * GET ITEM CATEGORY
-   * @returns string
-   */
-  public getItemCategoryId = (): string => {
-    return this.categoryId;
-  };
-
-  /**
-   * GET ITEM SUB CATEGORY ID
-   * @returns string
-   */
-  public getItemSubCategoryId = (): string => {
-    return this.subCategoryId;
-  };
-
-  /**
    * GET ITEM DESCRIPTION
    * @returns string
    */
-  public getItemDescription = (): Iname => {
-    return this.description || {en:"No description.",ar:"No description."};
+  public getItemDescription = () => {
+    return this.description;
   };
 
   /**
@@ -250,6 +140,6 @@ export abstract class Item implements Payable {
    * @return string
    */
   public itemBluePrint() {
-    return `${this.getItemName().en}_${this.id}`;
+    return `${this.childSubCat.getName("en")}_${this.category.getId()}`;
   }
 }

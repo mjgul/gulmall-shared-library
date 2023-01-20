@@ -3,8 +3,8 @@ import { MultiLingualName } from "./name";
 export class Color extends MultiLingualName {
     private id!:string;
     private colorHex!:string
-    constructor(){
-        super();
+    constructor(lang:string,name:string){
+        super(lang,name);
     }
    
     /**
