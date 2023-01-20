@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Cloth, Color, Icategory, Item, Size, UtilService } from 'api-lib';
-import { Iname } from 'dist/api-lib/lib/interfaces/name';
+import { CategoriesService, Cloth, Color, Icategory, Item, Size } from 'api-lib';
 import { Observable } from 'rxjs';
-// COPY AND PASTE IN API-LIB
-export interface IColor {
-  name:Iname
-  colorCode:string,
-  id:string
-}
 @Component({
   selector: 'lib-add-item',
   templateUrl: './add-item.component.html',
@@ -16,36 +9,15 @@ export interface IColor {
 export class AddItemComponent implements OnInit {
   allCategories: Observable<Icategory[]> | undefined;
   items:Item[]=[];
-  constructor(private categories:CategoriesService,private type:UtilService) { }
+  constructor(private categories:CategoriesService) { }
 
   ngOnInit(): void {
-    this.getWeight();
-  }
-
-  getWeight= async ()=>{
-    let weight = (await this.type.getWeight());
-    weight.subscribe((res:any)=>{
-      console.log("Weight: ", res)
-    })
+    this.getAllCategories();
   }
 
   addItem = () =>{
     let item:Cloth = new Cloth();
     this.items.push(item);
-    item.setCategoryId("123");
-    item.setSubCategoryId("");
-    item.setChildSubCategoryId("");
-    
-  }
-
-  // CREATE INTERFACE IN API-LIB
-  
-  addAvailableColors=(colorId:IColor,colorsArray:Color[])=>{
-    let color:Color = new Color();
-    colorsArray.push(color);
-  }
-
-  addAvailableSize=()=>{
     
   }
 

@@ -2,11 +2,13 @@ export class MultiLingualName {
     private en!:string;
     private ar!:string;
 
-    constructor() {}
+    constructor(lang:string,name:string) {
+        this.setName(lang,name);
+    }
      /**
      * Set name with multiple languages.
      * @param lang string
-     * @param colorName string
+     * @param name string
      */
      setName=(lang:string,name:string):void=>{
         switch (lang) {
@@ -22,7 +24,11 @@ export class MultiLingualName {
                 break;
         }
     }
-    
+    /**
+     * 
+     * @param lang string
+     * @returns string
+     */
     getName=(lang:string):string=>{
         switch (lang) {
             case 'en':

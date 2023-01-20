@@ -36,12 +36,12 @@ export class ItemDataManiputeService {
     let clothAvailableSize: Size[] = [];
 
     item.available_color.forEach((color: any) => {
-      let dummyColor: Color = new Color();
+      let dummyColor: Color = new Color(localStorage.getItem("language")||"","");
       clothAvailableColor.push(dummyColor);
     });
 
     item.available_color.forEach((x: any) => {
-      let dummyColor: Size = new Size();
+      let dummyColor: Size = new Size(localStorage.getItem("language")||"","");
       clothAvailableSize.push(dummyColor);
     });
 
@@ -54,12 +54,12 @@ export class ItemDataManiputeService {
     let clothAvailableSize: Size[] = [];
 
     item.available_color.forEach((color: any) => {
-      let dummyColor: Color = new Color();
+      let dummyColor: Color = new Color(localStorage.getItem("language")||"","");
       clothAvailableColor.push(dummyColor);
     });
 
     item.available_color.forEach((x: any) => {
-      let dummyColor: Size = new Size();
+      let dummyColor: Size = new Size(localStorage.getItem("language")||"","");
       clothAvailableSize.push(dummyColor);
     });
 

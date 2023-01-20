@@ -7,7 +7,7 @@ import { IsizeType } from '../../../interfaces/sizeType';
     providedIn: 'root'
   })
 
-export class UtilService {
+export class TypeSizeService {
     constructor(private api:JGSApiService, private sizeTypes:GenderOrTypeDataManipulationService){}
 
       /**
@@ -33,35 +33,8 @@ export class UtilService {
     return (await this.api.GET(apiRoute))
     .pipe(
       tap (_ => console.log('fetched types')),
-      map((items:any) => this.sizeTypes.toSizeType(items.data))
-    )
-  }
-
-  /**
-   * GET THE LIST OF WEIGHT
-   * @returns IsizeType
-   */
-  getWeight = async():Promise<Observable<any>> => {
-    let apiRoute: any = {};
-    apiRoute.apiroute = `get-weight`;
-    return (await this.api.GET(apiRoute))
-    .pipe(
-      tap (_ => console.log('Weight fetching...')),
-      map((items:any) => this.sizeTypes.toSizeType(items.data))
-    )
-  }
-
-  /**
-   * GET LIST OF ALL COLORS.
-   * @returns Icolor[]
-   */
-  getColors = async():Promise<Observable<any>> =>{
-    let apiRoute:any = {};
-    apiRoute.apiroute = `get-color`;
-    return (await this.api.GET(apiRoute))
-    .pipe(
-      tap(_ => console.log("Colors Fetching...")),
-      map((colors:any)=> this.sizeTypes.toColor(colors.data))
+      map((items:any) =>
+       this.sizeTypes.toSizeType(items.data))
     )
   }
 }

@@ -2,16 +2,18 @@ import { Iname } from "./name";
 
 export interface Icategory {
     id:string;
-    name:Iname
-    genderBased:boolean;
+    name:string
 }
 
 export interface IsubCategory {
     id:string;
-    name:Iname
+    catId:string;
+    name:string
 }
 
 export interface IchildSubCat {
     id:string;
-    name:Iname
+    subCatId:string;
+    name:string;
+    isGenderBased:boolean;
 }

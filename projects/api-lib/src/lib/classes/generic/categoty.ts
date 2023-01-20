@@ -1,0 +1,63 @@
+import {
+  Icategory,
+  IchildSubCat,
+  IsubCategory,
+} from "../../interfaces/category";
+import { MultiLingualName } from "./name";
+
+export class Category extends MultiLingualName {
+  protected id!: string;
+  constructor(category: Icategory) {
+    super(localStorage.getItem("language") || "en", category.name);
+    this.setId(category.id);
+  }
+
+  /**
+   * Gives the id
+   * @returns string
+   */
+  public getId = () => {
+    return this.id;
+  };
+
+  /**
+   * SET THE ID.
+   * @param id string
+   */
+  public setId = (id: string) => {
+    this.id = id;
+  };
+}
+
+export class SubCategory extends Category {
+  catId:string;
+  constructor(subCategory: IsubCategory) {
+    super(subCategory);
+    this.catId = subCategory.catId;
+  }
+}
+
+export class ChildSubCategory extends Category {
+  genderBased!: boolean;
+  subCatId!:string;
+  constructor(category: IchildSubCat) {
+    super(category);
+    this.subCatId = category.subCatId;
+  }
+
+  /**
+   * SET THE STATUS OF CATEGORY IS GENDER BASED OR NOT.
+   * @param isGenderBased boolean
+   */
+  public setGenderBased = (isGenderBased: boolean): void => {
+    this.genderBased = isGenderBased;
+  };
+
+  /**
+   * Is category gender based.
+   * @returns boolean
+   */
+  public IsCategoryGenderBased() {
+    return this.genderBased; // calculate total cost
+  }
+}

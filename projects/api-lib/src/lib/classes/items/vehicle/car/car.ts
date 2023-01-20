@@ -19,6 +19,6 @@ export class Car extends Vehicle {
     } 
 
     public override itemBluePrint(){
-        return `${this.getItemName()}_${this.cylinder}`;
+        return `${this.getChildSubCat().getName(localStorage.getItem("language")||"")}_${this.cylinder}`;
       }
 }

@@ -1,3 +1,4 @@
+import { Iname } from "../../../../interfaces/name";
 import { Color } from "../../../generic/color";
 import { Size } from "../../../generic/size";
 import { Fashion } from "../fashion";
@@ -28,7 +29,7 @@ export class Cloth extends Fashion {
     }
 
     public override itemBluePrint(){
-        return `${this.getItemName().en.replace(/\ /g, '-')}_${this.getItemId()}_${this.color}_${this.size}`;
+        return `${this.getChildSubCat().getName(localStorage.getItem("language")||"").replace(/\ /g, '-')}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`;
       }
 
 }
