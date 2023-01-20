@@ -1,24 +1,35 @@
 import { throwError } from "rxjs";
 import { Iname } from "../../interfaces/name";
 import { Payable } from "../../interfaces/payable";
+import { ThisReceiver } from "@angular/compiler";
 
 export abstract class Item implements Payable {
-  private title!: Iname;
-  private id!: string;
-  private categoryId!: string;
-  private subCategoryId!: string;
-  private price!: number;
-  private categoryName!: Iname;
-  private subCategoryName!: Iname;
-  private childSubCategoryName!: Iname;
-  private description!: Iname;
-  private genderBased!: boolean;
-  private image?: string[];
+  private title: Iname;
+  private id: string;
+  private categoryId: string;
+  private subCategoryId: string;
+  private price: number;
+  private categoryName: Iname;
+  private subCategoryName: Iname;
+  private childSubCategoryName: Iname;
+  private description: Iname;
+  private image: string[];
 
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
-  constructor() { }
+  constructor() { 
+    this.title = {en:"no_title",ar:"no_title"}
+    this.description = {en:"no_description",ar:"no_description"}
+    this.id = "no_id"
+    this.categoryId="no_cat_id"
+    this.subCategoryId="no_sub_category_id"
+    this.price=0
+    this.categoryName={en:"no_category_name",ar:"no_category_name"}
+    this.subCategoryName={en:"no_sub_category_name",ar:"no_sub_category_name"}
+    this.childSubCategoryName={en:"no_item_name",ar:"no_item_name"}
+    this.image=[];
+  }
 
   // GET ITEM NAME MULTILINGUAL.
   public getItemName = (): Iname => {
@@ -51,14 +62,6 @@ export abstract class Item implements Payable {
         Error("Could not found Item catId");
       });
     }
-  };
-
-  /**
-   * SET THE STATUS OF CATEGORY IS GENDER BASED OR NOT.
-   * @param isGenderBased boolean
-   */
-  public setGenderBased = (isGenderBased: boolean): void => {
-    this.genderBased = isGenderBased;
   };
 
   /**
@@ -176,36 +179,6 @@ export abstract class Item implements Payable {
   };
 
   /**
-   * SETS CATEGORY AND RETURN OBJECT WITH RESPONSE STATUS AND MESSAGE.
-   * @param categoryId
-   * @returns
-   */
-  public setCategoryId = (categoryId: string): object => {
-    this.subCategoryId = categoryId;
-    return { status: true, message: "Sub category has been set." };
-  };
-
-  /**
-   *  SETS SUB-CATEGORY AND RETURN OBJECT WITH RESPONSE STATUS AND MESSAGE.
-   * @param subCatId
-   * @returns @{ status: boolean, message:string}
-   */
-  public setSubCategoryId = (subCatId: string): object => {
-    this.subCategoryId = subCatId;
-    return { status: true, message: "Sub category has been set." };
-  };
-
-  /**
-   * SETS SUB-CATEGORY AND RETURN OBJECT WITH RESPONSE STATUS AND MESSAGE.
-   * @param childOfSubCategoryId
-   * @returns  @{ status: boolean, message:string}
-   */
-  public setChildSubCategoryId = (childSubCategory: string): object => {
-    this.subCategoryId = childSubCategory;
-    return { status: true, message: "Child sub category has been set." };
-  };
-
-  /**
    * GET ITEM PRICE
    * @return Number
    *  */
@@ -252,7 +225,7 @@ export abstract class Item implements Payable {
    * @returns string
    */
   public getItemDescription = (): Iname => {
-    return this.description;
+    return this.description || {en:"No description.",ar:"No description."};
   };
 
   /**
@@ -273,18 +246,10 @@ export abstract class Item implements Payable {
   }
 
   /**
-   * Is category gender based.
-   * @returns boolean
-   */
-  public IsCategoryGenderBased() {
-    return this.genderBased; // calculate total cost
-  }
-
-  /**
    * GET ITEM IDENTITY.
    * @return string
    */
   public itemBluePrint() {
-    return `${this.getItemName()}_${this.id}`;
+    return `${this.getItemName().en}_${this.id}`;
   }
 }

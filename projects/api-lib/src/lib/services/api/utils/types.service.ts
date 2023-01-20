@@ -50,4 +50,18 @@ export class UtilService {
       map((items:any) => this.sizeTypes.toSizeType(items.data))
     )
   }
+
+  /**
+   * GET LIST OF ALL COLORS.
+   * @returns Icolor[]
+   */
+  getColors = async():Promise<Observable<any>> =>{
+    let apiRoute:any = {};
+    apiRoute.apiroute = `get-color`;
+    return (await this.api.GET(apiRoute))
+    .pipe(
+      tap(_ => console.log("Colors Fetching...")),
+      map((colors:any)=> this.sizeTypes.toColor(colors.data))
+    )
+  }
 }
