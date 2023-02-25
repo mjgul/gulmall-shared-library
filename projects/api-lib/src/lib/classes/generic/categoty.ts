@@ -8,7 +8,7 @@ import { MultiLingualName } from "./name";
 export class Category extends MultiLingualName {
   protected id!: string;
   constructor(category: Icategory) {
-    super(localStorage.getItem("language") || "en", category.name);
+    super(localStorage.getItem("language") || "en", category.name.en);
     this.setId(category.id);
   }
 
