@@ -23,6 +23,15 @@ export class TypeSizeService {
   }
 
   /**
+   * RETURN ALL AVAILABLE COLORS.
+   */
+   getAllColors = async () => {
+    let apiRoute:any = {};
+    apiRoute.apiroute = `get-color`;
+    return (await this.api.GET(apiRoute));
+  }
+
+  /**
    * GIVES THE LIST OF ALL AVAILABLE GENDER OR TYPE.
    * @returns list of all available type/gender
    */
