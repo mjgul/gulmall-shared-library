@@ -10,7 +10,7 @@ import { LoaderService } from './services/loader.service';
 })
 
 export class JGSApiService {
-  private appBaseUrl = `http://${SERVER_IP}`;
+  private appBaseUrl = SERVER_IP
 
   // CONSTRUCTOR API SERVICE
   constructor(public http: HttpClient, private loader: LoaderService) {}

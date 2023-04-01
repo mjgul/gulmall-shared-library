@@ -2,22 +2,5 @@
 
   <div *ngIf="loader.isLoading |async" class="progress">
     
-    <mat-card class="example-card">
-      <mat-card-subtitle>Uploading...</mat-card-subtitle>
-      <mat-card-content>
-        
-      </mat-card-content>
-   
-      <mat-card-footer>
-        <mat-progress-bar
-        class="example-margin"
-        [color]="color"
-        [mode]="mode"
-        [value]="loader.progress"
-        [bufferValue]="loader.bufferValue">
-    </mat-progress-bar>
-      </mat-card-footer>
-      
-    </mat-card>
      
   </div>

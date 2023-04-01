@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { LoaderService } from '../../services/loader.service';
-import {ProgressBarMode} from '@angular/material/progress-bar';
 @Component({
   selector: 'lib-progress',
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css']
 })
 export class ProgressComponent implements OnInit {
-  color: ThemePalette = 'primary';
-  mode: ProgressBarMode = 'buffer';
+  
+  
   value = 50;
   bufferValue = 75;
   loading:boolean = false;

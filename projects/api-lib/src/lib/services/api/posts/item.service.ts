@@ -13,7 +13,7 @@ import { Icloth } from "../../../interfaces/cloth";
   providedIn: "root",
 })
 export class ItemService {
-  private appBaseUrl = `http://${SERVER_IP}`;
+  private appBaseUrl = SERVER_IP
   constructor(private api: JGSApiService,public http: HttpClient, private itemDataManipulation:ItemDataManiputeService) {}
 
   /**

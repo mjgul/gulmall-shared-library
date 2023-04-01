@@ -15,7 +15,7 @@ import { Size } from "api-lib";
 
   export class CartTestComponent implements OnInit {
     items:Item[] = [];
-    createNewColor:Color = new Color("heheeh","تسشيمبتيس","12222","aaa");
+    createNewColor:Color = new Color('en',"ahd");
     
     cart: ShoppingCart = new ShoppingCart();
     ngOnInit(): void {

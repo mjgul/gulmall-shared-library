@@ -30,6 +30,7 @@ export class ApiTestingComponent implements OnInit {
   // RETURNS THE LIST OF CATEGORY
   getAllCategories = async() => {
   this.allCategories =  (await this.category.getAllCategories());
+  
   }
 
   // RETURNS THE LIST OF SUB-CATEGORY.

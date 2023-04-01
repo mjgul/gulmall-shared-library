@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { MediaFileComponent } from './components/media-file/media-file.component';
 import { ApiLibModule } from 'api-lib';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTreeModule} from '@angular/material/tree';
 import { ClassTestComponent } from './components/class-test/class-test.component';
 import { CartTestComponent } from './components/cart-test/cart-test.component';
 import { BLOB_STORAGE_TOKEN, IAzureStorage } from 'api-lib';
@@ -29,7 +28,6 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     HttpClientJsonpModule,
     ApiLibModule,
     BrowserAnimationsModule,
-    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

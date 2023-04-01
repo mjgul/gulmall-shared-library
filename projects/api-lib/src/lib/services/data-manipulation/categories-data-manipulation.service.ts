@@ -12,7 +12,8 @@ export class CategoriesDataManipulationService {
     public toCategory = (categories:any[]):Icategory[] => {
          return categories.map((category): Icategory => ({
           id: category.ID,
-          name: category.name
+          name: category.name,
+          icon: category.icon
       }))
       }
 
@@ -20,7 +21,8 @@ export class CategoriesDataManipulationService {
       return subCategories.map((subCat): IsubCategory => ({
         id: subCat.ID,
         name: subCat.name,
-        catId:""
+        catId:"",
+        icon:subCat.icon
         //catId:subCategories?.catId
     }))
     }
@@ -30,7 +32,8 @@ export class CategoriesDataManipulationService {
         id: childCat.ID,
         name: childCat.name,
         isGenderBased:true,
-        subCatId:""
+        subCatId:"",
+        icon:childCat.icon
     }))
     }
 }
