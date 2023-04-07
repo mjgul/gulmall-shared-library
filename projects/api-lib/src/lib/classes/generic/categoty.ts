@@ -7,10 +7,28 @@ import { MultiLingualName } from "./name";
 
 export class Category extends MultiLingualName {
   protected id!: string;
+  protected icon!:string;
   constructor(category: Icategory) {
     super(localStorage.getItem("language") || "en", category.name.en);
     this.setId(category.id);
+    this.setIcon(category.icon)
   }
+
+   /**
+   * Gives the icon
+   * @returns string
+   */
+    public getIcon = () => {
+      return this.icon;
+    };
+
+  /**
+   * SET THE ID.
+   * @param icon string
+   */
+      public setIcon = (icon:string) => {
+        this.icon = icon;
+      };
 
   /**
    * Gives the id
