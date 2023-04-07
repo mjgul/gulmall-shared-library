@@ -3,6 +3,7 @@ import { Payable } from "../../interfaces/payable";
 import { Category, ChildSubCategory, SubCategory } from "../generic/categoty";
 import { Icategory, IchildSubCat, IsubCategory } from "../../interfaces/category";
 import { MultiLingualName } from "../generic/name";
+import { Image } from "../generic/image";
 
 export abstract class Item implements Payable {
 
@@ -12,7 +13,7 @@ export abstract class Item implements Payable {
   private subCategory!: SubCategory; // {id:"23412klfds",name:{en:"",ar:""}, cat_id:"124123"}
   private price!: number; // 2000
   private description!: MultiLingualName; // {en:"",ar:""}
-  private image!: string[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
+  private image!: Image;// ["jlskdfjas","lkdsfj","jlsakdfj"]
 
   public abstract getRequiredFields(): any;
 
@@ -105,9 +106,8 @@ export abstract class Item implements Payable {
    * @param images array of string[]
    * @returns  array of string string[]
    */
-  public setImages = (images: string[]): string[] => {
+  public setImages = (images: Image) => {
     this.image = images;
-    return this.image;
   };
 
   /**
@@ -122,10 +122,17 @@ export abstract class Item implements Payable {
    * GET ITEM IMAGES.
    * @returns string[]
    */
-  public getItemImages = (): string[] => {
-    return this.image || [];
+  public getItemLowQualityImages = (): string[] => {
+    return this.image.getLowQualityImages();
   };
 
+   /**
+   * GET ITEM IMAGES.
+   * @returns string[]
+   */
+    public getItemHighQualityImages = (): string[] => {
+      return this.image.getHighQualityImages();
+    };
   /**
    * GET ITEM PAYABLE AMOUNT.
    * @returns number

@@ -5,6 +5,7 @@ import { Cloth } from "../../classes/items/fashion/cloths/cloths";
 import { Item } from "../../classes/items/item";
 import { Shoes } from "../../classes/items/fashion/foot-wear/shoes";
 import { Icategory, IchildSubCat, IsubCategory } from "../../interfaces/category";
+import { Image } from "../../classes/generic/image";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,7 @@ export class ItemDataManiputeService {
     let classifiedItems: Item[] = [];
     filteredItems.forEach((item: any) => {
       console.log("ITEM CAT: ", item);
-      switch (item.category.name.en) {
+      switch (item.sub_category.name.en) {
         case "Clothing":
           classifiedItems.push(this.toCloth(item));
           break;
@@ -38,6 +39,9 @@ export class ItemDataManiputeService {
     let category:Icategory;
     let subCategor:IsubCategory;
     let childCat:IchildSubCat;
+    let images:Image = new Image();
+    images.setHighQualityImages(item.images.high_quility);
+    images.setlowQualityImages(item.images.low_quility);
     category = {id: item.category.ID,name: item.category.name.en,icon: item.category.icon};
     subCategor = {id: item.category.ID,name: item.category.name.en,icon: item.category.icon,catId:item.category.ID};
     childCat = {id: item.ID,name: item.category.name.en,icon: item.category.icon,subCatId:item.sub_category.ID,isGenderBased:item.gender_flag};
@@ -58,7 +62,7 @@ export class ItemDataManiputeService {
     cloth.setAvailableSize(clothAvailableSize);
     cloth.setCategory(category);
     cloth.setSubCatChild(childCat);
-    cloth.setImages(item.images.low_quility);
+    cloth.setImages(images);
     cloth.setItemPrice(item.price);
     return cloth;
   };
