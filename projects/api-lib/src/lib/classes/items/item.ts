@@ -14,7 +14,8 @@ export abstract class Item implements Payable {
   private price!: number; // 2000
   private description!: MultiLingualName; // {en:"",ar:""}
   private image!: Image;// ["jlskdfjas","lkdsfj","jlsakdfj"]
-
+  private country!:string;
+  private currency!:string;
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
@@ -37,7 +38,7 @@ export abstract class Item implements Payable {
    * SET THE CATEGORY
    * @param category Icategory
    */
-  public setCategory=(category:Icategory)=>{
+  protected setCategory=(category:Icategory)=>{
     this.category = new Category(category);
   }
   
@@ -45,7 +46,7 @@ export abstract class Item implements Payable {
    * SETS THE SUB CATEGORY OF CATEGORY
    * @param subCategory IsubCategory
    */
-  public setSubCategory=(subCategory:IsubCategory)=>{
+  protected setSubCategory=(subCategory:IsubCategory)=>{
     this.subCategory = new SubCategory(subCategory);
   }
 
@@ -53,7 +54,7 @@ export abstract class Item implements Payable {
    * SETS THE CHILD CATEGORY OF SUB CATEGORY.
    * @param subCatChild IchildSubCat
    */
-  public setSubCatChild=(subCatChild:IchildSubCat)=>{
+  protected setSubCatChild=(subCatChild:IchildSubCat)=>{
     this.childSubCat = new ChildSubCategory(subCatChild);
   }
 
@@ -66,7 +67,7 @@ export abstract class Item implements Payable {
    * SETS THE ITEM PRICE CATEGORY ID.
    * @param price number
    */
-  public setItemPrice = (price: number): void => {
+  protected setItemPrice = (price: number): void => {
     if (price > 0) {
       this.price = price;
     } else {
@@ -80,7 +81,7 @@ export abstract class Item implements Payable {
    * SETS THE ITEM DESCRIPTION CATEGORY ID.
    * @param description string
    */
-  public setItemDescription = (lang:string,description:string): void => {
+  protected setItemDescription = (lang:string,description:string): void => {
     this.description.setName(lang,description);
   };
 
@@ -89,8 +90,8 @@ export abstract class Item implements Payable {
    * @param lang string e.g en ar
    * @param itemName string
    */
-  public setItemTitle = (lang: string, itemName: string): void => {
-    this.title.setName(lang,itemName);
+  protected setItemTitle = (lang: string, itemName: string): void => {
+    this.title = new MultiLingualName(lang,itemName);
   };
 
   /**
@@ -106,7 +107,7 @@ export abstract class Item implements Payable {
    * @param images array of string[]
    * @returns  array of string string[]
    */
-  public setImages = (images: Image) => {
+  protected setImages = (images: Image) => {
     this.image = images;
   };
 
@@ -149,4 +150,29 @@ export abstract class Item implements Payable {
   public itemBluePrint() {
     return `${this.childSubCat.getName("en")}_${this.category.getId()}`;
   }
+
+  /**
+   * 
+   * @param name name of the country
+   */
+  protected setCountry = (name:string) => {
+    this.country = name;
+  }
+
+    /**
+   * 
+   * @param name name of the country
+   */
+     protected setCurrency = (name:string) => {
+      this.currency = name;
+    }
+
+  /**
+   * 
+   * @returns name of the country
+   */
+  public getCountry = ():string =>{
+    return this.country;
+  }
+
 }

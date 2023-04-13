@@ -8,18 +8,21 @@ export abstract class Fashion extends Item {
 
     constructor(){
         super();
+        
     }
 
-    setAvailableColor =(color:Color[])=>{
+    protected setAvailableColor =(color:Color[])=>{
         this.availableColor = color;
     }
 
-    setAvailableSize = (size:Size[]) => {
+    protected setAvailableSize = (size:Size[]) => {
     this.availableSize = size;
     }
 
     public override getRequiredFields(){
         return {message: "Kinly select size and color", options:[{name:'size',list:this.availableSize},{name:'color',list:this.availableColor}]};
     } 
+
+    
    
 }

@@ -34,6 +34,7 @@ export * from './lib/classes/hourlyEmployee';
 export * from './lib/classes/salaryEmployee';
 export * from './lib/classes/invoice/invoice';
 export * from './lib/classes/items/vehicle/car/truck';
+export * from './lib/classes/generic/image'
 ////EXPORTING INTERFACES 
 export * from './lib/interfaces/item';
 export * from './lib/interfaces/cart';

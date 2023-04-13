@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService, Cloth, Color, Icategory, Item, Size } from 'api-lib';
+import { CategoriesService, Cloth, Color, Icategory, IchildSubCat, IsubCategory, Item, Size, Image } from 'api-lib';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'lib-add-item',
@@ -16,7 +16,13 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem = () =>{
-    let item:Cloth = new Cloth();
+    let category:Icategory = {id:"12",icon:"",name:{en:"",ar:""}};
+    let subCat:IsubCategory={id:"12",icon:"",name:{en:"",ar:""},catId:""};
+    let child:IchildSubCat= {id:"12",icon:"",name:{en:"",ar:""},subCatId:"",isGenderBased:false};    
+    let color:Color[] = [new Color('en',"")];
+    let size:Size[] = [new Size('en',"")]
+    let image:Image = new Image();
+    let item:Cloth = new Cloth("Oman",'OMR',category,subCat,child,image,12,'12',color,size);
     this.items.push(item);
     
   }
