@@ -3,15 +3,17 @@ import { MultiLingualName } from "./name";
 export class Color extends MultiLingualName {
     private id!:string;
     private colorHex!:string
-    constructor(lang:string,name:string){
+    constructor(lang:string,name:string,colorCode:string,colorId:string){
         super(lang,name);
+        this.setCode(colorCode);
+        this.setId(colorId);
     }
    
     /**
      * Set color id choosen from list.(Mongodb Id (ObjectId))
      * @param id string
      */
-    public setId=(id:string):void => {
+    protected setId=(id:string):void => {
         this.id = id;
     }
 
@@ -35,7 +37,7 @@ export class Color extends MultiLingualName {
      * Set color hexadecimal number.
      * @param colorHex string
      */
-    public setCode=(colorHex:string)=>{
+    protected setCode=(colorHex:string)=>{
         this.colorHex= colorHex;
     }
 }

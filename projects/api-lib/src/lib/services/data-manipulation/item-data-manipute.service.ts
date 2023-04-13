@@ -54,18 +54,13 @@ export class ItemDataManiputeService {
       isGenderBased: item.gender_flag,
     };
     item.available_color.forEach((color: any) => {
-      let itemColor: Color = new Color(
-        localStorage.getItem("language") || "en",
-        color.name.en
-      );
+      let itemColor: Color = new Color('en',color.name.en,color.cssHex,color.ID);
       clothAvailableColor.push(itemColor);
     });
 
-    item.available_color.forEach((size: any) => {
-      let itemSize: Size = new Size(
-        localStorage.getItem("language") || "en",
-        size.name.en
-      );
+    item.available_size.forEach((size: any) => {
+      let itemSize: Size = new Size("en",size.name.en,size.ID);
+
       clothAvailableSize.push(itemSize);
     });
 

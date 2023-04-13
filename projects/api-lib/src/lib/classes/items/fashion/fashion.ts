@@ -23,6 +23,14 @@ export abstract class Fashion extends Item {
         return {message: "Kinly select size and color", options:[{name:'size',list:this.availableSize},{name:'color',list:this.availableColor}]};
     } 
 
+    public getAvailableSize=():Size[]=>{
+        return this.availableSize;
+    }
+
+    public getAvailableColor=():Color[]=>{
+        return this.availableColor;
+    }
+
     
    
 }
