@@ -49,27 +49,39 @@ export class Cloth extends Fashion {
     this.setAvailableSize(availableSize);
   }
 
+  /**
+   * 
+   * @param color of Color type
+   */
   public setColor = (color: Color): void => {
     this.color = color;
   };
 
+  /**
+   * 
+   * @param size of Size type.
+   */
   public setSize = (size: Size): void => {
     this.size = size;
   };
 
+  /**
+   * 
+   * @returns size id
+   */
   public getItemSizeId = (): string => {
     return this.size.getId();
   };
-
+/**
+ * 
+ * @returns color id
+ */
   public getItemColorId = (): string => {
     return this.color.getId();
   };
 
   public override itemBluePrint() {
-    return `${this.getChildSubCat()
-      .getName(localStorage.getItem("language") || "")
-      .replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${
-      this.size
-    }`;
+    console.log("BLUE PRINT: ", `${this.getChildSubCat().getName("en").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`);
+    return `${this.getChildSubCat().getName("en").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`;
   }
 }

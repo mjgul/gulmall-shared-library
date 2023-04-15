@@ -1,31 +1,60 @@
+import { Injectable } from "@angular/core";
 import { Item } from "../items/item";
+import { Color } from "../../classes/generic/color";
+import { Size } from "../../classes/generic/size"
+@Injectable({
+  providedIn: 'root'
+})
+export class CartItem {
+  private item: Item;
+  private quantity: number;
+  private color?:Color;
+  private size?:Size;
 
-export class CartItem{
-  private item:Item;
-  private quantity:number;
-  
-  constructor(item:Item){
-    this.item=item;
-    this.quantity = 1;
+  /**
+   * by defauld the quantity will be 01.
+   * @param item 
+   */
+  constructor(item: Item,selectedColor?:Color,selectedSize?:Size) {
+    console.log("$$ A new cart item has been added.");
+    console.log("$$ Constructor call CartItem");
+      this.item = item;
+      this.quantity = 1;
+      this.color = selectedColor;
+      this.size = selectedSize;
   }
 
-  public getProduct = ():Item => {
-    return this.item
-  }
+  /**
+   * 
+   * @returns Item
+   */
+  public getProduct = (): Item => {
+    return this.item;
+  };
 
-  public getQuantity = ():number => {
+  /**
+   * 
+   * @returns the quantity of item
+   */
+  public getQuantity = (): number => {
     return this.quantity;
-  }
+  };
 
-  public decreseQuantity = ():void =>{
-    if(this.quantity > 0){
-      this.quantity --;
+  /**
+   * if the item is added it will decrease the quantity by 1.
+   */
+  public decreseQuantity = (): void => {
+    if (this.quantity > 0) {
+      this.quantity--;
     }
     console.log(this.quantity);
-  }
+  };
 
-  public inceaseQuantity = ():void => {
+  /**
+   * Increases the quantity of item in cart.
+   */
+  public inceaseQuantity = (): void => {
     this.quantity += 1;
     console.log(this.quantity);
-  }
+  };
 }

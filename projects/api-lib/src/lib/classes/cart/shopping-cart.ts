@@ -1,4 +1,3 @@
-import { Item } from '../items/item'
 import { CartItem } from "./cart";
 import { Icart } from '../../interfaces/cart';
 import { Cloth } from "../items/fashion/cloths/cloths";
@@ -8,7 +7,7 @@ export class ShoppingCart {
     private cartList: Map<string, CartItem>;
 
     constructor(){
-        console.log('cart list initiated');
+    console.log("$$ SHOPPING CART INSTANCIATED")
         this.cartList = new Map<string, CartItem>()   
     }
 
@@ -52,12 +51,12 @@ export class ShoppingCart {
                 let cloth = cartItem.getProduct() as Cloth;
                 let cart:Icart  = {item_id:cloth.getChildSubCat().getId(),color_id:cloth.getItemColorId(),size_id:cloth.getItemSizeId(),quantity:cartItem.getQuantity()};
                 dummyArray.push(cart);
-            } else {
-                let item = cartItem.getProduct();
-                let cart:Icart = {item_id:item.getChildSubCat().getId(),quantity:cartItem.getQuantity()};
-                dummyArray.push(cart);
-            }
+            } 
         });
         return dummyArray;
+    }
+
+    public totalNumberOfItems=():Number =>{
+       return this.cartList.size;
     }
 }
