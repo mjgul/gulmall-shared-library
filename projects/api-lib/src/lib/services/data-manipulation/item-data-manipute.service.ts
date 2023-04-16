@@ -42,16 +42,16 @@ export class ItemDataManiputeService {
     };
     subCategor = {
       id: item.category.ID,
-      name: item.category.name.en,
-      icon: item.category.icon,
-      catId: item.category.ID,
+      name: item.sub_category.name.en,
+      icon: item.sub_category.icon,
+      catId: item.sub_category.ID,
     };
     childCat = {
       id: item.ID,
-      name: item.category.name.en,
-      icon: item.category.icon,
+      name: item.name.en,
+      icon: item.images.low_quility[0],
       subCatId: item.sub_category.ID,
-      isGenderBased: item.gender_flag,
+      isGenderBased: item.category.gender_flag,
     };
     item.available_color.forEach((color: any) => {
       let itemColor: Color = new Color('en',color.name.en,color.cssHex,color.ID);

@@ -47,6 +47,8 @@ export class Cloth extends Fashion {
     this.setItemTitle("en", title);
     this.setAvailableColor(availableColor);
     this.setAvailableSize(availableSize);
+    this.setColor(new Color('en','NO COLOR',"#000000","000000"))
+    this.setSize(new Size('en',"NO SIZE","000000"))
   }
 
   /**
@@ -54,7 +56,9 @@ export class Cloth extends Fashion {
    * @param color of Color type
    */
   public setColor = (color: Color): void => {
+    console.log("RECEIVED",color);
     this.color = color;
+    console.log("SETTING COLOR ++ ", this.color, ' color ', this.color.getColorCode())
   };
 
   /**
@@ -62,7 +66,9 @@ export class Cloth extends Fashion {
    * @param size of Size type.
    */
   public setSize = (size: Size): void => {
+    console.log("RECEIVED",size);
     this.size = size;
+    console.log("SETTING COLOR ++ ", this.size, ' color ', this.size.getId())
   };
 
   /**
@@ -81,8 +87,10 @@ export class Cloth extends Fashion {
   };
 
   public override itemBluePrint() {
-    let blueprint =  `${this.getChildSubCat().getName("en"||"")?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`;
+    let blueprint =  `${this.getChildSubCat().getName("en"||"")?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
     console.log(blueprint);
-    return `${this.getChildSubCat().getName("en" || "").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color.getId()}_${this.size.getId()}`;
+    let blueprint1 =  `${this.getChildSubCat().getName("en"||"")?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color.getName('en')}_${this.size.getName('en')}`;
+    console.log(blueprint1)
+    return `${this.getChildSubCat().getName("en" || "").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
   }
 }
