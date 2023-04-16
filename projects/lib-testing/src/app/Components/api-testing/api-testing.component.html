@@ -12,13 +12,13 @@
 
         <h3 (click)="getAllCategories()">Get All Categories</h3>
         <ul>
-            <li (click)="getSubCategoryByCategoryId(category.id)" *ngFor="let category of allCategories | async"> {{category.name.en}} </li>
+            <li (click)="getSubCategoryByCategoryId(category.id)" *ngFor="let category of allCategories | async"> {{category.name}} </li>
             <ul>
-                <li (click)="getChildOfSubCat(subCategory.id)" *ngFor="let subCategory of allSubCategories | async"> {{subCategory.name.en}}
+                <li (click)="getChildOfSubCat(subCategory.id)" *ngFor="let subCategory of allSubCategories | async"> {{subCategory.name}}
                     
                 </li>
                 <ul>
-                    <li (click)="getAvailableSize(childOfSubCat.id,'')" *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name.en}}</li>
+                    <li (click)="getAvailableSize(childOfSubCat.id,'')" *ngFor="let childOfSubCat of childSubCategories | async"> {{childOfSubCat.name}}</li>
                 </ul>
             </ul>
         </ul>

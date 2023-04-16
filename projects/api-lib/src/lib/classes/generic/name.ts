@@ -3,6 +3,7 @@ export class MultiLingualName {
     private ar!:string;
 
     constructor(lang:string,name:string) {
+        console.log("Name ++", lang, "value : ", name);
         this.setName(lang,name);
     }
      /**

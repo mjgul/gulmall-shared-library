@@ -81,7 +81,8 @@ export class Cloth extends Fashion {
   };
 
   public override itemBluePrint() {
-    console.log("BLUE PRINT: ", `${this.getChildSubCat().getName("en").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`);
-    return `${this.getChildSubCat().getName("en").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`;
+    let blueprint =  `${this.getChildSubCat().getName("en"||"")?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color}_${this.size}`;
+    console.log(blueprint);
+    return `${this.getChildSubCat().getName("en" || "").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color.getId()}_${this.size.getId()}`;
   }
 }

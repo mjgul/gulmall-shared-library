@@ -39,6 +39,7 @@ export abstract class Item implements Payable {
    * @param category Icategory
    */
   protected setCategory=(category:Icategory)=>{
+    console.log("SET ++ CATEGORY: ", category);
     this.category = new Category(category);
   }
   
@@ -47,6 +48,7 @@ export abstract class Item implements Payable {
    * @param subCategory IsubCategory
    */
   protected setSubCategory=(subCategory:IsubCategory)=>{
+    console.log("SET ++ SUB CATEGORY: ", subCategory);
     this.subCategory = new SubCategory(subCategory);
   }
 
@@ -55,6 +57,7 @@ export abstract class Item implements Payable {
    * @param subCatChild IchildSubCat
    */
   protected setSubCatChild=(subCatChild:IchildSubCat)=>{
+    console.log("SET ITEM ++ ",subCatChild)
     this.childSubCat = new ChildSubCategory(subCatChild);
   }
 

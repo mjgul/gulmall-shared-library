@@ -2,21 +2,21 @@ import { Iname } from "./name";
 
 export interface Icategory {
     id:string;
-    name:Iname;
+    name:string;
     icon:string;
 }
 
 export interface IsubCategory {
     id:string;
     catId:string;
-    name:Iname;
+    name:string;
     icon:string;
 }
 
 export interface IchildSubCat {
     id:string;
     subCatId:string;
-    name:Iname;
+    name:string;
     isGenderBased:boolean;
     icon:string;
 }
