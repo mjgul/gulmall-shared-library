@@ -26,7 +26,7 @@ export class ItemDataManiputeService {
     return classifiedItems;
   };
 
-  public toCloth = (item: any): Cloth => {
+  private toCloth = (item: any): Cloth => {
     let clothAvailableColor: Color[] = [];
     let clothAvailableSize: Size[] = [];
     let category: Icategory;
@@ -59,7 +59,7 @@ export class ItemDataManiputeService {
     });
 
     item.available_size.forEach((size: any) => {
-      let itemSize: Size = new Size("en",size.name.en,size.ID);
+      let itemSize: Size = new Size(size.name.en,size.ID);
 
       clothAvailableSize.push(itemSize);
     });

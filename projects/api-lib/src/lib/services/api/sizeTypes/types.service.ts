@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JGSApiService } from "../../../api-lib.service";
 import { GenderOrTypeDataManipulationService } from "../../data-manipulation/gender-type-data-manipulation.service";
+import { SizeColorDataManipulation } from "../../data-manipulation/size-color-data-manipulation.service";
 import { Observable, map, tap } from 'rxjs';
 import { IsizeType } from '../../../interfaces/sizeType';
 @Injectable({
@@ -8,7 +9,7 @@ import { IsizeType } from '../../../interfaces/sizeType';
   })
 
 export class TypeSizeService {
-    constructor(private api:JGSApiService, private sizeTypes:GenderOrTypeDataManipulationService){}
+    constructor(private api:JGSApiService, private sizeTypes:GenderOrTypeDataManipulationService, private sizeOrColor:SizeColorDataManipulation){}
 
       /**
    * RETURN AVAILABLE SIZE OF ITEM.
@@ -19,7 +20,11 @@ export class TypeSizeService {
     let apiRoute:any = {};
     apiRoute.apiroute = `get-size-chart`;
     apiRoute.data = {child_cat_id,type};
-    return (await this.api.POST(apiRoute));
+    return (await this.api.POST(apiRoute))
+    .pipe(
+      map((items:any) =>
+       this.sizeOrColor.toClass(items.data))
+    )
   }
 
   /**
