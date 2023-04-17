@@ -3,7 +3,7 @@ import { MultiLingualName } from "./name";
 export class Size extends MultiLingualName {
     id!:string;
     constructor(lang:string,name:string,sizeId:string) {
-        super(lang,name);
+        super(name);
         this.setSizeId(sizeId);
     }
 

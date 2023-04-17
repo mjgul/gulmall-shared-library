@@ -4,7 +4,7 @@ export class Color extends MultiLingualName {
     private id!:string;
     private colorHex!:string
     constructor(lang:string,name:string,colorCode:string,colorId:string){
-        super(lang,name);
+        super(name);
         this.setCode(colorCode);
         this.setId(colorId);
     }

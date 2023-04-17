@@ -84,8 +84,8 @@ export abstract class Item implements Payable {
    * SETS THE ITEM DESCRIPTION CATEGORY ID.
    * @param description string
    */
-  protected setItemDescription = (lang:string,description:string): void => {
-    this.description.setName(lang,description);
+  protected setItemDescription = (description:string): void => {
+    this.description = new MultiLingualName(description);
   };
 
   /**
@@ -94,7 +94,7 @@ export abstract class Item implements Payable {
    * @param itemName string
    */
   protected setItemTitle = (lang: string, itemName: string): void => {
-    this.title = new MultiLingualName(lang,itemName);
+    this.title = new MultiLingualName(itemName);
   };
 
   /**
@@ -151,7 +151,7 @@ export abstract class Item implements Payable {
    * @return string
    */
   public itemBluePrint() {
-    return `${this.childSubCat.getName("en")}_${this.category.getId()}`;
+    return `${this.childSubCat.getName()}_${this.category.getId()}`;
   }
 
   /**

@@ -87,10 +87,10 @@ export class Cloth extends Fashion {
   };
 
   public override itemBluePrint() {
-    let blueprint =  `${this.getChildSubCat().getName("en"||"")?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
+    let blueprint =  `${this.getChildSubCat().getName()?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
     console.log(blueprint);
-    let blueprint1 =  `${this.getChildSubCat().getName("en"||"")?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color.getName('en')}_${this.size.getName('en')}`;
+    let blueprint1 =  `${this.getChildSubCat().getName()?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color.getName()}_${this.size.getName()}`;
     console.log(blueprint1)
-    return `${this.getChildSubCat().getName("en" || "").replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
+    return `${this.getChildSubCat().getName().replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
   }
 }
