@@ -54,7 +54,7 @@ export class ItemDataManiputeService {
       isGenderBased: item.category.gender_flag,
     };
     item.available_color.forEach((color: any) => {
-      let itemColor: Color = new Color('en',color.name.en,color.cssHex,color.ID);
+      let itemColor: Color = new Color(color.name.en,color.cssHex,color.ID);
       clothAvailableColor.push(itemColor);
     });
 

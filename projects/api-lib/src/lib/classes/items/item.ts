@@ -93,7 +93,7 @@ export abstract class Item implements Payable {
    * @param lang string e.g en ar
    * @param itemName string
    */
-  protected setItemTitle = (lang: string, itemName: string): void => {
+  protected setItemTitle = (itemName: string): void => {
     this.title = new MultiLingualName(itemName);
   };
 

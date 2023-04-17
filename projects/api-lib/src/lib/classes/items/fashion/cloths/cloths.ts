@@ -44,11 +44,11 @@ export class Cloth extends Fashion {
     this.setSubCatChild(subCatChild);
     this.setImages(images);
     this.setItemPrice(price);
-    this.setItemTitle("en", title);
+    this.setItemTitle(title);
     this.setAvailableColor(availableColor);
     this.setAvailableSize(availableSize);
-    this.setColor(new Color('en','NO COLOR',"#000000","000000"))
-    this.setSize(new Size('en',"NO SIZE","000000"))
+    this.setColor(new Color('NO COLOR',"#000000","000000"))
+    this.setSize(new Size("NO SIZE","000000"))
   }
 
   /**
