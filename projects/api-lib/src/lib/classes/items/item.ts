@@ -13,7 +13,7 @@ export abstract class Item implements Payable {
   private subCategory!: SubCategory; // {id:"23412klfds",name:{en:"",ar:""}, cat_id:"124123"}
   private price!: number; // 2000
   private description!: MultiLingualName; // {en:"",ar:""}
-  private image!: Image;// ["jlskdfjas","lkdsfj","jlsakdfj"]
+  private image!: Image[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
   private country!:string;
   private currency!:string;
   public abstract getRequiredFields(): any;
@@ -110,7 +110,7 @@ export abstract class Item implements Payable {
    * @param images array of string[]
    * @returns  array of string string[]
    */
-  protected setImages = (images: Image) => {
+  protected setImages = (images: Image[]) => {
     this.image = images;
   };
 
@@ -126,16 +126,16 @@ export abstract class Item implements Payable {
    * GET ITEM IMAGES.
    * @returns string[]
    */
-  public getItemLowQualityImages = (): string[] => {
-    return this.image.getLowQualityImages();
+  public getItemLowQualityImages = (): Image[] => {
+    return this.image;
   };
 
    /**
    * GET ITEM IMAGES.
    * @returns string[]
    */
-    public getItemHighQualityImages = (): string[] => {
-      return this.image.getHighQualityImages();
+    public getItemHighQualityImages = (): Image[] => {
+      return this.image
     };
   /**
    * GET ITEM PAYABLE AMOUNT.

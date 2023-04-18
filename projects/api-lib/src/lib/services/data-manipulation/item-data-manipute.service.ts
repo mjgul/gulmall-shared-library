@@ -32,9 +32,12 @@ export class ItemDataManiputeService {
     let category: Icategory;
     let subCategor: IsubCategory;
     let childCat: IchildSubCat;
-    let images: Image = new Image();
-    images.setHighQualityImages(item.images.high_quility);
-    images.setlowQualityImages(item.images.low_quility);
+    let images:Image[]=[];
+    
+    item.images.low_quility.forEach((img:any) => {
+      let image: Image = new Image(img.color,img.image);
+      images.push(image);
+    });
     category = {
       id: item.category.ID,
       name: item.category.name.en,

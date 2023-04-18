@@ -30,7 +30,7 @@ export class Cloth extends Fashion {
     category: Icategory,
     subCategory: IsubCategory,
     subCatChild: IchildSubCat,
-    images: Image,
+    images: Image[],
     price: number,
     title: string,
     availableColor:Color[],
