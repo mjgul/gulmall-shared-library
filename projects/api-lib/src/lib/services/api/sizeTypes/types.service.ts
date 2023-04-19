@@ -36,7 +36,7 @@ export class TypeSizeService {
     return (await this.api.GET(apiRoute))
     .pipe(
       map((items:any) =>
-       this.sizeOrColor.colorToClass(items))
+       this.sizeOrColor.colorToClass(items.data))
     )
   }
 
