@@ -23,12 +23,12 @@ export class TypeSizeService {
     return (await this.api.POST(apiRoute))
     .pipe(
       map((size:any) =>
-       this.sizeOrColor.toClass(size.data))
+       this.sizeOrColor.sizeToClass(size.data))
     )
   }
 
   /**
-   * RETURN ALL AVAILABLE COLORS.
+   * RETURN Color type of ALL AVAILABLE COLORS.
    */
    getAllColors = async () => {
     let apiRoute:any = {};
@@ -36,7 +36,7 @@ export class TypeSizeService {
     return (await this.api.GET(apiRoute))
     .pipe(
       map((items:any) =>
-       this.sizeOrColor.toClass(items.data))
+       this.sizeOrColor.colorToClass(items))
     )
   }
 
