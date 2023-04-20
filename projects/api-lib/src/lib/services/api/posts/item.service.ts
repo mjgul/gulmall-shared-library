@@ -2,13 +2,9 @@ import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
 import { SERVER_IP } from '../../../constants/config';
 import { ItemDataManiputeService } from '../../data-manipulation/item-data-manipute.service';
-import {
-  HttpClient
-} from '@angular/common/http';
-import { Item } from "../../../classes/items/item";
+import { HttpClient} from '@angular/common/http';
 import { map } from "rxjs";
-import { Iitem } from "../../../interfaces/item";
-import { Icloth } from "../../../interfaces/cloth";
+
 @Injectable({
   providedIn: "root",
 })

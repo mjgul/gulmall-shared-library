@@ -1,11 +1,11 @@
-import { Iname } from './name';
+
 import { Iimage } from './image';
 
 export interface Iitem {
    /**
     * NAME OF THE ITEM WILL BE {en:"",ar:"",...}
     */
-   name:Iname; 
+   name:string; 
    /**
     * THIS IS ACTUALLY SUB-CAT-CHILD-ID WHICH IS THE LAST ID.
     */

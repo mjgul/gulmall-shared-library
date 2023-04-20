@@ -58,5 +58,58 @@ export class CategoriesService {
     )
   }
 
+  /**
+   * TAKES THE NAME AND ICON AND CREATE CATEGORY.
+   * @param name string
+   * @param icon string
+   * @returns Icategory
+   */
+  addCategory= async (name:string,icon:string)=>{
+    let payload = {icon:icon,name:name}
+    let apiRoute:any={};
+    apiRoute.apiroute=`add-category`;
+    apiRoute.data = payload;
+    return (await this.api.POST(apiRoute))
+    .pipe(
+      map((items:any) =>
+      this.categoryDataManipulation.toCategory(items.data))
+    )
+  }
 
+  /**
+   * TAKES THE NAME AND ICON AND CREATE CATEGORY.
+   * @param name string
+   * @param icon string
+   * @returns IsubCategory
+   */
+  addSubCategory= async (name:string,icon:string,catgoryId:string)=>{
+    let payload = {icon:icon,name:name,catId:catgoryId};
+    let apiRoute:any={};
+    apiRoute.apiroute=`add-sub-category`;
+    apiRoute.data = payload;
+    return (await this.api.POST(apiRoute))
+    .pipe(
+      map((items:any) =>
+      this.categoryDataManipulation.toSubcategory(items.data))
+    )
+  }
+
+  /**
+   * 
+   * @param name string
+   * @param icon string
+   * @param subCatId string
+   * @returns IchildSubCat
+   */
+  addSubCatChildCategory = async (name:string,icon:string,subCatId:string)=>{
+    let payload = {icon:icon,name:name,catId:subCatId};
+    let apiRoute:any={};
+    apiRoute.apiroute=`add-sub-category-child`;
+    apiRoute.data = payload;
+    return (await this.api.POST(apiRoute))
+    .pipe(
+      map((items:any) =>
+      this.categoryDataManipulation.toChildSubCategory(items.data))
+    )
+  }
 }

@@ -4,7 +4,6 @@ import {
   IsubCategory,
 } from "../../../../interfaces/category";
 import { Image } from "../../../../classes/generic/image";
-import { Iname } from "../../../../interfaces/name";
 import { Color } from "../../../generic/color";
 import { Size } from "../../../generic/size";
 import { Fashion } from "../fashion";

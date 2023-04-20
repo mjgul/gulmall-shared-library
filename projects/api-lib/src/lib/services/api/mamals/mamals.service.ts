@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JGSApiService } from '../../../api-lib.service';
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root'})
 export class MamalsService {
   constructor(private api:JGSApiService) { }
 
