@@ -12,7 +12,7 @@ import { IsizeType } from '../../interfaces/sizeType';
      public toSizeType = (types:any[]):IsizeType[] => {
       return types.map((type): IsizeType => ({
        id: type.ID,
-       name: type.name
+       name: type.name.en
    }))
    }
 
