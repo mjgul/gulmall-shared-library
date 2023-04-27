@@ -27,8 +27,9 @@ export * from './lib/classes/employee';
 export * from './lib/classes/hourlyEmployee';
 export * from './lib/classes/salaryEmployee';
 export * from './lib/classes/invoice/invoice';
-export * from './lib/classes/generic/image'
-export * from './lib/classes/generic/categoty'
+export * from './lib/classes/generic/image';
+export * from './lib/classes/generic/categoty';
+export * from './lib/classes/address/address';
 ////EXPORTING INTERFACES 
 export * from './lib/interfaces/item';
 export * from './lib/interfaces/cart';
