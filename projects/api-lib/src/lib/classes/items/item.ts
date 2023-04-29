@@ -16,6 +16,10 @@ export abstract class Item implements Payable {
   private image!: Image[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
   private country!:string;
   private currency!:string;
+  private quantity!:number;
+  private availableQuantity!:number;
+  private rating!:number;
+  private totalNumberOfRating!:number;
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
@@ -25,14 +29,78 @@ export abstract class Item implements Payable {
     return this.category;
   }
 
+  public getCurrency=()=>{
+    return this.currency;
+  }
+
   public getSubCategory=()=>{
     return this.subCategory;
   }
 
-
   public getChildSubCat = () =>{
     return this.childSubCat;
   }
+
+  public getAvailableQuantity = () => {
+    return this.availableQuantity;
+  }
+
+  public getQuantity = () => {
+    return this.quantity;
+  }
+
+  public getRating = () => {
+    return this.rating;
+  }
+
+  public getTotalNumberOfRating = ()=>{
+    return this.totalNumberOfRating;
+  }
+
+  /**
+   * Set the rating
+   * @param rating number
+   */
+   protected setRating=(rating:number)=>{
+    console.log("SET ++ rating: ", rating);
+    this.rating = rating;
+  }
+
+   /**
+   * Set the total number of rating
+   * @param totalRatingNumber number
+   */
+    protected setTotalRating=(totalRatingNumber:number)=>{
+      console.log("SET ++ rating: ", totalRatingNumber);
+      this.totalNumberOfRating = totalRatingNumber;
+    }
+
+  /**
+   * Set the currency
+   * @param currency string
+   */
+   protected setCurrency=(currency:string)=>{
+    console.log("SET ++ currency: ", currency);
+    this.currency = currency;
+  }
+
+  /**
+   * Set the currency
+   * @param quantity number
+   */
+   protected setQuantity=(quantity:number)=>{
+    console.log("SET ++ quantity: ", quantity);
+    this.quantity = quantity;
+  }
+
+   /**
+   * Set the currency
+   * @param availableQuantity number
+   */
+    protected setAvailableQuantity=(quantity:number)=>{
+      console.log("SET ++ quantity: ", quantity);
+      this.availableQuantity = quantity;
+    }
 
   /**
    * SET THE CATEGORY
@@ -161,14 +229,6 @@ export abstract class Item implements Payable {
   protected setCountry = (name:string) => {
     this.country = name;
   }
-
-    /**
-   * 
-   * @param name name of the country
-   */
-     protected setCurrency = (name:string) => {
-      this.currency = name;
-    }
 
   /**
    * 
