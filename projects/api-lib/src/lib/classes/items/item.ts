@@ -20,6 +20,8 @@ export abstract class Item implements Payable {
   private availableQuantity!:number;
   private rating!:number;
   private totalNumberOfRating!:number;
+  private discount!:string;
+  private ownerId!:string;
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
@@ -56,6 +58,30 @@ export abstract class Item implements Payable {
   public getTotalNumberOfRating = ()=>{
     return this.totalNumberOfRating;
   }
+
+  public getDiscount=()=>{
+    return this.discount;
+  }
+
+  public getOwnerId=()=>{
+    return this.ownerId;
+  }
+
+   /**
+   * Set the discount
+   * @param discount string
+   */
+  protected setDiscount=(discount:string)=>{
+    this.discount = discount;
+  }
+
+     /**
+   * Set the discount
+   * @param discount string
+   */
+     protected setOwnerId=(userId:string)=>{
+      this.ownerId = userId;
+    }
 
   /**
    * Set the rating

@@ -37,7 +37,7 @@ export class ShoppingCart {
 
     public totalPrice = () =>{
         let totalCost:number = 0;
-        this.cartList.forEach(item=>{
+        this.cartList.forEach(item => {
             let eachCost = item.getProduct().getItemPrice() * item.getQuantity();
             totalCost += eachCost;
         });
@@ -49,7 +49,19 @@ export class ShoppingCart {
         this.cartList.forEach((cartItem:CartItem,key:string)=>{
             if(cartItem.getProduct() instanceof Cloth){
                 let cloth = cartItem.getProduct() as Cloth;
-                let cart:Icart  = {item_id:cloth.getChildSubCat().getId(),color_id:cloth.getItemColorId(),size_id:cloth.getItemSizeId(),quantity:cartItem.getQuantity()};
+                let cart:Icart  = {
+                    item_id:cloth.getChildSubCat().getId(),
+                    color_id:cloth.getItemColorId(),
+                    size_id:cloth.getItemSizeId(),
+                    quantity:cartItem.getQuantity(),
+                    discount:cloth.getDiscount(),
+                    total_price:cartItem.getQuantity() * cloth.getItemPrice(),
+                    seller_info:cloth.getOwnerId(),
+                    order_date: new Date().toISOString(),
+                    mammal_id:"MY_ID",
+                    payement_method:"NOT_SET",
+                    delivery_status:'PENDING',
+                };
                 dummyArray.push(cart);
             } 
         });
