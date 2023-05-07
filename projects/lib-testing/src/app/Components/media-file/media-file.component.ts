@@ -1,4 +1,3 @@
-import { MediaService } from 'api-lib';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
@@ -15,7 +14,7 @@ export class MediaFileComponent implements OnInit {
   uploadSub: any = new Subscription;
 
 
-  constructor(private mediaService:MediaService) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
@@ -35,12 +34,6 @@ export class MediaFileComponent implements OnInit {
         formData.append("mamal_id","0101");
         formData.append("entity_type", "gul");
         formData.append("entity_sub_type", "satti");
-        this.mediaService.uploadFile(formData)
-        .subscribe((res:any)=>{
-          if(res.type === 4){
-            console.log("File Upload response: ", res.body);
-          }
-        })
     }
 }
 

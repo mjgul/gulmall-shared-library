@@ -4,7 +4,6 @@ import { CartItem } from "api-lib";
 import { ShoppingCart,ItemService } from 'api-lib';
 import { Cloth } from "api-lib";
 import { Item } from "api-lib";
-import { Car } from "api-lib";
 import { Color,Icategory } from 'api-lib';
 import { Size } from "api-lib";
 import { Observable } from "rxjs";
@@ -38,7 +37,7 @@ import { Observable } from "rxjs";
         let items:Observable<Item[]> = (await this.itemService.getAllItem());
           items.subscribe((res:Item[])=>{
             console.log("ITEM:S ",res)
-            console.log( res[0].getCategory().getName('en'));
+            console.log( res[0].getCategory().getName());
             console.log( res[0].getChildSubCat().getId());
           })
       }

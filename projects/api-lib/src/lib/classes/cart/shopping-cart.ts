@@ -1,6 +1,7 @@
 import { CartItem } from "./cart";
 import { Icart } from '../../interfaces/cart';
 import { Cloth } from "../items/fashion/cloths/cloths";
+import { Item } from "../items/item";
 export class ShoppingCart {
     private static INSTANCE:ShoppingCart;
     
@@ -16,21 +17,22 @@ export class ShoppingCart {
     }
 
     public addItem = (item:CartItem):void => {
-       
-        let getItemByName = this.cartList.get(item.getProduct().itemBluePrint());
-
+        console.log("ADDING this ITEM IN CART::" , item.getProduct())
+        let bluePrint = item.getProduct().itemBluePrint();
+        let getItemByName = this.cartList.get(bluePrint);
         if(getItemByName){
-            let cartItem = this.cartList.get(item.getProduct().itemBluePrint());
+            let cartItem = this.cartList.get(bluePrint);
             cartItem?.inceaseQuantity()
         } else {
-        this.cartList.set(item.getProduct().itemBluePrint(),item);
+        this.cartList.set(bluePrint,item);
+        let addedElement = this.cartList.get(bluePrint);
+        console.log("ADDING this ITEM IN CART after got added in map::" , addedElement);
         }
     }
 
-    public removeProduct = (item_blue_print:string):boolean =>{
-       console.log("LIB** item_blue_print :",item_blue_print);
+    public removeProduct = (bluePrint:string):boolean =>{
        console.log("LIB** Cart LIST :- ",this.cartList);
-       return this.cartList.delete(item_blue_print);
+       return this.cartList.delete(bluePrint);
     }
 
     public getQuantity = (item_id:string):number => {

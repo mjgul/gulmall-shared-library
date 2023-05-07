@@ -5,23 +5,7 @@
 <div class="item-class-test">
   <h3>Generate following Objects</h3>
   <div class="classes-container">
-    <div class="item-class">
-      <h4>Vehicle</h4>
-      <ol>
-        <li (click)="createCar()">
-          <h5>Car</h5>
-        </li>
-        <li (click)="generateBike()">
-          <h5>Bike</h5>
-        </li>
-        <li (click)="generateBicycle()">
-          <h5>Bicycle</h5>
-        </li>
-        <li (click)="generateTruck()">
-          <h5>Truck</h5>
-        </li>
-      </ol>
-    </div>
+    
 
     <div class="item-class">
       <h4>Fashion</h4>
@@ -55,7 +39,7 @@
 </div>
 
 <ng-container *ngFor="let item of items">
-  <div class="item-container" (click)="itemObject(item)">
+  <div class="item-container">
     <ul>
       <li>
         <div
@@ -68,7 +52,7 @@
           class="item-inner-section"
         >
           <span>This is a <b>{{ item.constructor.name }}</b></span> <br />
-          <span>Name: <b>{{ item.getItemTitle().getName('en') }}</b> </span> <br />
+          <span>Name: <b>{{ item.getItemTitle().getName() }}</b> </span> <br />
           <span>description: <b> {{ item.getItemDescription() }} </b> </span> <br />
           <span>price: <b> {{ item.getPaymentAmount() }} </b> </span> <br />
         </div>

@@ -26,7 +26,8 @@ export class CartItem {
       this.color = selectedColor;
       this.size = selectedSize;
       this.itemMainImage = img;
-      console.log("$$ ", this);
+      console.log("$$CART ITEM BLUE PRINT ", this.item.itemBluePrint());
+      console.log("$$RECEIVED ITEM IN CART: ", this.item);
     console.log("$$----------------------Cart Item-------------------$$");
   }
 

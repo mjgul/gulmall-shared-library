@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Cloth, Color, Icloth, Iitem, Item, ItemService,CategoriesService, TypeSizeService, Size, Icategory, IsubCategory, IchildSubCat } from 'api-lib';
-import { IsizeType } from 'dist/api-lib/lib/interfaces/sizeType';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +13,6 @@ export class ApiTestingComponent implements OnInit {
   allSubCategories: Observable<IsubCategory[]> | undefined;
   childSubCategories:Observable<IchildSubCat[]> | undefined;
   itemAvailableSize:Observable<any>|undefined;
-  itemAvailableTypes:Observable<IsizeType[]>|undefined;
 
   constructor(private itemService:ItemService, private category:CategoriesService, private typeSize:TypeSizeService) { }
 
@@ -55,9 +53,6 @@ export class ApiTestingComponent implements OnInit {
 
 
   getAllTypes = async () => {
-    this.itemAvailableTypes = (await this.typeSize.getTypes());
-    this.itemAvailableTypes?.subscribe((res:any)=>{
-      console.log("RES available types: ",res);;
-    })
+    
   }
 }

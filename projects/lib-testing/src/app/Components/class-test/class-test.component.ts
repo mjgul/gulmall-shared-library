@@ -7,10 +7,6 @@ import { SalariedEmployee } from "api-lib";
 import { Payable  } from 'api-lib';
 import { Invoice } from "api-lib";
 import { Item } from "api-lib";
-import { Car, } from "api-lib";
-import { Truck } from "api-lib";
-import { Bike } from "api-lib";
-import { Bicycle } from "api-lib";
 
 @Component({
   selector: "lib-class-test",
@@ -109,40 +105,5 @@ export class ClassTestComponent implements OnInit {
     // create fashion object
     //let fashion:Fashion = new Fashion({en:"",ar:""},)
   }
-  createCar(){
-    console.log("** generating car");
-    let car = new Car();
-    this.items.push(car);
-  }
-  generateTruck(){
-    console.log("** generating truck ");
-    let truck = new Truck();
-    this.items.push(truck);
-  }
-  generateBike(){
-    console.log("** generating bike");
-    let bike = new Bike();
-    this.items.push(bike);
-  }
-  generateBicycle(){
-    console.log("** generating bicycle");
-    let bicycle = new Bicycle();
-    this.items.push(bicycle);
-  }
-
-  itemObject(item:Item) {
-    if(item instanceof Car){
-      console.log("CAR");
-      let car:Car = item as Car;
-    } else if (item instanceof Bicycle){
-      console.log("Bicycle");
-      let bicycle:Bicycle = item as Bicycle;
-    } else if (item instanceof Truck ){
-      console.log("Truck");
-      let truck:Truck = item as Truck;
-    } else if (item instanceof Bike){
-      console.log("Bike");
-      let bike:Bike = item as Bike;
-    }
-  }
+ 
 }
