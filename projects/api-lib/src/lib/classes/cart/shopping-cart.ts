@@ -27,8 +27,9 @@ export class ShoppingCart {
         }
     }
 
-    public removeProduct = (item_blue_print:string):void =>{
-       this.cartList.delete(item_blue_print);
+    public removeProduct = (item_blue_print:string):boolean =>{
+       console.log("LIB** item_blue_print :",item_blue_print);
+       return this.cartList.delete(item_blue_print);
     }
 
     public getQuantity = (item_id:string):number => {

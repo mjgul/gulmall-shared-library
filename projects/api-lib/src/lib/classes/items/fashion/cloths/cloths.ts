@@ -65,9 +65,9 @@ export class Cloth extends Fashion {
    * @param size of Size type.
    */
   public setSize = (size: Size): void => {
-    console.log("RECEIVED",size);
+    console.log("RECEIVED SIZE ",size);
     this.size = size;
-    console.log("SETTING COLOR ++ ", this.size, ' color ', this.size.getId())
+    console.log("SETTING SIZE ++ ", this.size, ' size ', this.size.getId())
   };
 
   /**
@@ -86,10 +86,9 @@ export class Cloth extends Fashion {
   };
 
   public override itemBluePrint() {
-    let blueprint =  `${this.getChildSubCat().getName()?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
-    console.log(blueprint);
-    let blueprint1 =  `${this.getChildSubCat().getName()?.replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.color.getName()}_${this.size.getName()}`;
-    console.log(blueprint1)
+    let blueprintNames:string =  `${this.getChildSubCat().getName()?.replace(/\ /g, "-")}_${this.getChildSubCat().getName()}_${this.color.getName()}_${this.size.getName()}`;
+    console.log(blueprintNames)
+    let bluePrintIds:string = `${this.getChildSubCat().getName().replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
     return `${this.getChildSubCat().getName().replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
   }
 }
