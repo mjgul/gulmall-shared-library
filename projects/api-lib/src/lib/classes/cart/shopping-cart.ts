@@ -29,6 +29,7 @@ export class ShoppingCart {
 
     public removeProduct = (item_blue_print:string):boolean =>{
        console.log("LIB** item_blue_print :",item_blue_print);
+       console.log("LIB** Cart LIST :- ",this.cartList);
        return this.cartList.delete(item_blue_print);
     }
 
