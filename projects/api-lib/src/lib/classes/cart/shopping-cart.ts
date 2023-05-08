@@ -1,14 +1,12 @@
 import { CartItem } from "./cart";
 import { Icart } from '../../interfaces/cart';
 import { Cloth } from "../items/fashion/cloths/cloths";
-import { Item } from "../items/item";
 export class ShoppingCart {
     private static INSTANCE:ShoppingCart;
     
     private cartList: Map<string, CartItem>;
 
     constructor(){
-    console.log("$$ SHOPPING CART INSTANCIATED")
         this.cartList = new Map<string, CartItem>()   
     }
 
@@ -25,8 +23,6 @@ export class ShoppingCart {
             cartItem?.inceaseQuantity()
         } else {
         this.cartList.set(bluePrint,item);
-        let addedElement = this.cartList.get(bluePrint);
-        console.log("ADDING this ITEM IN CART after got added in map::" , addedElement);
         }
     }
 

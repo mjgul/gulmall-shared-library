@@ -19,14 +19,13 @@ export class CartItem {
   constructor(item: Item,selectedColor:Color,selectedSize:Size,img:Image) {
     console.log("$$----------------------Cart Item-------------------$$");
     console.log("$$ A new cart item has been added.");
-    console.log("$$ Constructor call CartItem");
 
       this.item = item;
       this.quantity = 1;
       this.color = selectedColor;
       this.size = selectedSize;
       this.itemMainImage = img;
-      console.log("$$CART ITEM BLUE PRINT ", this.item.itemBluePrint());
+      
       console.log("$$RECEIVED ITEM IN CART: ", this.item);
     console.log("$$----------------------Cart Item-------------------$$");
   }
@@ -62,7 +61,6 @@ export class CartItem {
     if (this.quantity > 0) {
       this.quantity--;
     }
-    console.log(this.quantity);
   };
 
   /**
@@ -70,7 +68,6 @@ export class CartItem {
    */
   public inceaseQuantity = (): void => {
     this.quantity += 1;
-    console.log(this.quantity);
   };
 
   /**

@@ -1,159 +1,154 @@
 import { throwError } from "rxjs";
 import { Payable } from "../../interfaces/payable";
 import { Category, ChildSubCategory, SubCategory } from "../generic/categoty";
-import { Icategory, IchildSubCat, IsubCategory } from "../../interfaces/category";
+import {
+  Icategory,
+  IchildSubCat,
+  IsubCategory,
+} from "../../interfaces/category";
 import { MultiLingualName } from "../generic/name";
 import { Image } from "../generic/image";
 
 export abstract class Item implements Payable {
-
-  private title!: MultiLingualName;// {en:"3 piece suit", ar:"3 piece suit"}
-  private childSubCat!:ChildSubCategory; // {id:"23412kl",name:{en:"",ar:""}, sub_cat_id:"124123"}
+  private title!: MultiLingualName; // {en:"3 piece suit", ar:"3 piece suit"}
+  private childSubCat!: ChildSubCategory; // {id:"23412kl",name:{en:"",ar:""}, sub_cat_id:"124123"}
   private category!: Category; // {id:"21323412kl",name:{en:"",ar:""}}
   private subCategory!: SubCategory; // {id:"23412klfds",name:{en:"",ar:""}, cat_id:"124123"}
   private price!: number; // 2000
   private description!: MultiLingualName; // {en:"",ar:""}
-  private image!: Image[];// ["jlskdfjas","lkdsfj","jlsakdfj"]
-  private country!:string;
-  private currency!:string;
-  private quantity!:number;
-  private availableQuantity!:number;
-  private rating!:number;
-  private totalNumberOfRating!:number;
-  private discount!:string;
-  private ownerId!:string;
+  private image!: Image[]; // ["jlskdfjas","lkdsfj","jlsakdfj"]
+  private country!: string;
+  private currency!: string;
+  private quantity!: number;
+  private availableQuantity!: number;
+  private rating!: number;
+  private totalNumberOfRating!: number;
+  private discount!: string;
+  private ownerId!: string;
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
-  constructor() { }
+  constructor() {}
 
-  public getCategory=()=>{
+  public getCategory = () => {
     return this.category;
-  }
+  };
 
-  public getCurrency=()=>{
+  public getCurrency = () => {
     return this.currency;
-  }
+  };
 
-  public getSubCategory=()=>{
+  public getSubCategory = () => {
     return this.subCategory;
-  }
+  };
 
-  public getChildSubCat = () =>{
+  public getChildSubCat = () => {
     return this.childSubCat;
-  }
+  };
 
   public getAvailableQuantity = () => {
     return this.availableQuantity;
-  }
+  };
 
   public getQuantity = () => {
     return this.quantity;
-  }
+  };
 
   public getRating = () => {
     return this.rating;
-  }
+  };
 
-  public getTotalNumberOfRating = ()=>{
+  public getTotalNumberOfRating = () => {
     return this.totalNumberOfRating;
-  }
+  };
 
-  public getDiscount=()=>{
+  public getDiscount = () => {
     return this.discount;
-  }
+  };
 
-  public getOwnerId=()=>{
+  public getOwnerId = () => {
     return this.ownerId;
-  }
+  };
 
-   /**
+  /**
    * Set the discount
    * @param discount string
    */
-  protected setDiscount=(discount:string)=>{
+  protected setDiscount = (discount: string) => {
     this.discount = discount;
-  }
+  };
 
-     /**
+  /**
    * Set the discount
    * @param discount string
    */
-     protected setOwnerId=(userId:string)=>{
-      this.ownerId = userId;
-    }
+  protected setOwnerId = (userId: string) => {
+    this.ownerId = userId;
+  };
 
   /**
    * Set the rating
    * @param rating number
    */
-   protected setRating=(rating:number)=>{
-    console.log("SET ++ rating: ", rating);
+  protected setRating = (rating: number) => {
     this.rating = rating;
-  }
+  };
 
-   /**
+  /**
    * Set the total number of rating
    * @param totalRatingNumber number
    */
-    protected setTotalRating=(totalRatingNumber:number)=>{
-      console.log("SET ++ rating: ", totalRatingNumber);
-      this.totalNumberOfRating = totalRatingNumber;
-    }
+  protected setTotalRating = (totalRatingNumber: number) => {
+    this.totalNumberOfRating = totalRatingNumber;
+  };
 
   /**
    * Set the currency
    * @param currency string
    */
-   protected setCurrency=(currency:string)=>{
-    console.log("SET ++ currency: ", currency);
+  protected setCurrency = (currency: string) => {
     this.currency = currency;
-  }
+  };
 
   /**
    * Set the currency
    * @param quantity number
    */
-   protected setQuantity=(quantity:number)=>{
-    console.log("SET ++ quantity: ", quantity);
+  protected setQuantity = (quantity: number) => {
     this.quantity = quantity;
-  }
+  };
 
-   /**
+  /**
    * Set the currency
    * @param availableQuantity number
    */
-    protected setAvailableQuantity=(quantity:number)=>{
-      console.log("SET ++ quantity: ", quantity);
-      this.availableQuantity = quantity;
-    }
+  protected setAvailableQuantity = (quantity: number) => {
+    this.availableQuantity = quantity;
+  };
 
   /**
    * SET THE CATEGORY
    * @param category Icategory
    */
-  protected setCategory=(category:Icategory)=>{
-    console.log("SET ++ CATEGORY: ", category);
+  protected setCategory = (category: Icategory) => {
     this.category = new Category(category);
-  }
-  
+  };
+
   /**
    * SETS THE SUB CATEGORY OF CATEGORY
    * @param subCategory IsubCategory
    */
-  protected setSubCategory=(subCategory:IsubCategory)=>{
-    console.log("SET ++ SUB CATEGORY: ", subCategory);
+  protected setSubCategory = (subCategory: IsubCategory) => {
     this.subCategory = new SubCategory(subCategory);
-  }
+  };
 
   /**
    * SETS THE CHILD CATEGORY OF SUB CATEGORY.
    * @param subCatChild IchildSubCat
    */
-  protected setSubCatChild=(subCatChild:IchildSubCat)=>{
-    console.log("SET ITEM ++ ",subCatChild)
+  protected setSubCatChild = (subCatChild: IchildSubCat) => {
     this.childSubCat = new ChildSubCategory(subCatChild);
-  }
+  };
 
   // GET ITEM NAME MULTILINGUAL.
   public getItemTitle = () => {
@@ -178,7 +173,7 @@ export abstract class Item implements Payable {
    * SETS THE ITEM DESCRIPTION CATEGORY ID.
    * @param description string
    */
-  protected setItemDescription = (description:string): void => {
+  protected setItemDescription = (description: string): void => {
     this.description = new MultiLingualName(description);
   };
 
@@ -224,13 +219,13 @@ export abstract class Item implements Payable {
     return this.image;
   };
 
-   /**
+  /**
    * GET ITEM IMAGES.
    * @returns string[]
    */
-    public getItemHighQualityImages = (): Image[] => {
-      return this.image
-    };
+  public getItemHighQualityImages = (): Image[] => {
+    return this.image;
+  };
   /**
    * GET ITEM PAYABLE AMOUNT.
    * @returns number
@@ -249,19 +244,18 @@ export abstract class Item implements Payable {
   }
 
   /**
-   * 
+   *
    * @param name name of the country
    */
-  protected setCountry = (name:string) => {
+  protected setCountry = (name: string) => {
     this.country = name;
-  }
+  };
 
   /**
-   * 
+   *
    * @returns name of the country
    */
-  public getCountry = ():string =>{
+  public getCountry = (): string => {
     return this.country;
-  }
-
+  };
 }
