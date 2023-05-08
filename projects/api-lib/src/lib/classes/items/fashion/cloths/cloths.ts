@@ -90,6 +90,7 @@ export class Cloth extends Fashion {
     console.log("CLOTH BLUE PRINT NAME::", blueprintNames);
     let bluePrintIds:string = `${this.getChildSubCat().getName().replace(/\ /g, "-")}_${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
     console.log("CLOTH BLUE PRINT IDS::", bluePrintIds);
-    return `${this.getChildSubCat().getId()}_${this.getItemColorId()}_${this.getItemSizeId()}`;
+    // "itemID_BLUE_L"
+    return `${this.getChildSubCat().getId()}_${this.color.getName()}_${this.size.getName()}`;
   }
 }
