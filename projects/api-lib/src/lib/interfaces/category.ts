@@ -1,20 +1,19 @@
-export interface Icategory {
+export interface ProductType {
     id:string;
     name:string;
     icon:string;
+  }
+export interface Icategory extends ProductType {
+      // Category specific properties
 }
 
-export interface IsubCategory {
-    id:string;
+export interface IsubCategory extends ProductType {
+    // SubCategory specific properties
     catId:string;
-    name:string;
-    icon:string;
 }
 
-export interface IchildSubCat {
-    id:string;
+export interface IchildSubCat extends ProductType {
+    // ChildItem specific properties
     subCatId:string;
-    name:string;
     isGenderBased:boolean;
-    icon:string;
 }
