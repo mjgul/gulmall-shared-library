@@ -3,7 +3,7 @@ import {
   IchildSubCat,
   IsubCategory,
 } from "../../../../interfaces/category";
-import { Image } from "../../../../classes/generic/image";
+import { Image } from "../../../generic/image";
 import { Color } from "../../../generic/color";
 import { Size } from "../../../generic/size";
 import { Fashion } from "../fashion";

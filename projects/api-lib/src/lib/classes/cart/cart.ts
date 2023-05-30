@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Item } from "../items/item";
-import { Color } from "../../classes/generic/color";
-import { Size } from "../../classes/generic/size"
+import { Color } from "../generic/color";
+import { Size } from "../generic/size"
 import { Image } from "../generic/image";
 @Injectable({
   providedIn: 'root'
