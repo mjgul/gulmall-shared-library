@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { JGSApiService } from "projects/api-lib/src/lib/api-lib.service";
-import { GenderOrTypeDataManipulationService } from "projects/api-lib/src/lib/services/data-manipulation/gender-type-data-manipulation.service";
-import { SizeColorDataManipulation } from "projects/api-lib/src/lib/services/data-manipulation/size-color-data-manipulation.service";
+import { JGSApiService } from "../../../api-lib.service";
+import { GenderOrTypeDataManipulationService } from "../../data-manipulation/gender-type-data-manipulation.service";
+import { SizeColorDataManipulation } from "../../data-manipulation/size-color-data-manipulation.service";
 import { Observable, map, tap } from 'rxjs';
-import { IsizeType } from 'projects/api-lib/src/lib/interfaces/sizeType';
+import { IsizeType } from '../../../interfaces/sizeType';
 @Injectable({
     providedIn: 'root'
   })

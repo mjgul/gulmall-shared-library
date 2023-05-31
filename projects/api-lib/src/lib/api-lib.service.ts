@@ -4,7 +4,6 @@ import {
 import { Injectable } from '@angular/core';
 import { SERVER_IP } from './constants/config';
 import { LoaderService } from './services/loader.service';
-import { NetworkService } from './services/api/network/network.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,7 +12,7 @@ export class JGSApiService {
   private appBaseUrl = SERVER_IP
 
   // CONSTRUCTOR API SERVICE
-  constructor(public http: HttpClient, private loader: LoaderService, private network:NetworkService) {}
+  constructor(public http: HttpClient, private loader: LoaderService) {}
   
   // COMMON GET REQUEST
   GET = async (route: any) => {

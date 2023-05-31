@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { JGSApiService } from "projects/api-lib/src/lib/api-lib.service";
-import { SERVER_IP } from 'projects/api-lib/src/lib/constants/config';
-import { ItemDataManiputeService } from 'projects/api-lib/src/lib/services/data-manipulation/item-data-manipute.service';
+import { JGSApiService } from "../../../api-lib.service";
+import { SERVER_IP } from '../../../constants/config';
+import { ItemDataManiputeService } from '../../data-manipulation/item-data-manipute.service';
 import { HttpClient} from '@angular/common/http';
 import { map } from "rxjs";
 
