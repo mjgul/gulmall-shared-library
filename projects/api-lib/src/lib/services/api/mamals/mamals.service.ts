@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JGSApiService } from 'projects/api-lib/src/lib/api-lib.service';
+import { JGSApiService } from '../../../api-lib.service';
 @Injectable({ providedIn: 'root'})
 export class MamalsService {
   constructor(private api:JGSApiService) { }
@@ -20,6 +20,15 @@ export class MamalsService {
     route.apiroute = "add-mammals_registration";
     route.data = firebaseUserObject;
     return (await this.api.POST(route));
+  }
+
+  /**
+   * Takes the public id and return its all posts with stats.
+   */
+  getUserPosts=async(publicId:number)=>{
+    let route:any = {};
+    route.apiroute = `get-ads-by-id/${publicId}`;
+    return (await this.api.GET(route));
   }
 
   getUserById(){}
