@@ -34,7 +34,7 @@ export class ItemDataManiputeService {
     let childCat: IchildSubCat;
     let images:Image[]=[];
     
-    item.images.low_quility.forEach((img:any) => {
+    item.images.lowQuality.forEach((img:any) => {
       let image: Image = new Image(img.color,img.image);
       images.push(image);
     });
@@ -52,16 +52,16 @@ export class ItemDataManiputeService {
     childCat = {
       id: item.ID,
       name: item.name.en,
-      icon: item.images.low_quility[0],
+      icon: item.images.lowQuality[0],
       subCatId: item.sub_category.ID,
       isGenderBased: item.category.gender_flag,
     };
-    item.available_color.forEach((color: any) => {
+    item.color.forEach((color: any) => {
       let itemColor: Color = new Color(color.name.en,color.cssHex,color.ID);
       clothAvailableColor.push(itemColor);
     });
 
-    item.available_size.forEach((size: any) => {
+    item.size.forEach((size: any) => {
       let itemSize: Size = new Size(size.name.en,size.ID);
 
       clothAvailableSize.push(itemSize);
@@ -75,7 +75,7 @@ export class ItemDataManiputeService {
       childCat,
       images,
       item.price,
-      item.name.en,
+      item.name,
       clothAvailableColor,
       clothAvailableSize
     );

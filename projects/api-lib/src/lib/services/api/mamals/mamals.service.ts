@@ -27,7 +27,7 @@ export class MamalsService {
    */
   getUserPosts=async(publicId:number)=>{
     let route:any = {};
-    route.apiroute = `get-ads-by-id/${publicId}`;
+    route.apiroute = `get-ads-by-id?id=${publicId}`;
     return (await this.api.GET(route));
   }
 
