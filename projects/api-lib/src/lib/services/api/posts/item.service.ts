@@ -48,7 +48,7 @@ export class ItemService {
    * @returns single user.
    * @memberof ItemService
    */
-  getItemById = (_id: string) => {
+  getItemById = async (_id: string) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "get-item-by-id";
     apiRoute.data = { item_id: _id };
@@ -65,10 +65,17 @@ export class ItemService {
    * @returns status of deletion.
    * @memberof ItemService
    */
-  deleteItemById = (_id: string) => {
+  deleteItemById = async(_id: string) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "delete-item-by-id";
     apiRoute.data = { item_id: _id };
     return this.api.POST(apiRoute);
+  }
+
+  addItem=async(item:any)=>{
+    let apiRoute: any = {};
+    apiRoute.apiroute = "add-item";
+    apiRoute.data = item;
+    return await this.api.POST(apiRoute);
   }
 }

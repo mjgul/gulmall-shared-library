@@ -34,7 +34,7 @@ export class ItemDataManiputeService {
     let childCat: IchildSubCat;
     let images:Image[]=[];
     
-    item.images.lowQuality.forEach((img:any) => {
+    item.images.forEach((img:any) => {
       let image: Image = new Image(img.color,img.image);
       images.push(image);
     });

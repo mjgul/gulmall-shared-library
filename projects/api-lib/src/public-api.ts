@@ -13,6 +13,7 @@ export * from './lib/components/progress/progress.component';
 export * from './lib/services/api/cart/cart.service';
 export * from './lib/services/api/categories/categories.service';
 export * from './lib/services/api/sizeTypes/types.service';
+export * from './lib/services/api/address/address.service';
 //EXPORTING CLASSES
 export * from './lib/classes/items/fashion/cloths/cloths';
 export * from './lib/classes/items/item';

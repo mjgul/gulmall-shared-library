@@ -1,4 +1,4 @@
-import { AddressService } from "../../services/api/address/address.service";
+
 export class Address {
   private country: string = "";
   private state: string = "";
@@ -8,7 +8,7 @@ export class Address {
   private addressLinetwo: string = "";
   private postalCode: string = "";
 
-  constructor(private address?: AddressService) {}
+  constructor() {}
 
   protected setCountry = (country: string) => {
     this.country = country;
@@ -38,7 +38,7 @@ export class Address {
   protected saveAddress = (userId: string) => {
     if (this.validateAddress()) {
       // make the api call.
-      this.address?.saveAddress(this);
+      
     } else {
       // throw error.
     }
