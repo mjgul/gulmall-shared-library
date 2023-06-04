@@ -52,7 +52,7 @@ export class ItemDataManiputeService {
     childCat = {
       id: item.ID,
       name: item.name.en,
-      icon: item.images.lowQuality[0],
+      icon: item.images[0],
       subCatId: item.sub_category.ID,
       isGenderBased: item.category.gender_flag,
     };
