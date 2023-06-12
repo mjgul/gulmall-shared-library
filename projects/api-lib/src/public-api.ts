@@ -32,7 +32,6 @@ export * from './lib/classes/generic/image';
 export * from './lib/classes/generic/categoty';
 export * from './lib/classes/address/address';
 ////EXPORTING INTERFACES 
-export * from './lib/interfaces/item';
 export * from './lib/interfaces/cart';
 export * from './lib/interfaces/payable';
 export * from './lib/interfaces/cloth';

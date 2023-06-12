@@ -31,7 +31,28 @@ export class MamalsService {
     return (await this.api.GET(route));
   }
 
-  getUserById(){}
+  /**
+   * Get user data by mongodb id
+   * @param publicId 
+   * @returns User Object
+   */
+  getUserByPublicId=async(publicId:number)=>{
+    let route:any = {};
+    route.apiroute = `get-user-by-id`;
+    route.data = {"id":publicId};
+    return (await this.api.POST(route));
+  }
 
-  updateUser(){}
+/**
+ * 
+ * Update user object
+ * @param updateObject {userId:"userMongodbId", ...}
+ * @returns response
+ */
+  updateUser=async(updateObject:any)=>{
+    let route:any = {};
+    route.apiroute = `update-user`;
+    route.data = updateObject;
+    return (await this.api.POST(route));
+  }
 }

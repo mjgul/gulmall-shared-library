@@ -21,7 +21,7 @@ export class JGSApiService {
 
   // COMMON POST REQUEST
   POST = async(route:any) => {
-    return await this.http.post(`${this.appBaseUrl}/${route.apiroute}`,route.data);
+    return await this.http.post(`${this.appBaseUrl}/${route.apiroute}`,route.data)
   }
 
   // COMMON PUT REQUEST

@@ -9,6 +9,7 @@ import {
   IsubCategory,
 } from "../../interfaces/category";
 import { Image } from "../../classes/generic/image";
+import { itemInterface } from "../../interfaces/item";
 
 @Injectable({
   providedIn: "root",
@@ -16,17 +17,17 @@ import { Image } from "../../classes/generic/image";
 export class ItemDataManiputeService {
   constructor() {}
 
-  public toClass = (items: any): Item[] => {
-    let filteredItems = items.filter((item: any) => item.Price != 0);
+  public toClass = (items: itemInterface[]): Item[] => {
     let classifiedItems: Item[] = [];
-    filteredItems.forEach((item: any) => {
+    
+    items.forEach((item: itemInterface) => {
       classifiedItems.push(this.toCloth(item));
     });
     console.log("ITEM IN DATA MANIPULATION ", classifiedItems);
     return classifiedItems;
   };
 
-  private toCloth = (item: any): Cloth => {
+  private toCloth = (item: itemInterface): Cloth => {
     let clothAvailableColor: Color[] = [];
     let clothAvailableSize: Size[] = [];
     let category: Icategory;
@@ -34,42 +35,45 @@ export class ItemDataManiputeService {
     let childCat: IchildSubCat;
     let images:Image[]=[];
     
-    item.images.forEach((img:any) => {
-      let image: Image = new Image(img.color,img.image);
-      images.push(image);
-    });
+    if(item.images){
+      item.images.forEach((img:any) => {
+        let image: Image = new Image(img.color,img.image);
+        images.push(image);
+      });
+    }
+    
     category = {
       id: item.category.ID,
-      name: item.category.name.en,
+      name: item.category.name,
       icon: item.category.icon,
     };
     subCategor = {
       id: item.category.ID,
-      name: item.sub_category.name.en,
+      name: item.sub_category.name,
       icon: item.sub_category.icon,
       catId: item.sub_category.ID,
     };
     childCat = {
       id: item.ID,
-      name: item.name.en,
-      icon: item.images[0],
+      name: item.name,
+      icon: item.images[0].image,
       subCatId: item.sub_category.ID,
       isGenderBased: item.category.gender_flag,
     };
     item.color.forEach((color: any) => {
-      let itemColor: Color = new Color(color.name.en,color.cssHex,color.ID);
+      let itemColor: Color = new Color(color.name,color.cssHex,color.ID);
       clothAvailableColor.push(itemColor);
     });
 
     item.size.forEach((size: any) => {
-      let itemSize: Size = new Size(size.name.en,size.ID);
+      let itemSize: Size = new Size(size.name,size.ID);
 
       clothAvailableSize.push(itemSize);
     });
 
     let cloth: Cloth = new Cloth(
-      "Oman",
-      "OMR",
+      item.country,
+      item.currency,
       category,
       subCategor,
       childCat,
@@ -77,7 +81,8 @@ export class ItemDataManiputeService {
       item.price,
       item.name,
       clothAvailableColor,
-      clothAvailableSize
+      clothAvailableSize,
+      item.publicId
     );
 
     return cloth;

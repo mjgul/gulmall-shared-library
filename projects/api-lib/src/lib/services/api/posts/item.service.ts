@@ -1,31 +1,40 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
-import { SERVER_IP } from '../../../constants/config';
-import { ItemDataManiputeService } from '../../data-manipulation/item-data-manipute.service';
-import { HttpClient} from '@angular/common/http';
-import { map } from "rxjs";
-
+import { SERVER_IP } from "../../../constants/config";
+import { ItemDataManiputeService } from "../../data-manipulation/item-data-manipute.service";
+import { HttpClient } from "@angular/common/http";
+import { Observable, map } from "rxjs";
+import { Item } from "../../../classes/items/item";
 @Injectable({
   providedIn: "root",
 })
 export class ItemService {
-  private appBaseUrl = SERVER_IP
-  constructor(private api: JGSApiService,public http: HttpClient, private itemDataManipulation:ItemDataManiputeService) {}
+  private appBaseUrl = SERVER_IP;
+  constructor(
+    private api: JGSApiService,
+    public http: HttpClient,
+    private itemDataManipulation: ItemDataManiputeService
+  ) {}
 
   /**
    * Used to fetch comments based on entity
    * @Author Muhammad Junaid Gul
+   * @param pageNumebr number
    * @returns list of all users.
    * @memberof ItemService
    */
-  getAllItem = async () => {
-    let apiRoute: any = {};
-    apiRoute.apiroute = "get-all-item";
-    return await this.http.get(`${this.appBaseUrl}/${apiRoute.apiroute}`).pipe(
-      map((items:any) =>
-       this.itemDataManipulation.toClass(items.data))
-    )
-  }
+  getAllItem = async (pageNumber: number) => {
+    let url = `get-all-item?pageNumber=${pageNumber}`;
+    return await this.http
+      .get(`${this.appBaseUrl}/${url}`)
+      .pipe(map((items: any) => this.itemDataManipulation.toClass(items.data)));
+  };
+
+  getItemByPublicId = (itemPublicId: string): Observable<Item[]> => {
+    let url = `get-item-by-id?publicId=${itemPublicId}`;
+    return this.http.get<Item[]>(`${this.appBaseUrl}/${url}`)
+    .pipe(map((items: any) => this.itemDataManipulation.toClass(items.data)))
+  };
 
   /**
    * Used to fetch comments based on entity
@@ -34,12 +43,12 @@ export class ItemService {
    * @returns list of users fetched by status.
    * @memberof ItemService
    */
-  getAllItemWithStatus(_status: string) {
+  getAllItemWithStatus = async (_status: string) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "get-item-with-status";
     apiRoute.data = { status: _status };
-    return this.api.POST(apiRoute)
-  }
+    return (await this.api.POST(apiRoute)).subscribe();
+  };
 
   /**
    * Used to fetch comments based on entity
@@ -53,9 +62,8 @@ export class ItemService {
     apiRoute.apiroute = "get-item-by-id";
     apiRoute.data = { item_id: _id };
     return this.api.POST(apiRoute);
-  }
+  };
 
-  
   updateItemById(_item: any, _id: string) {}
 
   /**
@@ -65,17 +73,17 @@ export class ItemService {
    * @returns status of deletion.
    * @memberof ItemService
    */
-  deleteItemById = async(_id: string) => {
+  deleteItemById = async (_id: string) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "delete-item-by-id";
     apiRoute.data = { item_id: _id };
     return this.api.POST(apiRoute);
-  }
+  };
 
-  addItem=async(item:any)=>{
+  addItem = async (item: any) => {
     let apiRoute: any = {};
     apiRoute.apiroute = "add-item";
     apiRoute.data = item;
     return await this.api.POST(apiRoute);
-  }
+  };
 }

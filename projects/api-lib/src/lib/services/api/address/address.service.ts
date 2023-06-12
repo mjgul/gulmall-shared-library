@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
 import { HttpClient} from '@angular/common/http';
+import { Address } from "../../../interfaces/address";
 @Injectable({
     providedIn: "root",
   })
@@ -16,11 +17,18 @@ import { HttpClient} from '@angular/common/http';
      * Adds address to collection
      * @param Address
      */
-    public saveAddress(){
+    public saveAddress=async(address:Address,userId:string)=>{
         let apiRoute: any = {};
-        apiRoute.apiroute = `add-address`;
-        //apiRoute.data = address;
+        apiRoute.apiroute = `add-address/${userId}`;
+        apiRoute.data = address;
        return this.api.POST(apiRoute)
+    }
+
+    public getAddressByUserId=async(userId:string)=>{
+        let apiRoute: any = {};
+        apiRoute.apiroute = `get-address`;
+        apiRoute.data = userId;
+        return this.api.POST(apiRoute)
     }
 
     public getLocationFromIP=async(ip:string)=>{

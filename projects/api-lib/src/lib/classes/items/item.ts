@@ -25,6 +25,8 @@ export abstract class Item implements Payable {
   private totalNumberOfRating!: number;
   private discount!: string;
   private ownerId!: string;
+  private publicId!:number;
+
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
@@ -69,6 +71,10 @@ export abstract class Item implements Payable {
   public getOwnerId = () => {
     return this.ownerId;
   };
+
+  public getPublicId=()=>{
+    return this.publicId;
+  }
 
   /**
    * Set the discount
@@ -149,6 +155,10 @@ export abstract class Item implements Payable {
   protected setSubCatChild = (subCatChild: IchildSubCat) => {
     this.childSubCat = new ChildSubCategory(subCatChild);
   };
+
+  protected setPublicId=(publicId:number)=>{
+    this.publicId = publicId;
+  }
 
   // GET ITEM NAME MULTILINGUAL.
   public getItemTitle = () => {
