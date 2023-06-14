@@ -8,7 +8,7 @@ import { Address } from "../../../interfaces/address";
   export class AddressService { 
     
     private ipstackApiAccessKey:string = "5afee7526c541569085a261da449374d";
-    constructor(private api: JGSApiService,public http: HttpClient,) {
+    constructor(private api: JGSApiService,public http: HttpClient) {
   
     }
 
@@ -19,16 +19,15 @@ import { Address } from "../../../interfaces/address";
      */
     public saveAddress=async(address:Address,userId:string)=>{
         let apiRoute: any = {};
-        apiRoute.apiroute = `add-address/${userId}`;
+        apiRoute.apiroute = `add-address?userId=${userId}`;
         apiRoute.data = address;
        return this.api.POST(apiRoute)
     }
 
     public getAddressByUserId=async(userId:string)=>{
         let apiRoute: any = {};
-        apiRoute.apiroute = `get-address`;
-        apiRoute.data = userId;
-        return this.api.POST(apiRoute)
+        apiRoute.apiroute = `get-address?userId=${userId}`;
+        return this.api.GET(apiRoute)
     }
 
     public getLocationFromIP=async(ip:string)=>{

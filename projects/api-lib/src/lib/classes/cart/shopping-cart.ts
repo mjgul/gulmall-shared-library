@@ -44,7 +44,7 @@ export class ShoppingCart {
         return totalCost;
     }
 
-    public getCartDetails = () =>{
+    public getCartDetails = (buyerId:string,paymentMethodId:string) =>{
         let dummyArray:Icart[] = [];
         this.cartList.forEach((cartItem:CartItem,key:string)=>{
             if(cartItem.getProduct() instanceof Cloth){
@@ -58,8 +58,8 @@ export class ShoppingCart {
                     total_price:cartItem.getQuantity() * cloth.getItemPrice(),
                     seller_info:cloth.getOwnerId(),
                     order_date: new Date().toISOString(),
-                    mammal_id:"MY_ID",
-                    payement_method:"NOT_SET",
+                    mammal_id:buyerId,
+                    payement_method:paymentMethodId,
                     delivery_status:'PENDING',
                 };
                 dummyArray.push(cart);

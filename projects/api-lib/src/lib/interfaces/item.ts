@@ -15,7 +15,7 @@ export interface itemInterface {
    status: string
    color: Color[]
    size: Size[]
-   ownerName: string
+   ownerId: string
    title: string
    country: string
    currency: string

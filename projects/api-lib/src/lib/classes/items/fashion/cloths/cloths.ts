@@ -34,7 +34,8 @@ export class Cloth extends Fashion {
     title: string,
     availableColor:Color[],
     availableSize:Size[],
-    publicId:number
+    publicId:number,
+    ownerId:string
   ) {
     super();
     this.setCountry(country);
@@ -50,6 +51,7 @@ export class Cloth extends Fashion {
     this.setColor(new Color('NO COLOR',"#000000","000000"))
     this.setSize(new Size("NO SIZE","000000"));
     this.setPublicId(publicId)
+    this.setOwnerId(ownerId)
   }
 
   /**
