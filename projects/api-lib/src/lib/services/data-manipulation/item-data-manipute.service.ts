@@ -83,7 +83,9 @@ export class ItemDataManiputeService {
       clothAvailableColor,
       clothAvailableSize,
       item.publicId,
-      item.ownerId
+      item.ownerId,
+      item.qty,
+      item.remaining_qty
     );
 
     return cloth;

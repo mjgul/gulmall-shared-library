@@ -26,6 +26,7 @@ export abstract class Item implements Payable {
   private discount!: string;
   private ownerId!: string;
   private publicId!:number;
+  private remaining_qty!:number;
 
   public abstract getRequiredFields(): any;
 
@@ -268,4 +269,11 @@ export abstract class Item implements Payable {
   public getCountry = (): string => {
     return this.country;
   };
+
+  public getRemainingQuantity=():number=>{
+    return this.remaining_qty;
+  }
+  public setRemainingQuantity=(qty:number)=>{
+    this.remaining_qty = qty;
+  }
 }

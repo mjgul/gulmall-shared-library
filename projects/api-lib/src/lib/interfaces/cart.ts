@@ -44,4 +44,5 @@ export interface Icart {
      * Merchant Id
      */
     seller_info:string;
+    items_remaining_quantity:number;
 }

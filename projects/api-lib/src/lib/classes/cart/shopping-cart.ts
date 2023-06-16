@@ -47,6 +47,7 @@ export class ShoppingCart {
     public getCartDetails = (buyerId:string,paymentMethodId:string) =>{
         let dummyArray:Icart[] = [];
         this.cartList.forEach((cartItem:CartItem,key:string)=>{
+
             if(cartItem.getProduct() instanceof Cloth){
                 let cloth = cartItem.getProduct() as Cloth;
                 let cart:Icart  = {
@@ -61,6 +62,7 @@ export class ShoppingCart {
                     mammal_id:buyerId,
                     payement_method:paymentMethodId,
                     delivery_status:'PENDING',
+                    items_remaining_quantity: cloth.getRemainingQuantity() - cartItem.getQuantity()
                 };
                 dummyArray.push(cart);
             } 

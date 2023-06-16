@@ -15,7 +15,7 @@ export class CartService {
    * @param Icart {Icart}
    */
   public addToCart=async(object: Icart[])=> {
-    let url = `add-cart`;
+    let url = `add-cart-fashion`;
     return await this.http.post(`${this.appBaseUrl}/${url}`,{orders:object})
   }
 
