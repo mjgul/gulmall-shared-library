@@ -19,6 +19,8 @@ export interface itemInterface {
    title: string
    country: string
    currency: string
+   fabric:string
+   clothType:string
    Plan: Plan
    dimension: Dimension
  }

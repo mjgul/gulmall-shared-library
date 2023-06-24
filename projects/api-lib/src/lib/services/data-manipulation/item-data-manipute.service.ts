@@ -79,13 +79,17 @@ export class ItemDataManiputeService {
       childCat,
       images,
       item.price,
-      item.name,
+      item.title,
       clothAvailableColor,
       clothAvailableSize,
       item.publicId,
       item.ownerId,
       item.qty,
-      item.remaining_qty
+      item.remaining_qty,
+      item.fabric,
+      item.clothType,
+      item.dimension,
+      item.hasDimension
     );
 
     return cloth;

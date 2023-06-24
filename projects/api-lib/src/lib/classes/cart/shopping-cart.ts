@@ -55,11 +55,10 @@ export class ShoppingCart {
                     color_id:cloth.getItemColorId(),
                     size_id:cloth.getItemSizeId(),
                     quantity:cartItem.getQuantity(),
-                    discount:cloth.getDiscount(),
+                    discount:"0%",
                     total_price:cartItem.getQuantity() * cloth.getItemPrice(),
                     seller_info:cloth.getOwnerId(),
-                    order_date: new Date().toISOString(),
-                    mammal_id:buyerId,
+                    user_id:buyerId,
                     payement_method:paymentMethodId,
                     delivery_status:'PENDING',
                     items_remaining_quantity: cloth.getRemainingQuantity() - cartItem.getQuantity()

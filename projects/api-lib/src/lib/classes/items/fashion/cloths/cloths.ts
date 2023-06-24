@@ -7,10 +7,15 @@ import { Image } from "../../../generic/image";
 import { Color } from "../../../generic/color";
 import { Size } from "../../../generic/size";
 import { Fashion } from "../fashion";
+import { Dimension } from "../../../.././interfaces/item";
+import { timeoutWith } from "rxjs";
 
 export class Cloth extends Fashion {
   private color!: Color;
   private size!: Size;
+  private texture!:string;
+  private clothType!:string;
+  private dimenstions!:Dimension;
 
   /**
    *
@@ -37,7 +42,11 @@ export class Cloth extends Fashion {
     publicId:number,
     ownerId:string,
     quantity:number,
-    remainingQty:number
+    remainingQty:number,
+    texture:string,
+    clothType:string,
+    dimension:Dimension,
+    hasDimension:boolean
   ) {
     super();
     this.setCountry(country);
@@ -56,6 +65,10 @@ export class Cloth extends Fashion {
     this.setOwnerId(ownerId)
     this.setQuantity(quantity)
     this.setRemainingQuantity(remainingQty)
+    this.texture = texture;
+    this.clothType = clothType;
+    this.dimenstions = dimension;
+    this.setHasDimension(hasDimension);
   }
 
   /**
@@ -93,6 +106,21 @@ export class Cloth extends Fashion {
     return this.color.getId();
   };
 
+ public getLength=():string=>{
+  return `${this.dimenstions.length.value} ${this.dimenstions.length.unit}`;
+ }
+
+ public getWidth=():string=>{
+  return `${this.dimenstions.width.value} ${this.dimenstions.width.unit}`;
+ }
+
+ public getTexture=():string =>{
+  return this.texture;
+ }
+
+ public getClothType=():string =>{
+  return this.clothType;
+ }
   public override itemBluePrint() {
     // "itemID_BLUE_L"
     return `${this.getChildSubCat().getId()}_${this.color.getName()}_${this.size.getName()}`;

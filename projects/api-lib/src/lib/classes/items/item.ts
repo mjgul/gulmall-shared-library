@@ -27,6 +27,7 @@ export abstract class Item implements Payable {
   private ownerId!: string;
   private publicId!:number;
   private remaining_qty!:number;
+  private hasDimension!:boolean;
 
   public abstract getRequiredFields(): any;
 
@@ -276,4 +277,13 @@ export abstract class Item implements Payable {
   public setRemainingQuantity=(qty:number)=>{
     this.remaining_qty = qty;
   }
+
+  protected setHasDimension=(value:boolean)=>{
+    this.hasDimension = value;
+  }
+
+  public hasDimenstions=():boolean=>{
+    return this.hasDimension;
+  }
+
 }

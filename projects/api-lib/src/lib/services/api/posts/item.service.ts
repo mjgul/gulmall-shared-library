@@ -86,4 +86,9 @@ export class ItemService {
     apiRoute.data = item;
     return await this.api.POST(apiRoute);
   };
+
+  createDraftProduct = (userPublicId:number) =>{
+    let url = `create-draft-item?userId=${userPublicId}`;
+    return this.http.get(`${this.appBaseUrl}/${url}`);
+  }
 }

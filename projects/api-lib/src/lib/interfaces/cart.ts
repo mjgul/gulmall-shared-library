@@ -31,15 +31,11 @@ export interface Icart {
     /**
      * User id for buyer
      */
-    mammal_id:string;
+    user_id:string;
     /**
      * Delivery status for order
      */
     delivery_status:string;
-    /**
-     * Order date
-     */
-    order_date:string;
     /**
      * Merchant Id
      */
