@@ -2,8 +2,20 @@ export class Image {
     private color!:string;
     private url!:string;
     constructor(color:string,url:string){
-        this.color = color;
-        this.url = url;
+        console.log('BEFORE: color: ', color, ' url: ', url);
+        if(typeof(color) != 'string' ){
+            this.color = 'black'
+        } else {
+            this.color = color;
+        }
+
+        if(typeof(url) != 'string'){
+            this.url = 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'
+        } else {
+            this.url = url;
+        }
+        console.log('AFTER: color: ', color, ' url: ', url);
+        
     }
 
     /**
