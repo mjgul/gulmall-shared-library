@@ -8,7 +8,6 @@ import { Color } from "../../../generic/color";
 import { Size } from "../../../generic/size";
 import { Fashion } from "../fashion";
 import { Dimension } from "../../../.././interfaces/item";
-import { timeoutWith } from "rxjs";
 
 export class Cloth extends Fashion {
   private color!: Color;

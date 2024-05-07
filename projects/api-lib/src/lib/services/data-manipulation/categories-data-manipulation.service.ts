@@ -18,10 +18,11 @@ export class CategoriesDataManipulationService {
    * @returns Icategory[]
    */
   public toCategory = (categories: any[]): Icategory[] => {
+    console.log("CATEGORIES: ",categories);
     return categories.map(
       (category): Icategory => ({
         id: category.ID,
-        name: category.name.en,
+        name: category.name,
         icon: category.icon,
       })
     );
@@ -36,7 +37,7 @@ export class CategoriesDataManipulationService {
     return subCategories.map(
       (subCat): IsubCategory => ({
         id: subCat.ID,
-        name: subCat.name.en,
+        name: subCat.name,
         catId: "",
         icon: subCat.icon,
         //catId:subCategories?.catId
@@ -53,7 +54,7 @@ export class CategoriesDataManipulationService {
     return childCategory.map(
       (childCat): IchildSubCat => ({
         id: childCat.ID,
-        name: childCat.name.en,
+        name: childCat.name,
         isGenderBased: true,
         subCatId: "",
         icon: childCat.icon,
