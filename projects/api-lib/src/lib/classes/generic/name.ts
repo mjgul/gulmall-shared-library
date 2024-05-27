@@ -2,7 +2,7 @@ export class MultiLingualName {
     private name!:string
 
     constructor(name:string) {
-        console.log("Name ++", "value : ", name);
+        
         this.setName(name);
     }
      /**

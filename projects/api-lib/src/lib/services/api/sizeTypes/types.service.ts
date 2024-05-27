@@ -50,7 +50,7 @@ export class TypeSizeService {
     // returns all gender 
     return (await this.api.GET(apiRoute))
     .pipe(
-      tap (_ => console.log('fetched types')),
+      
       map((items:any) =>
        this.sizeTypes.toSizeType(items.data))
     )

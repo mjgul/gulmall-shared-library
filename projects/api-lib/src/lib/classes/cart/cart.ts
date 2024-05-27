@@ -17,8 +17,8 @@ export class CartItem {
    * @param item 
    */
   constructor(item: Item,selectedColor:Color,selectedSize:Size,img:Image) {
-    console.log("$$----------------------Cart Item-------------------$$");
-    console.log("$$ A new cart item has been added.");
+    
+    
 
       this.item = item;
       this.quantity = 1;
@@ -26,8 +26,8 @@ export class CartItem {
       this.size = selectedSize;
       this.itemMainImage = img;
       
-      console.log("$$RECEIVED ITEM IN CART: ", this.item);
-    console.log("$$----------------------Cart Item-------------------$$");
+      
+    
   }
 
   /**

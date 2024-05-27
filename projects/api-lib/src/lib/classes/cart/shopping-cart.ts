@@ -15,7 +15,7 @@ export class ShoppingCart {
     }
 
     public addItem = (item:CartItem):void => {
-        console.log("ADDING this ITEM IN CART::" , item.getProduct())
+        
         let bluePrint = item.getProduct().itemBluePrint();
         let getItemByName = this.cartList.get(bluePrint);
         if(getItemByName){
@@ -27,7 +27,7 @@ export class ShoppingCart {
     }
 
     public removeProduct = (bluePrint:string):boolean =>{
-       console.log("LIB** Cart LIST :- ",this.cartList);
+       
        return this.cartList.delete(bluePrint);
     }
 

@@ -26,17 +26,17 @@ export class ResponseInterceptor implements HttpInterceptor {
         if(event.type === HttpEventType.UploadProgress) {
           let progress = Math.round(event.loaded/ event.total! *100) + '%';
           this.loaderService.progress = Math.round(event.loaded/ event.total! *100);
-          console.log("PROGRESS: ", progress);
+          
           this.loaderService.isLoading.next(true);
-          //console.log('Uploading:' + Math.round(event.loaded/ event.total! *100) + '%');
+          
            if (event.loaded == event.total){
             this.loaderService.isLoading.next(false);
-              console.log("Event Loaded",event);
+          
           } 
       }
         const endTime = new Date().getTime();
         const difference = endTime - startTime;
-        console.log(`${event.type} succeed in ${difference} ms.`)
+        
         return event
       }),
       catchError((error:HttpErrorResponse)=>{

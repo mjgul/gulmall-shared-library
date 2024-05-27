@@ -18,7 +18,7 @@ export class CategoriesDataManipulationService {
    * @returns Icategory[]
    */
   public toCategory = (categories: any[]): Icategory[] => {
-    console.log("CATEGORIES: ",categories);
+    
     return categories.map(
       (category): Icategory => ({
         id: category.ID,

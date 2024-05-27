@@ -12,7 +12,7 @@ export class SizeColorDataManipulation {
     sizes.forEach((item: any) => {
       _sizes.push(this.toSize(item));
     });
-    console.log("SIZES IN DATA MANIPULATION ", _sizes);
+    
     return _sizes;
   };
 
@@ -21,7 +21,7 @@ export class SizeColorDataManipulation {
     colors.forEach((item: any) => {
       _colors.push(this.toColor(item));
     });
-    console.log("COLORS IN DATA MANIPULATION ", _colors);
+    
     return _colors;
   }
 

@@ -13,7 +13,7 @@ export class LoaderService {
   constructor() { 
 
     this.isLoading.subscribe(res=>{
-      console.log("LOADING: ", res);
+      
     })
   }
   

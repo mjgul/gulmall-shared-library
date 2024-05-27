@@ -2,7 +2,7 @@ export class Image {
     private color!:string;
     private url!:string;
     constructor(color:string,url:string){
-        console.log('BEFORE: color: ', color, ' url: ', url);
+        
         if(typeof(color) != 'string' ){
             this.color = 'black'
         } else {
@@ -14,7 +14,7 @@ export class Image {
         } else {
             this.url = url;
         }
-        console.log('AFTER: color: ', color, ' url: ', url);
+        
         
     }
 

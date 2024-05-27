@@ -20,7 +20,6 @@ export class CategoriesService {
     apiRoute.apiroute = `get-categories`;
     // returns categories 
     return (await this.api.GET(apiRoute)).pipe(
-      tap (_ => console.log('fetched categories')),
       map((items:any) => this.categoryDataManipulation.toCategory(items.data))
     )
   }
@@ -35,7 +34,7 @@ export class CategoriesService {
    // returns list of subcategories.
    apiRoute.data = {cat_id};
    return (await this.api.POST(apiRoute)).pipe(
-    tap (_ => console.log('fetched sub categories')),
+    
     map((items:any) =>
      this.categoryDataManipulation.toSubcategory(items.data))
   )
@@ -52,7 +51,7 @@ export class CategoriesService {
     // returns list of child categories based on sub-categories.
     apiRoute.data = {sub_category_id};
     return (await this.api.POST(apiRoute)).pipe(
-      tap (_ => console.log('fetched sub categories')),
+      
       map((items:any) =>
        this.categoryDataManipulation.toChildSubCategory(items.data))
     )

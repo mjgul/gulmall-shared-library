@@ -8,7 +8,7 @@ export class CacheResolverService{
   constructor() {}
 
   set(key:any,value:any,timeToLive:number|null = null){
-    console.log('set cache key',key);
+    
     if(timeToLive){
       const expiresIn = new Date();
       expiresIn.setSeconds(expiresIn.getSeconds() + timeToLive);

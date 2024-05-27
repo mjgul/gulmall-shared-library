@@ -9,7 +9,7 @@ export class Category extends MultiLingualName {
   protected id!: string;
   protected icon!:string;
   constructor(category: Icategory) {
-    console.log("CATEGORY ++ ", category);
+    
     super(category.name);
     this.setId(category.id);
     this.setIcon(category.icon)

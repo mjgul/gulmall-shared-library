@@ -75,9 +75,9 @@ export class Cloth extends Fashion {
    * @param color of Color type
    */
   public setColor = (color: Color): void => {
-    console.log("RECEIVED",color);
+    
     this.color = color;
-    console.log("SETTING COLOR ++ ", this.color, ' color ', this.color.getColorCode())
+    
   };
 
   /**
@@ -85,9 +85,9 @@ export class Cloth extends Fashion {
    * @param size of Size type.
    */
   public setSize = (size: Size): void => {
-    console.log("RECEIVED SIZE ",size);
+    
     this.size = size;
-    console.log("SETTING SIZE ++ ", this.size, ' size ', this.size.getId())
+    
   };
 
   /**

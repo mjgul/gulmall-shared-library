@@ -23,7 +23,7 @@ export class ItemDataManiputeService {
     items.forEach((item: itemInterface) => {
       classifiedItems.push(this.toCloth(item));
     });
-    console.log("ITEM IN DATA MANIPULATION ", classifiedItems);
+    
     return classifiedItems;
   };
 
