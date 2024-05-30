@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
 import { Icart } from "../../../interfaces/cart";
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { SERVER_IP } from "../../../constants/config";
 @Injectable({
   providedIn: "root",

@@ -111,12 +111,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/lib-testing",
+            "outputPath": {
+              "base": "dist/lib-testing"
+            },
             "index": "projects/lib-testing/src/index.html",
-            "main": "projects/lib-testing/src/main.ts",
-            "polyfills": "projects/lib-testing/src/polyfills.ts",
+            "polyfills": [
+              "projects/lib-testing/src/polyfills.ts"
+            ],
             "tsConfig": "projects/lib-testing/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -126,7 +129,8 @@
             "styles": [
               "projects/lib-testing/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/lib-testing/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -151,9 +155,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true

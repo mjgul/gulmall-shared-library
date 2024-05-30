@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpErrorResponse,
-  HttpEventType
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { catchError, finalize, map, Observable, retry, throwError } from 'rxjs';
 import { LoaderService } from '../loader.service';
 import { Item } from '../../classes/items/item';
