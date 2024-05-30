@@ -9,7 +9,7 @@ export class ClothingFilterService {
         public http: HttpClient
       ) {}
 
-    getAllFilters = async (pageNumber: number) => {
+    getAllFilters = async () => {
         return await this.http
           .get(`${this.appBaseUrl}/${this.clotingFilterEndpoint}`)
       };
