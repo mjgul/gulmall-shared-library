@@ -55,4 +55,22 @@ export class MamalsService {
     route.data = updateObject;
     return (await this.api.POST(route));
   }
+
+  isPhoneExist=async (phone:number)=>{
+    let route:any = {};
+    route.apiroute = `check-phone-number?phone=${phone}`
+    return (await this.api.GET(route));
+  }
+
+  isMailExist=async (email:string)=>{
+    let route:any = {};
+    route.apiroute = `check-email?email=${email}`
+    return (await this.api.GET(route));
+  }
+
+  isMailVerified=async (email:string)=>{
+    let route:any = {};
+    route.apiroute = `check-email-verified?email=${email}`
+    return (await this.api.GET(route));
+  }
 }
