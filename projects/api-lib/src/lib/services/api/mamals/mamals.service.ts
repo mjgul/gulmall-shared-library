@@ -56,21 +56,47 @@ export class MamalsService {
     return (await this.api.POST(route));
   }
 
-  isPhoneExist=async (phone:number)=>{
+  /**
+   * 
+   * @param phone 
+   * @returns JOSN
+   */
+  isPhoneExist(phone:number){
     let route:any = {};
     route.apiroute = `check-phone-number?phone=${phone}`
-    return (await this.api.GET(route));
+    return this.api.GET(route);
   }
 
-  isMailExist=async (email:string)=>{
+  /**
+   * 
+   * @param email 
+   * @returns JSON
+   */
+  isMailExist (email:string){
     let route:any = {};
     route.apiroute = `check-email?email=${email}`
-    return (await this.api.GET(route));
+    return this.api.GET(route);
   }
 
-  isMailVerified=async (email:string)=>{
+  /**
+   * 
+   * @param email 
+   * @returns JSON
+   */
+  isMailVerified(email:string){
     let route:any = {};
     route.apiroute = `check-email-verified?email=${email}`
-    return (await this.api.GET(route));
+    return  this.api.GET(route);
+  }
+
+  /**
+   * 
+   * @param email 
+   * @returns JSON
+   */
+  signinEmail(email:string){
+    let route:any = {};
+    route.apiroute = `signin-email?email=${email}`
+    return  this.api.GET(route);
   }
 }
