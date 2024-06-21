@@ -99,4 +99,17 @@ export class MamalsService {
     route.apiroute = `signin-email?email=${email}`
     return  this.api.GET(route);
   }
+
+   /**
+   * 
+   * @param phone 
+   * @returns JSON
+   */
+   signinPhone(phone:number){
+    let route:any = {};
+    route.apiroute = `signin-phone?phone=${phone}`
+    return  this.api.GET(route);
+  }
+
+
 }
