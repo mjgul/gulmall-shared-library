@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JGSApiService } from '../../../api-lib.service';
+import { user } from '../../../interfaces/userSchema';
 @Injectable({ providedIn: 'root'})
 export class MamalsService {
   constructor(private api:JGSApiService) { }
@@ -12,13 +13,18 @@ export class MamalsService {
 
   /**
    * Takes the Firebase User object and saves in Mongodb.
-   * @param firebaseUserObject Firebase User object
-   * @returns 
+   * {"email":string,
+  "displayName": string,
+  "photoUrl":string,
+  "primaryPhone":string,
+  "uid":string,
+  "providerInfo":string,
+  "platform":string } 
    */
-  addUser=async(firebaseUserObject:any)=>{
+  addUser=async(userObj:user)=>{
     let route:any = {};
-    route.apiroute = "add-mammals_registration";
-    route.data = firebaseUserObject;
+    route.apiroute = "create-user";
+    route.data = userObj;
     return (await this.api.POST(route));
   }
 

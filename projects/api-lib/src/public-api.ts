@@ -38,4 +38,5 @@ export * from './lib/interfaces/cart';
 export * from './lib/interfaces/payable';
 export * from './lib/interfaces/cloth';
 export * from './lib/interfaces/category';
+export * from './lib/interfaces/userSchema';
 ///EXPORTING FILTER API
