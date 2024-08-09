@@ -64,6 +64,19 @@ export class ItemService {
     return this.api.POST(apiRoute);
   };
 
+    /**
+   * Used to fetch comments based on entity
+   * @Author Muhammad Junaid Gul
+   * @param {number} publicId
+   * @returns '{User , []Items}'
+   * @memberof ItemService
+   */
+    getItemByMerchantId = async (_id: number) => {
+      let apiRoute: any = {};
+      apiRoute.apiroute = `get-all-items-by-mamal-id?publicId=${_id}`;
+      return this.api.GET(apiRoute);
+    };
+
   updateItemById(_item: any, _id: string) {}
 
   /**

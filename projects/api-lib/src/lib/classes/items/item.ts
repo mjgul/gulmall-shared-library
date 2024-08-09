@@ -10,13 +10,14 @@ import { MultiLingualName } from "../generic/name";
 import { Image } from "../generic/image";
 
 export abstract class Item implements Payable {
-  private title!: MultiLingualName; // {en:"3 piece suit", ar:"3 piece suit"}
-  private childSubCat!: ChildSubCategory; // {id:"23412kl",name:{en:"",ar:""}, sub_cat_id:"124123"}
-  private category!: Category; // {id:"21323412kl",name:{en:"",ar:""}}
-  private subCategory!: SubCategory; // {id:"23412klfds",name:{en:"",ar:""}, cat_id:"124123"}
-  private price!: number; // 2000
-  private description!: MultiLingualName; // {en:"",ar:""}
-  private image!: Image[]; // ["jlskdfjas","lkdsfj","jlsakdfj"]
+
+  private title!: MultiLingualName; 
+  private childSubCat!: ChildSubCategory; 
+  private category!: Category; 
+  private subCategory!: SubCategory; 
+  private price!: number; 
+  private description!: MultiLingualName; 
+  private image!: Image[]; 
   private country!: string;
   private currency!: string;
   private quantity!: number;
@@ -28,11 +29,17 @@ export abstract class Item implements Payable {
   private publicId!:number;
   private remaining_qty!:number;
   private hasDimension!:boolean;
+  private creationTime:string;
+  private tireId!:string;
 
   public abstract getRequiredFields(): any;
 
   // Initiating the item attributes.
-  constructor() {}
+  constructor() {
+    this.creationTime = Date.now().toString();
+    // HARDCODE 
+    this.tireId = "646d33b2f9e3260506559805"
+  }
 
   public getCategory = () => {
     return this.category;
@@ -286,4 +293,15 @@ export abstract class Item implements Payable {
     return this.hasDimension;
   }
 
+  /**
+   *
+   * @param name name of the country
+   */
+  protected setItemTire = (tireId: string) => {
+    this.tireId = tireId;
+  };
+
+  public getTireId=()=>{
+    return this.tireId;
+  }
 }

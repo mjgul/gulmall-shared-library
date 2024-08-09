@@ -8,7 +8,6 @@ export abstract class Fashion extends Item {
 
     constructor(){
         super();
-        
     }
 
     protected setAvailableColor =(color:Color[])=>{
