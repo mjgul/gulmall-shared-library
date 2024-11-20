@@ -39,4 +39,6 @@ export * from './lib/interfaces/payable';
 export * from './lib/interfaces/cloth';
 export * from './lib/interfaces/category';
 export * from './lib/interfaces/userSchema';
+///EXPORTING MEDIA API
+export * from './lib/services/api/media/media.service';
 ///EXPORTING FILTER API
