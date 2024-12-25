@@ -85,4 +85,5 @@ export class CartItem {
   public getSize = ():Size=>{
     return this.size;
   }
+
 }

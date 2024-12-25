@@ -72,4 +72,10 @@ export class ShoppingCart {
     public totalNumberOfItems=():Number =>{
        return this.cartList.size;
     }
+
+    public clearCart = () => {
+        this.cartList.clear();
+    };
+
+    
 }
