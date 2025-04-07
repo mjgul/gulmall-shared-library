@@ -55,12 +55,13 @@ export class ShoppingCart {
                     color_id:cloth.getItemColorId(),
                     size_id:cloth.getItemSizeId(),
                     quantity:cartItem.getQuantity(),
-                    discount:"0%",
                     total_price:cartItem.getQuantity() * cloth.getItemPrice(),
                     seller_info:cloth.getOwnerId(),
                     user_id:buyerId,
                     payement_method:paymentMethodId,
                     delivery_status:'PENDING',
+                    discount:"0%",
+                    currency:cloth.getCurrency(),
                     items_remaining_quantity: cloth.getRemainingQuantity() - cartItem.getQuantity()
                 };
                 dummyArray.push(cart);
