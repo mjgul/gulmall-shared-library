@@ -1,6 +1,7 @@
 export class Image {
     private color!:string;
     private url!:string;
+    
     constructor(color:string,url:string){
         
         if(typeof(color) != 'string' ){

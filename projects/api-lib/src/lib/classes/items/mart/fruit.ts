@@ -28,9 +28,8 @@ import {
       country: string,
       currency: string,
       category: Icategory,
-      subCategory: IsubCategory,
-      subCatChild: IchildSubCat,
-      images: Image[],
+      subcat:IsubCategory,
+      item:IchildSubCat,
       price: number,
       title: string,
       publicId:number,
@@ -46,9 +45,8 @@ import {
       this.setCountry(country);
       this.setCurrency(currency);
       this.setCategory(category);
-      this.setSubCategory(subCategory);
-      this.setSubCatChild(subCatChild);
-      this.setImages(images);
+      this.setSubCategory(subcat)
+      this.setSubCatChild(item)
       this.setItemPrice(price);
       this.setItemTitle(title);
       this.setPublicId(publicId)
@@ -64,7 +62,7 @@ import {
   
     public override itemBluePrint() {
       // "itemID_BLUE_L"
-      return `${this.getChildSubCat().getId()}_${this.getFruitOrigin()}_${this.getItemTitle().getName()}`;
+      return `${this.getCategory().getId()}_${this.getFruitOrigin()}_${this.getItemTitle().getName()}_${this.getFruitUnitType()}_${this.getFruitWeight()}`;
     }
 
     public setFruitOrigin = (origin:string) => {
@@ -83,8 +81,8 @@ import {
         return this.origin;
     }
 
-    public getFruitWeight = ():number => {
-        return this.weight
+    public getFruitWeight = ():string => {
+        return this.weight + 'kg'
     }
 
     public getFruitUnitType = ():string => {
