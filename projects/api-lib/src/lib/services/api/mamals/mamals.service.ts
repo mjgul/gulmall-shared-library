@@ -117,5 +117,31 @@ export class MamalsService {
     return  this.api.GET(route);
   }
 
+  /**
+   * 
+   * @return JSON
+   * {phone:"string"}
+   */
+
+  async sendOtp(phoneObj:any){
+    let route:any = {};
+    route.apiroute = `send-otp`;
+    route.data = phoneObj;
+    return (await this.api.POST(route));
+  }
+
+  /**
+   * 
+   * @return JSON
+   * {phone:"string",otp:"123456"}
+   */
+
+  async verifyOtp(verifyObj:any){
+    let route:any = {};
+    route.apiroute = `verify-otp`;
+    route.data = verifyObj;
+    return (await this.api.POST(route));
+  }
+
 
 }

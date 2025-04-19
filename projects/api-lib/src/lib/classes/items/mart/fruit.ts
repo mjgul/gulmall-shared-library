@@ -62,7 +62,7 @@ import {
   
     public override itemBluePrint() {
       // "itemID_BLUE_L"
-      return `${this.getCategory().getId()}_${this.getFruitOrigin()}_${this.getItemTitle().getName()}_${this.getFruitUnitType()}_${this.getFruitWeight()}`;
+      return `${this.getCategory().getName()}_${this.getSubCategory().getName()}_${this.getItemTitle().getName()}_${this.getFruitUnitType()}_${this.getFruitWeight()}`;
     }
 
     public setFruitOrigin = (origin:string) => {
