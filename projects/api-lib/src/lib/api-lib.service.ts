@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SERVER_IP } from './constants/config';
+import { SERVER_IP,Local } from './constants/config';
 import { LoaderService } from './services/loader.service';
 @Injectable({
   providedIn: 'root',
 })
 
 export class JGSApiService {
-  private appBaseUrl = SERVER_IP
+  private appBaseUrl = Local
 
   // CONSTRUCTOR API SERVICE
   constructor(public http: HttpClient, private loader: LoaderService) {}

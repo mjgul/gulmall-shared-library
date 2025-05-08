@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
 import { Icart } from "../../../interfaces/cart";
 import { HttpClient } from '@angular/common/http';
-import { SERVER_IP } from "../../../constants/config";
+import { SERVER_IP,Local } from "../../../constants/config";
 @Injectable({
   providedIn: "root",
 })
 export class CartService {
-  private appBaseUrl = SERVER_IP;
+  private appBaseUrl = Local;
   constructor(private api: JGSApiService,public http: HttpClient) {}
 
   /**
@@ -15,7 +15,7 @@ export class CartService {
    * @param Icart {Icart}
    */
   public addToCart=async(object: Icart[])=> {
-    let url = `add-cart-fashion`;
+    let url = `add-cart`;
     return await this.http.post(`${this.appBaseUrl}/${url}`,{orders:object})
   }
 

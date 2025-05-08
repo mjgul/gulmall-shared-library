@@ -39,7 +39,21 @@ export interface Icart {
     /**
      * Merchant Id
      */
-    seller_info:string;
+    seller_id:string;
+    /**
+     * Currency of item being sell
+     */
     currency:string;
+    /**
+     * how many items are remaining
+     */
     items_remaining_quantity:number;
+    /**
+     * item's category id
+     */
+    category:string;
+    /**
+     * item's sub category id
+     */
+    sub_category:string;
 }

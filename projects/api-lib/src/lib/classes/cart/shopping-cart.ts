@@ -56,13 +56,15 @@ export class ShoppingCart {
                     size_id:cloth.getItemSizeId(),
                     quantity:cartItem.getQuantity(),
                     total_price:cartItem.getQuantity() * cloth.getItemPrice(),
-                    seller_info:cloth.getOwnerId(),
+                    seller_id:cloth.getOwnerId(),
                     user_id:buyerId,
                     payement_method:paymentMethodId,
                     delivery_status:'PENDING',
-                    discount:"0%",
+                    discount:cloth.getDiscount(),
                     currency:cloth.getCurrency(),
-                    items_remaining_quantity: cloth.getRemainingQuantity() - cartItem.getQuantity()
+                    items_remaining_quantity: cloth.getRemainingQuantity() - cartItem.getQuantity(),
+                    category:cloth.getCategory().getName(),
+                    sub_category:cloth.getSubCategory().getName()
                 };
                 dummyArray.push(cart);
             } 
