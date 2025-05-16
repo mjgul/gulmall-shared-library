@@ -11,6 +11,7 @@ import {
   MamalsService,
   CartService,
   Icart,
+  ItemService
 } from "api-lib";
 import { Fruit } from "projects/api-lib/src/lib/classes/items/mart/fruit";
 
@@ -25,7 +26,7 @@ export class AppComponent {
   title = "test-app";
   category: Icategory = { id: "123", name: "Fruit", icon: "icon" };
   image: Image[] = [new Image("Blank", "sadfsdf")];
-  constructor(private mam: MamalsService, private cart: CartService) {}
+  constructor(private mam: MamalsService, private cart: CartService, private item:ItemService) {}
 
   async otp() {
     console.log("HELLO");
@@ -75,8 +76,14 @@ export class AppComponent {
   }
 
   async testCartByDateAndShippingStatus(){
-    (await this.cart.getCartByDateAndShippingStatus("2025-05-10","Delivered")).subscribe(res=>{
+    (await this.cart.getAllCart()).subscribe(res=>{
       console.log("GET ALL CART RES: ", res)
+    })
+  }
+
+  async testGetAllItem(){
+    (await this.item.getAllItem(1)).subscribe((res:any)=>{
+      console.log("ITEMS", res)
     })
   }
 
