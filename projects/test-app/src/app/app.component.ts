@@ -48,23 +48,36 @@ export class AppComponent {
  async testAddToCart() {
     console.log("TEAT")
     let obj: Icart = {
-      color_id: "6352f8123e006819c56246c6",
+      
       currency: "GBP",
       delivery_status: "PENDING",
       discount: "20%",
       item_id: "67a55acaf2874493dd7dfa7b",
       payment_method: "63690dbd0ea3bcf8f8bc9051",
       quantity: 2,
-      size_id: "63b12eef5f49f5f279919c78",
       user_id: "68164479a76e409613625196",
       category: "Fashion",
       sub_category: "Clothing",
       seller_id: "680825a371b05e63c57295fb",
+      order_date:new Date()
     };
     (await this.cart.addToCart([obj])).subscribe
     ((res: any) => {
       console.log("ADD CART RESPONSE", res);
     });
+  }
+
+  async testGetAllCart(){
+    (await this.cart.getCartsByDate("2025-05-10")).subscribe(res=>{
+
+      console.log("GET ALL CART RES: ", res)
+    })
+  }
+
+  async testCartByDateAndShippingStatus(){
+    (await this.cart.getCartByDateAndShippingStatus("2025-05-10","Delivered")).subscribe(res=>{
+      console.log("GET ALL CART RES: ", res)
+    })
   }
 
   // ngOnInit(): void {

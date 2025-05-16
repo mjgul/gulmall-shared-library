@@ -1,6 +1,7 @@
 import { CartItem } from "./cart";
-import { Icart } from '../../interfaces/cart';
+import { Icart, IClothingCart, IFruitCart } from '../../interfaces/cart';
 import { Cloth } from "../items/fashion/cloths/cloths";
+import { Fruit } from "../items/mart/fruit";
 export class ShoppingCart {
     private static INSTANCE:ShoppingCart;
     
@@ -44,33 +45,48 @@ export class ShoppingCart {
         return totalCost;
     }
 
-    public getCartDetails = (buyerId:string,paymentMethodId:string) =>{
-        let dummyArray:Icart[] = [];
-        this.cartList.forEach((cartItem:CartItem,key:string)=>{
-
-            if(cartItem.getProduct() instanceof Cloth){
-                let cloth = cartItem.getProduct() as Cloth;
-                let cart:Icart  = {
-                    item_id:cloth.getChildSubCat().getId(),
-                    color_id:cloth.getItemColorId(),
-                    size_id:cloth.getItemSizeId(),
-                    quantity:cartItem.getQuantity(),
-                    total_price:cartItem.getQuantity() * cloth.getItemPrice(),
-                    seller_id:cloth.getOwnerId(),
-                    user_id:buyerId,
-                    payement_method:paymentMethodId,
-                    delivery_status:'PENDING',
-                    discount:cloth.getDiscount(),
-                    currency:cloth.getCurrency(),
-                    items_remaining_quantity: cloth.getRemainingQuantity() - cartItem.getQuantity(),
-                    category:cloth.getCategory().getName(),
-                    sub_category:cloth.getSubCategory().getName()
-                };
-                dummyArray.push(cart);
-            } 
+    public getCartDetails = (buyerId: string, paymentMethodId: string) => {
+        let dummyArray: (IClothingCart | IFruitCart)[] = [];
+      
+        this.cartList.forEach((cartItem: CartItem) => {
+          const product = cartItem.getProduct();
+      
+          const baseCart: Icart = {
+            item_id: product.getChildSubCat().getId(),
+            quantity: cartItem.getQuantity(),
+            seller_id: product.getOwnerId(),
+            user_id: buyerId,
+            payment_method: paymentMethodId,
+            delivery_status: 'Pending',
+            discount: product.getDiscount(),
+            currency: product.getCurrency(),
+            category: product.getCategory().getName(),
+            sub_category: product.getSubCategory().getName(),
+            order_date:new Date()
+          };
+      
+          if (product instanceof Cloth) {
+            const cloth = product as Cloth;
+            const cart: IClothingCart = {
+              ...baseCart,
+              color_id: cloth.getItemColorId(),
+              size_id: cloth.getItemSizeId()
+            };
+            dummyArray.push(cart);
+          } else if (product instanceof Fruit) {
+            const fruit = product as Fruit;
+            const cart: IFruitCart = {
+              ...baseCart,
+              origin:fruit.getFruitOrigin(),
+              weight_in_kg: fruit.getFruitWeight()
+            };
+            dummyArray.push(cart);
+          }
         });
+      
         return dummyArray;
-    }
+      };
+      
 
     public totalNumberOfItems=():Number =>{
        return this.cartList.size;

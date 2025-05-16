@@ -1,22 +1,22 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
 import { Icart } from "../../../interfaces/cart";
-import { HttpClient } from '@angular/common/http';
-import { SERVER_IP,Local } from "../../../constants/config";
+
 @Injectable({
   providedIn: "root",
 })
 export class CartService {
-  private appBaseUrl = Local;
-  constructor(private api: JGSApiService,public http: HttpClient) {}
+  constructor(private api: JGSApiService) {}
 
   /**
    * ADD TO CART FOR CLOTHING/FASHION
    * @param Icart {Icart}
    */
   public addToCart=async(object: Icart[])=> {
-    let url = `add-cart`;
-    return await this.http.post(`${this.appBaseUrl}/${url}`,{orders:object})
+    let apiRoute: any = {};
+    apiRoute.apiroute = 'add-cart'
+    apiRoute.data = {orders:object};
+    return await this.api.POST(apiRoute)
   }
 
   /**
@@ -32,7 +32,31 @@ export class CartService {
 
   public getAllCart = () => {
     let apiRoute: any = {};
-    apiRoute.apiroute = `get-all-cart`;
+    apiRoute.apiroute = `get-cart`;
     return this.api.GET(apiRoute);
   };
+
+  /**
+   * 2025-05-02
+   * @returns carts
+   */
+  public getCartsByDate = (date:string) => {
+    let apiRoute: any = {};
+      apiRoute.apiroute = `get-cart?date=${date}`;  
+    return this.api.GET(apiRoute);
+  };
+
+  /**
+   * 2025-05-02
+   * status could be Pending, Delivered, Rejected
+   * @returns carts
+   */
+  public getCartByDateAndShippingStatus = (date:string,status:string) => {
+    let apiRoute: any = {};
+      apiRoute.apiroute = `get-cart?date=${date}&status=${status}`;
+    return this.api.GET(apiRoute);
+  };
+
+
+
 }

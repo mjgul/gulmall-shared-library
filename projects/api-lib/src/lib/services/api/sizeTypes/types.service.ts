@@ -4,6 +4,7 @@ import { GenderOrTypeDataManipulationService } from "../../data-manipulation/gen
 import { SizeColorDataManipulation } from "../../data-manipulation/size-color-data-manipulation.service";
 import { Observable, map, tap } from 'rxjs';
 import { IsizeType } from '../../../interfaces/sizeType';
+import { Size } from 'projects/api-lib/src/public-api';
 @Injectable({
     providedIn: 'root'
   })
@@ -44,7 +45,7 @@ export class TypeSizeService {
    * GIVES THE LIST OF ALL AVAILABLE GENDER OR TYPE.
    * @returns list of all available type/gender
    */
-  getTypes = async ():Promise<Observable<IsizeType[]>> => {
+  getTypes = async ()=> {
     let apiRoute: any = {};
     apiRoute.apiroute = `get-gender`;
     // returns all gender 

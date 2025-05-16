@@ -1,18 +1,14 @@
 import { Injectable } from "@angular/core";
 import { JGSApiService } from "../../../api-lib.service";
-import { SERVER_IP } from "../../../constants/config";
 import { ItemDataManiputeService } from "../../data-manipulation/item-data-manipute.service";
-import { HttpClient } from "@angular/common/http";
-import { Observable, map } from "rxjs";
-import { Item } from "../../../classes/items/item";
+import {  map } from "rxjs";
+import { Item } from "projects/api-lib/src/public-api"; 
 @Injectable({
   providedIn: "root",
 })
 export class ItemService {
-  private appBaseUrl = SERVER_IP;
   constructor(
     private api: JGSApiService,
-    public http: HttpClient,
     private itemDataManipulation: ItemDataManiputeService
   ) {}
 
@@ -24,15 +20,16 @@ export class ItemService {
    * @memberof ItemService
    */
   getAllItem = async (pageNumber: number) => {
-    let url = `get-all-item?pageNumber=${pageNumber}`;
-    return await this.http
-      .get(`${this.appBaseUrl}/${url}`)
+    let apiRoute: any = {};
+    apiRoute.apiroute = `get-all-item?pageNumber=${pageNumber}`
+    return await (await this.api.GET(apiRoute))
       .pipe(map((items: any) => this.itemDataManipulation.toClass(items.data)));
   };
 
-  getItemByPublicId = (itemPublicId: string): Observable<Item[]> => {
-    let url = `get-item-by-id?publicId=${itemPublicId}`;
-    return this.http.get<Item[]>(`${this.appBaseUrl}/${url}`)
+  getItemByPublicId = async (itemPublicId: string) => {
+    let apiRoute: any = {};
+    apiRoute.apiroute = `get-item-by-id?publicId=${itemPublicId}`
+    return await (await this.api.GET(apiRoute))
     .pipe(map((items: any) => this.itemDataManipulation.toClass(items.data)))
   };
 
@@ -101,7 +98,9 @@ export class ItemService {
   };
 
   createDraftProduct = (userPublicId:number) =>{
-    let url = `create-draft-item?userId=${userPublicId}`;
-    return this.http.get(`${this.appBaseUrl}/${url}`);
+    let apiRoute: any = {};
+    apiRoute.apiroute = `create-draft-item?userId=${userPublicId}`;
+
+    return this.api.GET(apiRoute);
   }
 }

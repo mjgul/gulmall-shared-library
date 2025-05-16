@@ -1,3 +1,5 @@
+
+
 export interface Icart {
     /**
      * Item mongodb id
@@ -8,14 +10,6 @@ export interface Icart {
      */
     quantity:number;
     /**
-     * Color id for item
-     */
-    color_id?:string;
-    /**
-     * Size id of item
-     */
-    size_id?:string;
-    /**
      * Discount if available
      * "10%"
      */
@@ -23,11 +17,7 @@ export interface Icart {
     /**
      * Payment method id
      */
-    payement_method:string;
-    /**
-     * Total Price of item
-     */
-    total_price:number;
+    payment_method:string;
     /**
      * User id for buyer
      */
@@ -45,10 +35,6 @@ export interface Icart {
      */
     currency:string;
     /**
-     * how many items are remaining
-     */
-    items_remaining_quantity:number;
-    /**
      * item's category id
      */
     category:string;
@@ -56,4 +42,22 @@ export interface Icart {
      * item's sub category id
      */
     sub_category:string;
+    order_date:Date
 }
+
+export interface IClothingCart extends Icart {
+       /**
+     * Color id for item
+     */
+       color_id:string;
+       /**
+        * Size id of item
+        */
+       size_id:string;
+  }
+
+  export interface IFruitCart extends Icart {
+    // No color_id or size_id needed
+    weight_in_kg: string;  // Optional, in case fruits are sold by weight
+    origin:string;
+  }
