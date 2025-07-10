@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { JGSApiService } from "../../../api-lib.service";
 import { GenderOrTypeDataManipulationService } from "../../data-manipulation/gender-type-data-manipulation.service";
 import { SizeColorDataManipulation } from "../../data-manipulation/size-color-data-manipulation.service";
-import { Observable, map, tap } from 'rxjs';
+
+import { map, Observable, tap } from 'rxjs';
 import { IsizeType } from '../../../interfaces/sizeType';
-import { Size } from 'projects/api-lib/src/public-api';
 @Injectable({
     providedIn: 'root'
   })
@@ -28,24 +28,13 @@ export class TypeSizeService {
     )
   }
 
-  /**
-   * RETURN Color type of ALL AVAILABLE COLORS.
-   */
-   getAllColors = async () => {
-    let apiRoute:any = {};
-    apiRoute.apiroute = `get-color`;
-    return (await this.api.GET(apiRoute))
-    .pipe(
-      map((items:any) =>
-       this.sizeOrColor.colorToClass(items.data))
-    )
-  }
+ 
 
   /**
    * GIVES THE LIST OF ALL AVAILABLE GENDER OR TYPE.
    * @returns list of all available type/gender
    */
-  getTypes = async ()=> {
+  getTypes = async (): Promise<Observable<IsizeType[]>> => {
     let apiRoute: any = {};
     apiRoute.apiroute = `get-gender`;
     // returns all gender 

@@ -1,0 +1,32 @@
+<div>
+      <!-- Express Checkout: Apple Pay / Google Pay / etc. -->
+      
+        <h1>Express Checkout</h1>
+      
+      
+      
+            <button (click)="payWithLink()" expand="block" color="secondary">
+              
+              Pay with Link
+            </button>
+          
+    </div>
+
+    <form id="payment-form" (submit)="handleSubmit($event)" [hidden]="isLoading">
+      
+      
+      <div id="express-checkout-element"></div>
+      <!-- Payment Element (Cards, Wallets, etc.) -->
+      <div id="payment-element"></div>
+      
+      <button expand="block" type="submit"  class="ion-margin-top">
+        
+        
+      </button>
+  
+      <!-- Display payment errors here -->
+      <span color="danger" class="error-message">
+        
+        
+      </span>
+    </form>

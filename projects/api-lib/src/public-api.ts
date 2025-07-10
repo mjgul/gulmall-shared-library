@@ -16,6 +16,7 @@ export * from './lib/services/api/sizeTypes/types.service';
 export * from './lib/services/api/address/address.service';
 export * from './lib/services/api/generic/global.service';
 export * from './lib/services/api/filters/clothing-filter.service';
+export * from './lib/services/api/stripe_payment/stripe.service';
 //EXPORTING CLASSES
 export * from './lib/classes/items/fashion/cloths/cloths';
 export * from './lib/classes/items/item';

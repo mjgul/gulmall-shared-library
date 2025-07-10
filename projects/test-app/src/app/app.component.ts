@@ -11,14 +11,16 @@ import {
   MamalsService,
   CartService,
   Icart,
-  ItemService
+  ItemService,
+  AddressService
 } from "api-lib";
 import { Fruit } from "projects/api-lib/src/lib/classes/items/mart/fruit";
+import { StripePaymentComponent } from "./stripe/stripe.component"; 
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, ApiLibModule],
+  imports: [RouterOutlet, ApiLibModule, StripePaymentComponent],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
@@ -26,7 +28,7 @@ export class AppComponent {
   title = "test-app";
   category: Icategory = { id: "123", name: "Fruit", icon: "icon" };
   image: Image[] = [new Image("Blank", "sadfsdf")];
-  constructor(private mam: MamalsService, private cart: CartService, private item:ItemService) {}
+  constructor(private mam: MamalsService, private cart: CartService, private item:ItemService, private address:AddressService) {}
 
   async otp() {
     console.log("HELLO");
@@ -69,14 +71,14 @@ export class AppComponent {
   }
 
   async testGetAllCart(){
-    (await this.cart.getCartsByDate("2025-05-10")).subscribe(res=>{
+    (await this.cart.getCartsByDate("2025-05-10")).subscribe((res:any)=>{
 
       console.log("GET ALL CART RES: ", res)
     })
   }
 
   async testCartByDateAndShippingStatus(){
-    (await this.cart.getAllCart()).subscribe(res=>{
+    (await this.cart.getAllCart()).subscribe((res:any)=>{
       console.log("GET ALL CART RES: ", res)
     })
   }
@@ -84,6 +86,12 @@ export class AppComponent {
   async testGetAllItem(){
     (await this.item.getAllItem(1)).subscribe((res:any)=>{
       console.log("ITEMS", res)
+    })
+  }
+
+  async testGetLocationFromIPStack(){
+    (await this.address.getLocationFromIPStack()).subscribe((res:any)=>{
+      console.log("GET LOCATION FROM IP STACK: ", res)
     })
   }
 

@@ -1,35 +1,6 @@
 
 
-<!-- <div>
-
-  <h2>Add a Fruit</h2>
-  <form id="fruitForm">
-    <label>Country: <input type="text" id="country" required></label><br><br>
-    <label>Currency: <input type="text" id="currency" required></label><br><br>
-    <label>Category ID: <input type="text" id="categoryId" required></label><br><br>
-    <label>Category Name: <input type="text" id="categoryName" required></label><br><br>
-    <label>Price: <input type="number" id="price" required></label><br><br>
-    <label>Title: <input type="text" id="title" required></label><br><br>
-    <label>Public ID: <input type="number" id="publicId" required></label><br><br>
-    <label>Owner ID: <input type="text" id="ownerId" required></label><br><br>
-    <label>Quantity: <input type="number" id="quantity" required></label><br><br>
-    <label>Remaining Quantity: <input type="number" id="remainingQty" required></label><br><br>
-    <label>Origin: <input type="text" id="origin" required></label><br><br>
-    <label>Weight (kg): <input type="text" id="weight" required></label><br><br>
-    <label>Unit Type:
-      <select id="unitType" required>
-        <option value="piece">Piece</option>
-        <option value="kg">Kg</option>
-        <option value="box">Box</option>
-      </select>
-    </label><br><br>
-
-    <button type="submit" >Add Fruit</button>
-  </form>
-
-  <pre id="output"></pre>
-
-</div> -->
+<stripe-payment></stripe-payment>
 
 <div (click)="otp()">send otp </div>
 <div (click)="verify()">verify</div>
@@ -40,3 +11,7 @@
 <button (click)="testCartByDateAndShippingStatus()"> Test Get All Cart </button>
 <h1>Get All Items</h1>
 <button (click)="testGetAllItem()">Test</button>
+
+<h1>Get Location From IP Stack</h1>
+<button (click)="testGetLocationFromIPStack()">Test</button>
+

@@ -40,9 +40,10 @@ import { lastValueFrom } from 'rxjs';
       return await lastValueFrom(this.http.get(url));
     }
 
-    public getMyIp= async ()=>{
-        let url = `https://api.ipify.org/?format=json`;
-        return await lastValueFrom (this.http.get(url));
-    }
+   public getLocationFromIPStack=async()=>{
+    let apiRoute: any = {};
+    apiRoute.apiroute = `ip`;
+    return this.api.GET(apiRoute)
+   }
 
   }
